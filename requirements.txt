@@ -1,0 +1,12 @@
+opencv-contrib-python
+opencv-python
+numpy==1.23.1
+timm==0.6.12
+torchvision
+scipy
+matplotlib
+scikit-image
+basicsr==1.4.2
+prettytable==3.6.0
+svglib
+reportlab
