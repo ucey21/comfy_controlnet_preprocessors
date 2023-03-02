@@ -1,6 +1,7 @@
 # ControlNet Preprocessors for [ComfyUI](https://github.com/comfyanonymous/ComfyUI)
 Moved from https://github.com/comfyanonymous/ComfyUI/pull/13 <br>
 Original repo: https://github.com/lllyasviel/ControlNet
+List of my comfyUI node repos: https://github.com/Fannovel16/FN16-ComfyUI-nodes
 ## Install
 ```sh
 cd ComfyUI/custom_nodes
