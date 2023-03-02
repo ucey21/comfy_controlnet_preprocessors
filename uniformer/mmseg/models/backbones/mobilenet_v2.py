@@ -1,8 +1,8 @@
 import logging
 
 import torch.nn as nn
-from controlnet_preprocessors.uniformer.mmcv.cnn import ConvModule, constant_init, kaiming_init
-from controlnet_preprocessors.uniformer.mmcv.runner import load_checkpoint
+from comfy_controlnet_preprocessors.uniformer.mmcv.cnn import ConvModule, constant_init, kaiming_init
+from comfy_controlnet_preprocessors.uniformer.mmcv.runner import load_checkpoint
 from torch.nn.modules.batchnorm import _BatchNorm
 
 from ..builder import BACKBONES

@@ -1,9 +1,9 @@
 import torch
 import torch.nn.functional as F
-from controlnet_preprocessors.uniformer.mmcv.cnn import ConvModule, Scale
+from comfy_controlnet_preprocessors.uniformer.mmcv.cnn import ConvModule, Scale
 from torch import nn
 
-from controlnet_preprocessors.uniformer.mmseg.core import add_prefix
+from comfy_controlnet_preprocessors.uniformer.mmseg.core import add_prefix
 from ..builder import HEADS
 from ..utils import SelfAttentionBlock as _SelfAttentionBlock
 from .decode_head import BaseDecodeHead

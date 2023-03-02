@@ -3,9 +3,9 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-from controlnet_preprocessors.uniformer.mmcv.cnn import CONV_LAYERS, ConvAWS2d, constant_init
-from controlnet_preprocessors.uniformer.mmcv.ops.deform_conv import deform_conv2d
-from controlnet_preprocessors.uniformer.mmcv.utils import TORCH_VERSION, digit_version
+from comfy_controlnet_preprocessors.uniformer.mmcv.cnn import CONV_LAYERS, ConvAWS2d, constant_init
+from comfy_controlnet_preprocessors.uniformer.mmcv.ops.deform_conv import deform_conv2d
+from comfy_controlnet_preprocessors.uniformer.mmcv.utils import TORCH_VERSION, digit_version
 
 
 @CONV_LAYERS.register_module(name='SAC')

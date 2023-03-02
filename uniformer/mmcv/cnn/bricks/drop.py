@@ -2,7 +2,7 @@
 import torch
 import torch.nn as nn
 
-from controlnet_preprocessors.uniformer.mmcv import build_from_cfg
+from comfy_controlnet_preprocessors.uniformer.mmcv import build_from_cfg
 from .registry import DROPOUT_LAYERS
 
 

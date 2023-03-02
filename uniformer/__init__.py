@@ -1,8 +1,8 @@
 import os
 
-from controlnet_preprocessors.uniformer.mmseg.apis import init_segmentor, inference_segmentor, show_result_pyplot
-from controlnet_preprocessors.uniformer.mmseg.core.evaluation import get_palette
-from controlnet_preprocessors.util import annotator_ckpts_path
+from comfy_controlnet_preprocessors.uniformer.mmseg.apis import init_segmentor, inference_segmentor, show_result_pyplot
+from comfy_controlnet_preprocessors.uniformer.mmseg.core.evaluation import get_palette
+from comfy_controlnet_preprocessors.util import annotator_ckpts_path
 
 
 checkpoint_file = "https://huggingface.co/lllyasviel/ControlNet/resolve/main/annotator/ckpts/upernet_global_small.pth"

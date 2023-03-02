@@ -1,4 +1,4 @@
-import controlnet_preprocessors.uniformer.mmcv as mmcv
+import comfy_controlnet_preprocessors.uniformer.mmcv as mmcv
 
 
 def cityscapes_classes():

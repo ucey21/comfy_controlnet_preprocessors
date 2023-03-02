@@ -1,9 +1,9 @@
 import torch
 import torch.nn as nn
-from controlnet_preprocessors.uniformer.mmcv import is_tuple_of
-from controlnet_preprocessors.uniformer.mmcv.cnn import ConvModule
+from comfy_controlnet_preprocessors.uniformer.mmcv import is_tuple_of
+from comfy_controlnet_preprocessors.uniformer.mmcv.cnn import ConvModule
 
-from controlnet_preprocessors.uniformer.mmseg.ops import resize
+from comfy_controlnet_preprocessors.uniformer.mmseg.ops import resize
 from ..builder import HEADS
 from .decode_head import BaseDecodeHead
 

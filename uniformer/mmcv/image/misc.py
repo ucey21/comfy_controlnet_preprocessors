@@ -1,7 +1,7 @@
 # Copyright (c) OpenMMLab. All rights reserved.
 import numpy as np
 
-import controlnet_preprocessors.uniformer.mmcv as mmcv
+import comfy_controlnet_preprocessors.uniformer.mmcv as mmcv
 
 try:
     import torch

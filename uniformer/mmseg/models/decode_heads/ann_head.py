@@ -1,6 +1,6 @@
 import torch
 import torch.nn as nn
-from controlnet_preprocessors.uniformer.mmcv.cnn import ConvModule
+from comfy_controlnet_preprocessors.uniformer.mmcv.cnn import ConvModule
 
 from ..builder import HEADS
 from ..utils import SelfAttentionBlock as _SelfAttentionBlock

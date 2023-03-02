@@ -15,12 +15,12 @@ from torch.optim import Optimizer
 from torch.utils import model_zoo
 from torch.nn import functional as F
 
-import controlnet_preprocessors.uniformer.mmcv as mmcv
-from controlnet_preprocessors.uniformer.mmcv.fileio import FileClient
-from controlnet_preprocessors.uniformer.mmcv.fileio import load as load_file
-from controlnet_preprocessors.uniformer.mmcv.parallel import is_module_wrapper
-from controlnet_preprocessors.uniformer.mmcv.utils import mkdir_or_exist
-from controlnet_preprocessors.uniformer.mmcv.runner import get_dist_info
+import comfy_controlnet_preprocessors.uniformer.mmcv as mmcv
+from comfy_controlnet_preprocessors.uniformer.mmcv.fileio import FileClient
+from comfy_controlnet_preprocessors.uniformer.mmcv.fileio import load as load_file
+from comfy_controlnet_preprocessors.uniformer.mmcv.parallel import is_module_wrapper
+from comfy_controlnet_preprocessors.uniformer.mmcv.utils import mkdir_or_exist
+from comfy_controlnet_preprocessors.uniformer.mmcv.runner import get_dist_info
 
 ENV_MMCV_HOME = 'MMCV_HOME'
 ENV_XDG_CACHE_HOME = 'XDG_CACHE_HOME'

@@ -1,6 +1,6 @@
 import torch.nn as nn
 import torch.nn.functional as F
-from controlnet_preprocessors.uniformer.mmcv.cnn import ConvModule
+from comfy_controlnet_preprocessors.uniformer.mmcv.cnn import ConvModule
 
 from ..builder import NECKS
 

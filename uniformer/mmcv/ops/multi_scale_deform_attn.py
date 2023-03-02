@@ -7,10 +7,10 @@ import torch.nn as nn
 import torch.nn.functional as F
 from torch.autograd.function import Function, once_differentiable
 
-from controlnet_preprocessors.uniformer.mmcv import deprecated_api_warning
-from controlnet_preprocessors.uniformer.mmcv.cnn import constant_init, xavier_init
-from controlnet_preprocessors.uniformer.mmcv.cnn.bricks.registry import ATTENTION
-from controlnet_preprocessors.uniformer.mmcv.runner import BaseModule
+from comfy_controlnet_preprocessors.uniformer.mmcv import deprecated_api_warning
+from comfy_controlnet_preprocessors.uniformer.mmcv.cnn import constant_init, xavier_init
+from comfy_controlnet_preprocessors.uniformer.mmcv.cnn.bricks.registry import ATTENTION
+from comfy_controlnet_preprocessors.uniformer.mmcv.runner import BaseModule
 from ..utils import ext_loader
 
 ext_module = ext_loader.load_ext(

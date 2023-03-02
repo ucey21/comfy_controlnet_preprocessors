@@ -1,5 +1,5 @@
 # Copyright (c) OpenMMLab. All rights reserved.
-from controlnet_preprocessors.uniformer.mmcv.utils import Registry, is_method_overridden
+from comfy_controlnet_preprocessors.uniformer.mmcv.utils import Registry, is_method_overridden
 
 HOOKS = Registry('hook')
 

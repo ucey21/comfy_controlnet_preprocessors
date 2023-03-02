@@ -3,7 +3,7 @@ import torch
 from torch import nn as nn
 from torch.autograd import Function
 
-import controlnet_preprocessors.uniformer.mmcv as mmcv
+import comfy_controlnet_preprocessors.uniformer.mmcv as mmcv
 from ..utils import ext_loader
 
 ext_module = ext_loader.load_ext(

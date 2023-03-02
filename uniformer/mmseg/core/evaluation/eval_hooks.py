@@ -1,7 +1,7 @@
 import os.path as osp
 
-from controlnet_preprocessors.uniformer.mmcv.runner import DistEvalHook as _DistEvalHook
-from controlnet_preprocessors.uniformer.mmcv.runner import EvalHook as _EvalHook
+from comfy_controlnet_preprocessors.uniformer.mmcv.runner import DistEvalHook as _DistEvalHook
+from comfy_controlnet_preprocessors.uniformer.mmcv.runner import EvalHook as _EvalHook
 
 
 class EvalHook(_EvalHook):
@@ -30,7 +30,7 @@ class EvalHook(_EvalHook):
         """
         if self.by_epoch or not self.every_n_iters(runner, self.interval):
             return
-        from controlnet_preprocessors.uniformer.mmseg.apis import single_gpu_test
+        from comfy_controlnet_preprocessors.uniformer.mmseg.apis import single_gpu_test
         runner.log_buffer.clear()
         results = single_gpu_test(
             runner.model,
@@ -46,7 +46,7 @@ class EvalHook(_EvalHook):
         """
         if not self.by_epoch or not self.every_n_epochs(runner, self.interval):
             return
-        from controlnet_preprocessors.uniformer.mmseg.apis import single_gpu_test
+        from comfy_controlnet_preprocessors.uniformer.mmseg.apis import single_gpu_test
         runner.log_buffer.clear()
         results = single_gpu_test(runner.model, self.dataloader, show=False)
         self.evaluate(runner, results)
@@ -78,7 +78,7 @@ class DistEvalHook(_DistEvalHook):
         """
         if self.by_epoch or not self.every_n_iters(runner, self.interval):
             return
-        from controlnet_preprocessors.uniformer.mmseg.apis import multi_gpu_test
+        from comfy_controlnet_preprocessors.uniformer.mmseg.apis import multi_gpu_test
         runner.log_buffer.clear()
         results = multi_gpu_test(
             runner.model,
@@ -97,7 +97,7 @@ class DistEvalHook(_DistEvalHook):
         """
         if not self.by_epoch or not self.every_n_epochs(runner, self.interval):
             return
-        from controlnet_preprocessors.uniformer.mmseg.apis import multi_gpu_test
+        from comfy_controlnet_preprocessors.uniformer.mmseg.apis import multi_gpu_test
         runner.log_buffer.clear()
         results = multi_gpu_test(
             runner.model,

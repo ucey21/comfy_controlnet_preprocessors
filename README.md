@@ -4,8 +4,8 @@ Original repo: https://github.com/lllyasviel/ControlNet
 ## Install
 ```sh
 cd ComfyUI/custom_nodes
-git clone https://github.com/Fannovel16/controlnet_preprocessors
-cd controlnet_preprocessors
+git clone https://github.com/Fannovel16/comfy_controlnet_preprocessors
+cd comfy_controlnet_preprocessors
 python install.py
 ```
 ## Citation

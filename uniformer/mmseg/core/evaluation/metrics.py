@@ -1,6 +1,6 @@
 from collections import OrderedDict
 
-import controlnet_preprocessors.uniformer.mmcv as mmcv
+import comfy_controlnet_preprocessors.uniformer.mmcv as mmcv
 import numpy as np
 import torch
 

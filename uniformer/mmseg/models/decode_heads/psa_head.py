@@ -1,14 +1,14 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from controlnet_preprocessors.uniformer.mmcv.cnn import ConvModule
+from comfy_controlnet_preprocessors.uniformer.mmcv.cnn import ConvModule
 
-from controlnet_preprocessors.uniformer.mmseg.ops import resize
+from comfy_controlnet_preprocessors.uniformer.mmseg.ops import resize
 from ..builder import HEADS
 from .decode_head import BaseDecodeHead
 
 try:
-    from controlnet_preprocessors.uniformer.mmcv.ops import PSAMask
+    from comfy_controlnet_preprocessors.uniformer.mmcv.ops import PSAMask
 except ModuleNotFoundError:
     PSAMask = None
 

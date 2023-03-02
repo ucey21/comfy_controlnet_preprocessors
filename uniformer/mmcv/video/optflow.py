@@ -4,9 +4,9 @@ import warnings
 import cv2
 import numpy as np
 
-from controlnet_preprocessors.uniformer.mmcv.arraymisc import dequantize, quantize
-from controlnet_preprocessors.uniformer.mmcv.image import imread, imwrite
-from controlnet_preprocessors.uniformer.mmcv.utils import is_str
+from comfy_controlnet_preprocessors.uniformer.mmcv.arraymisc import dequantize, quantize
+from comfy_controlnet_preprocessors.uniformer.mmcv.image import imread, imwrite
+from comfy_controlnet_preprocessors.uniformer.mmcv.utils import is_str
 
 
 def flowread(flow_or_path, quantize=False, concat_axis=0, *args, **kwargs):

@@ -8,7 +8,7 @@ import torch
 import torch.nn as nn
 from torch import Tensor
 
-from controlnet_preprocessors.uniformer.mmcv.utils import Registry, build_from_cfg, get_logger, print_log
+from comfy_controlnet_preprocessors.uniformer.mmcv.utils import Registry, build_from_cfg, get_logger, print_log
 
 INITIALIZERS = Registry('initializer')
 
@@ -481,7 +481,7 @@ class PretrainedInit(object):
         self.map_location = map_location
 
     def __call__(self, module):
-        from controlnet_preprocessors.uniformer.mmcv.runner import (_load_checkpoint_with_prefix, load_checkpoint,
+        from comfy_controlnet_preprocessors.uniformer.mmcv.runner import (_load_checkpoint_with_prefix, load_checkpoint,
                                  load_state_dict)
         logger = get_logger('mmcv')
         if self.prefix is None:

@@ -1,6 +1,6 @@
 import collections
 
-from controlnet_preprocessors.uniformer.mmcv.utils import build_from_cfg
+from comfy_controlnet_preprocessors.uniformer.mmcv.utils import build_from_cfg
 
 from ..builder import PIPELINES
 

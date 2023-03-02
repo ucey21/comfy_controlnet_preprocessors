@@ -5,7 +5,7 @@ import torch.nn as nn
 from torch._utils import (_flatten_dense_tensors, _take_tensors,
                           _unflatten_dense_tensors)
 
-from controlnet_preprocessors.uniformer.mmcv.utils import TORCH_VERSION, digit_version
+from comfy_controlnet_preprocessors.uniformer.mmcv.utils import TORCH_VERSION, digit_version
 from .registry import MODULE_WRAPPERS
 from .scatter_gather import scatter_kwargs
 

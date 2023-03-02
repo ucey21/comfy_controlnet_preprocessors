@@ -3,12 +3,12 @@ import pickle
 import shutil
 import tempfile
 
-import controlnet_preprocessors.uniformer.mmcv as mmcv
+import comfy_controlnet_preprocessors.uniformer.mmcv as mmcv
 import numpy as np
 import torch
 import torch.distributed as dist
-from controlnet_preprocessors.uniformer.mmcv.image import tensor2imgs
-from controlnet_preprocessors.uniformer.mmcv.runner import get_dist_info
+from comfy_controlnet_preprocessors.uniformer.mmcv.image import tensor2imgs
+from comfy_controlnet_preprocessors.uniformer.mmcv.runner import get_dist_info
 
 
 def np2tmp(array, temp_file_name=None):

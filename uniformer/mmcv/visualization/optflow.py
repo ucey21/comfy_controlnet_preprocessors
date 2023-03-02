@@ -3,8 +3,8 @@ from __future__ import division
 
 import numpy as np
 
-from controlnet_preprocessors.uniformer.mmcv.image import rgb2bgr
-from controlnet_preprocessors.uniformer.mmcv.video import flowread
+from comfy_controlnet_preprocessors.uniformer.mmcv.image import rgb2bgr
+from comfy_controlnet_preprocessors.uniformer.mmcv.video import flowread
 from .image import imshow
 
 

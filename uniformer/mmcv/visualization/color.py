@@ -3,7 +3,7 @@ from enum import Enum
 
 import numpy as np
 
-from controlnet_preprocessors.uniformer.mmcv.utils import is_str
+from comfy_controlnet_preprocessors.uniformer.mmcv.utils import is_str
 
 
 class Color(Enum):

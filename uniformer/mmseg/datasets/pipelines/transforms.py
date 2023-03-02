@@ -1,6 +1,6 @@
-import controlnet_preprocessors.uniformer.mmcv as mmcv
+import comfy_controlnet_preprocessors.uniformer.mmcv as mmcv
 import numpy as np
-from controlnet_preprocessors.uniformer.mmcv.utils import deprecated_api_warning, is_tuple_of
+from comfy_controlnet_preprocessors.uniformer.mmcv.utils import deprecated_api_warning, is_tuple_of
 from numpy import random
 
 from ..builder import PIPELINES

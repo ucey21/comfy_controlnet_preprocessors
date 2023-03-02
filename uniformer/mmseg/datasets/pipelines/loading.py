@@ -1,6 +1,6 @@
 import os.path as osp
 
-import controlnet_preprocessors.uniformer.mmcv as mmcv
+import comfy_controlnet_preprocessors.uniformer.mmcv as mmcv
 import numpy as np
 
 from ..builder import PIPELINES

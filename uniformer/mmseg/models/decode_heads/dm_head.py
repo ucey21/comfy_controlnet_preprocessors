@@ -1,7 +1,7 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from controlnet_preprocessors.uniformer.mmcv.cnn import ConvModule, build_activation_layer, build_norm_layer
+from comfy_controlnet_preprocessors.uniformer.mmcv.cnn import ConvModule, build_activation_layer, build_norm_layer
 
 from ..builder import HEADS
 from .decode_head import BaseDecodeHead

@@ -7,9 +7,9 @@ from collections import OrderedDict
 import torch
 import torch.distributed as dist
 
-import controlnet_preprocessors.uniformer.mmcv as mmcv
-from controlnet_preprocessors.uniformer.mmcv.fileio.file_client import FileClient
-from controlnet_preprocessors.uniformer.mmcv.utils import is_tuple_of, scandir
+import comfy_controlnet_preprocessors.uniformer.mmcv as mmcv
+from comfy_controlnet_preprocessors.uniformer.mmcv.fileio.file_client import FileClient
+from comfy_controlnet_preprocessors.uniformer.mmcv.utils import is_tuple_of, scandir
 from ..hook import HOOKS
 from .base import LoggerHook
 

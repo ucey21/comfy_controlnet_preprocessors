@@ -30,7 +30,7 @@ import numpy as np
 import torch
 import torch.nn as nn
 
-import controlnet_preprocessors.uniformer.mmcv as mmcv
+import comfy_controlnet_preprocessors.uniformer.mmcv as mmcv
 
 
 def get_model_complexity_info(model,

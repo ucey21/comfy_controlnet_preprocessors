@@ -3,7 +3,7 @@ import os
 import numpy as np
 import torch
 
-from controlnet_preprocessors.uniformer.mmcv.utils import deprecated_api_warning
+from comfy_controlnet_preprocessors.uniformer.mmcv.utils import deprecated_api_warning
 from ..utils import ext_loader
 
 ext_module = ext_loader.load_ext(

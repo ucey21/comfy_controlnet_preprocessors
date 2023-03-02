@@ -1,6 +1,6 @@
 import warnings
 
-import controlnet_preprocessors.uniformer.mmcv as mmcv
+import comfy_controlnet_preprocessors.uniformer.mmcv as mmcv
 
 from ..builder import PIPELINES
 from .compose import Compose

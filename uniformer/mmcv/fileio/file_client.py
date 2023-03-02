@@ -11,9 +11,9 @@ from pathlib import Path
 from typing import Iterable, Iterator, Optional, Tuple, Union
 from urllib.request import urlopen
 
-import controlnet_preprocessors.uniformer.mmcv as mmcv
-from controlnet_preprocessors.uniformer.mmcv.utils.misc import has_method
-from controlnet_preprocessors.uniformer.mmcv.utils.path import is_filepath
+import comfy_controlnet_preprocessors.uniformer.mmcv as mmcv
+from comfy_controlnet_preprocessors.uniformer.mmcv.utils.misc import has_method
+from comfy_controlnet_preprocessors.uniformer.mmcv.utils.path import is_filepath
 
 
 class BaseStorageBackend(metaclass=ABCMeta):

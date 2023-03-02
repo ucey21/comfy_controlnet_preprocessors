@@ -3,7 +3,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-from controlnet_preprocessors.uniformer.mmcv.utils import TORCH_VERSION, build_from_cfg, digit_version
+from comfy_controlnet_preprocessors.uniformer.mmcv.utils import TORCH_VERSION, build_from_cfg, digit_version
 from .registry import ACTIVATION_LAYERS
 
 for module in [

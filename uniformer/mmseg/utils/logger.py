@@ -1,6 +1,6 @@
 import logging
 
-from controlnet_preprocessors.uniformer.mmcv.utils import get_logger
+from comfy_controlnet_preprocessors.uniformer.mmcv.utils import get_logger
 
 
 def get_root_logger(log_file=None, log_level=logging.INFO):

@@ -1,5 +1,5 @@
 import torch
-from controlnet_preprocessors.uniformer.mmcv.cnn import NonLocal2d
+from comfy_controlnet_preprocessors.uniformer.mmcv.cnn import NonLocal2d
 from torch import nn
 
 from ..builder import HEADS

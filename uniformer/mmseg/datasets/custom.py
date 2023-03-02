@@ -3,14 +3,14 @@ import os.path as osp
 from collections import OrderedDict
 from functools import reduce
 
-import controlnet_preprocessors.uniformer.mmcv as mmcv
+import comfy_controlnet_preprocessors.uniformer.mmcv as mmcv
 import numpy as np
-from controlnet_preprocessors.uniformer.mmcv.utils import print_log
+from comfy_controlnet_preprocessors.uniformer.mmcv.utils import print_log
 from prettytable import PrettyTable
 from torch.utils.data import Dataset
 
-from controlnet_preprocessors.uniformer.mmseg.core import eval_metrics
-from controlnet_preprocessors.uniformer.mmseg.utils import get_root_logger
+from comfy_controlnet_preprocessors.uniformer.mmseg.core import eval_metrics
+from comfy_controlnet_preprocessors.uniformer.mmseg.utils import get_root_logger
 from .builder import DATASETS
 from .pipelines import Compose
 

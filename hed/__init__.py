@@ -3,7 +3,7 @@ import cv2
 import os
 import torch
 from einops import rearrange
-from controlnet_preprocessors.util import annotator_ckpts_path
+from comfy_controlnet_preprocessors.util import annotator_ckpts_path
 
 
 class Network(torch.nn.Module):

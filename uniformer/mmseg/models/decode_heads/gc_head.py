@@ -1,5 +1,5 @@
 import torch
-from controlnet_preprocessors.uniformer.mmcv.cnn import ContextBlock
+from comfy_controlnet_preprocessors.uniformer.mmcv.cnn import ContextBlock
 
 from ..builder import HEADS
 from .fcn_head import FCNHead
