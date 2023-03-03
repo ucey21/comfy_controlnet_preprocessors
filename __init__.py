@@ -26,7 +26,7 @@ class CannyEdgePreprocesor:
     def INPUT_TYPES(s):
         return {"required": { "image": ("IMAGE", ) ,
                               "low_threshold": ("INT", {"default": 100, "min": 0, "max": 255, "step": 1}),
-                              "high_threshold": ("INT", {"default": 100, "min": 0, "max": 255, "step": 1}),
+                              "high_threshold": ("INT", {"default": 200, "min": 0, "max": 255, "step": 1}),
                               "l2gradient": (["disable", "enable"], )
                               }}
     RETURN_TYPES = ("IMAGE",)
