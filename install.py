@@ -11,7 +11,7 @@ def add_global_shortcut_module():
     module = module_from_spec(module_spec)
     sys.modules[module_name] = module
     module_spec.loader.exec_module(module)
-#test
+
 def download_models():
     canny.CannyDetector()
     hed.HEDdetector()
