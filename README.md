@@ -8,7 +8,16 @@ Require free space of 1070.15MB to download all ckpts needed for this repo.
 cd ComfyUI/custom_nodes
 git clone https://github.com/Fannovel16/comfy_controlnet_preprocessors
 cd comfy_controlnet_preprocessors
+```
+For directly-cloned ComfyUI repo:
+```
 python install.py
+```
+For ComfyUI portable standalone build:
+```
+#You may need to replace "..\..\..\python_embeded\python.exe" depends your python_embeded location
+..\..\..\python_embeded\python.exe -m pip install -r requirements.txt --extra-index-url https://download.pytorch.org/whl/cu117 --no-warn-script-location
+..\..\..\python_embeded\python.exe install.py
 ```
 ## Citation
 
