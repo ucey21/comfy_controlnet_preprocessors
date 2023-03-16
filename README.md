@@ -4,6 +4,7 @@ Original repo: https://github.com/lllyasviel/ControlNet <br>
 List of my comfyUI node repos: https://github.com/Fannovel16/FN16-ComfyUI-nodes <br>
 Require free space of 1070.15MB to download all ckpts needed for this repo.
 ## Install
+Firstly, run:
 ```sh
 cd ComfyUI/custom_nodes
 git clone https://github.com/Fannovel16/comfy_controlnet_preprocessors
