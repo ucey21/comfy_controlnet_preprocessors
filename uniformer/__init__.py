@@ -12,7 +12,7 @@ class UniformerDetector:
     def __init__(self):
         modelpath = os.path.join(annotator_ckpts_path, "upernet_global_small.pth")
         if not os.path.exists(modelpath):
-            from basicsr.utils.download_util import load_file_from_url
+            from comfy_controlnet_preprocessors.util import load_file_from_url
             load_file_from_url(checkpoint_file, model_dir=annotator_ckpts_path)
         config_file = os.path.join(os.path.dirname(__file__), "exp", "upernet_global_small", "config.py")
         self.model = init_segmentor(config_file, modelpath).cuda()

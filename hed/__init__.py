@@ -98,7 +98,7 @@ class HEDdetector:
         remote_model_path = "https://huggingface.co/lllyasviel/ControlNet/resolve/main/annotator/ckpts/network-bsds500.pth"
         modelpath = os.path.join(annotator_ckpts_path, "network-bsds500.pth")
         if not os.path.exists(modelpath):
-            from basicsr.utils.download_util import load_file_from_url
+            from comfy_controlnet_preprocessors.util import load_file_from_url
             load_file_from_url(remote_model_path, model_dir=annotator_ckpts_path)
         self.netNetwork = Network(modelpath).cuda().eval()
 
