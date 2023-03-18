@@ -3,6 +3,7 @@ Moved from https://github.com/comfyanonymous/ComfyUI/pull/13 <br>
 Original repo: https://github.com/lllyasviel/ControlNet <br>
 List of my comfyUI node repos: https://github.com/Fannovel16/FN16-ComfyUI-nodes <br>
 Require free space of 1070.15MB to download all ckpts needed for this repo.
+Also the input images's width and height must be multiples of 64.
 ## Install
 Firstly, run:
 ```sh
