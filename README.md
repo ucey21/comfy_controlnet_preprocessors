@@ -3,7 +3,7 @@ Moved from https://github.com/comfyanonymous/ComfyUI/pull/13 <br>
 Original repo: https://github.com/lllyasviel/ControlNet <br>
 List of my comfyUI node repos: https://github.com/Fannovel16/FN16-ComfyUI-nodes <br>
 Require free space of 1070.15MB to download all ckpts needed for this repo. <br>
-Also the input images's width and height must be **multiples of 64.**
+The input images can have any kind of resolution, not need to be multiple of 64. They will be resized to fit the nearest multiple-of-64 resolution behind the scene.
 ## Install
 Firstly, run:
 ```sh

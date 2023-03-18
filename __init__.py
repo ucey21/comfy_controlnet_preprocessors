@@ -1,5 +1,5 @@
 from . import canny, hed, midas, mlsd, openpose, uniformer 
-from .util import HWC3
+from .util import HWC3, resize_image
 import torch
 import numpy as np
 import cv2
@@ -15,10 +15,10 @@ def img_tensor_to_np(img_tensor):
 def common_annotator_call(annotator_callback, tensor_image, *args):
     call_result = annotator_callback(img_tensor_to_np(tensor_image), *args)
     if type(annotator_callback) is openpose.OpenposeDetector:
-        return (HWC3(call_result[0]), call_result[1])
+        return (resize_image(HWC3(call_result[0])), call_result[1])
     if type(annotator_callback) is midas.MidasDetector:
-        return (HWC3(call_result[0]), HWC3(call_result[1]))
-    return HWC3(call_result)
+        return (resize_image(HWC3(call_result[0])), HWC3(call_result[1]))
+    return resize_image(HWC3(call_result))
 
 
 class CannyEdgePreprocesor:
