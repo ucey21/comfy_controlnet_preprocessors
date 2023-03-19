@@ -22,7 +22,7 @@ def download_models():
 
 print("Installing requirements...")
 sleep(2)
-os.system(f"pip install -r {EXT_PATH}/requirements.txt --extra-index-url https://download.pytorch.org/whl/cu117 --no-warn-script-location")
+os.system(f'{sys.executable} -m pip install -r {EXT_PATH}/requirements.txt --extra-index-url https://download.pytorch.org/whl/cu117 --no-warn-script-location')
 
 add_global_shortcut_module()
 from comfy_controlnet_preprocessors import canny, hed, midas, mlsd, openpose, uniformer
