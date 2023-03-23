@@ -4,21 +4,39 @@ import torch
 import numpy as np
 import cv2
 
-def img_np_to_tensor(img_np):
-    return torch.from_numpy(img_np.astype(np.float32) / 255.0)[None,]
+def img_np_to_tensor(img_np_list):
+    out_list = []
+    for img_np in img_np_list:
+        out_list.append(torch.from_numpy(img_np.astype(np.float32) / 255.0))
+    return torch.stack(out_list)
 def img_tensor_to_np(img_tensor):
     img_tensor = img_tensor.clone()
     img_tensor = img_tensor * 255.0
-    return img_tensor.squeeze(0).numpy().astype(np.uint8)
+    mask_list = [x.squeeze().numpy().astype(np.uint8) for x in torch.split(img_tensor, 1)]
+    return mask_list
     #Thanks ChatGPT
 
 def common_annotator_call(annotator_callback, tensor_image, *args):
-    call_result = annotator_callback(img_tensor_to_np(tensor_image), *args)
+    tensor_image_list = img_tensor_to_np(tensor_image)
+    out_list = []
+    out_info_list = []
+    for tensor_image in tensor_image_list:
+        call_result = annotator_callback(resize_image(tensor_image), *args)
+        H, W, C = tensor_image.shape
+        if type(annotator_callback) is openpose.OpenposeDetector:
+            out_list.append(cv2.resize(HWC3(call_result[0]), (W, H), interpolation=cv2.INTER_AREA))
+            out_info_list.append(call_result[1])
+        elif type(annotator_callback) is midas.MidasDetector:
+            out_list.append(cv2.resize(HWC3(call_result[0]), (W, H), interpolation=cv2.INTER_AREA))
+            out_info_list.append(cv2.resize(HWC3(call_result[1]), (W, H), interpolation=cv2.INTER_AREA))
+        else:
+            out_list.append(cv2.resize(HWC3(call_result), (W, H), interpolation=cv2.INTER_AREA))
     if type(annotator_callback) is openpose.OpenposeDetector:
-        return (resize_image(HWC3(call_result[0])), call_result[1])
-    if type(annotator_callback) is midas.MidasDetector:
-        return (resize_image(HWC3(call_result[0])), HWC3(call_result[1]))
-    return resize_image(HWC3(call_result))
+        return (out_list, out_info_list)
+    elif type(annotator_callback) is midas.MidasDetector:
+        return (out_list, out_info_list)
+    else:
+        return out_list
 
 
 class CannyEdgePreprocesor:
@@ -64,10 +82,13 @@ class ScribblePreprocessor:
 
     def transform_scribble(self, image):
         #Ref: https://github.com/lllyasviel/ControlNet/blob/main/gradio_scribble2image.py
-        np_img = img_tensor_to_np(image)
-        np_detected_map = np.zeros_like(np_img, dtype=np.uint8)
-        np_detected_map[np.min(np_img, axis=2) < 127] = 255
-        return (img_np_to_tensor(np_detected_map),)
+        np_img_list = img_tensor_to_np(image)
+        out_list = []
+        for np_img in np_img_list:
+            np_detected_map = np.zeros_like(np_img, dtype=np.uint8)
+            np_detected_map[np.min(np_img, axis=2) < 127] = 255
+            out_list.append(np_detected_map)
+        return (img_np_to_tensor(out_list),)
 
 class FakeScribblePreprocessor:
     @classmethod
@@ -80,12 +101,15 @@ class FakeScribblePreprocessor:
 
     def transform_scribble(self, image):
         #Ref: https://github.com/lllyasviel/ControlNet/blob/main/gradio_fake_scribble2image.py
-        np_detected_map = common_annotator_call(hed.HEDdetector(), image)
-        np_detected_map = hed.nms(np_detected_map, 127, 3.0)
-        np_detected_map = cv2.GaussianBlur(np_detected_map, (0, 0), 3.0)
-        np_detected_map[np_detected_map > 4] = 255
-        np_detected_map[np_detected_map < 255] = 0
-        return (img_np_to_tensor(np_detected_map),)
+        np_detected_map_list = common_annotator_call(hed.HEDdetector(), image)
+        out_list = []
+        for np_detected_map in np_detected_map_list:
+            np_detected_map = hed.nms(np_detected_map, 127, 3.0)
+            np_detected_map = cv2.GaussianBlur(np_detected_map, (0, 0), 3.0)
+            np_detected_map[np_detected_map > 4] = 255
+            np_detected_map[np_detected_map < 255] = 0
+            out_list.append(np_detected_map)
+        return (img_np_to_tensor(out_list),)
 
 class MIDASDepthMapPreprocessor:
     @classmethod
