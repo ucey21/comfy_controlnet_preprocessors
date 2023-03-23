@@ -13,12 +13,16 @@ def img_tensor_to_np(img_tensor):
     #Thanks ChatGPT
 
 def common_annotator_call(annotator_callback, tensor_image, *args):
-    call_result = annotator_callback(img_tensor_to_np(tensor_image), *args)
+    np_image = img_tensor_to_np(tensor_image)
+    call_result = annotator_callback(
+        resize_image(HWC3(np_image)), 
+        *args
+    )
     if type(annotator_callback) is openpose.OpenposeDetector:
-        return (resize_image(HWC3(call_result[0])), call_result[1])
+        return (HWC3(call_result[0]), call_result[1])
     if type(annotator_callback) is midas.MidasDetector:
-        return (resize_image(HWC3(call_result[0])), HWC3(call_result[1]))
-    return resize_image(HWC3(call_result))
+        return (HWC3(call_result[0]), HWC3(call_result[1]))
+    return HWC3(call_result)
 
 
 class CannyEdgePreprocesor:
