@@ -6,12 +6,13 @@ Require free space of 1070.15MB to download all ckpts needed for this repo. <br>
 The input images can have any kind of resolution, not need to be multiple of 64. They will be resized to fit the nearest multiple-of-64 resolution behind the scene.
 ## Install
 Firstly, [install comfyui's dependencies](https://github.com/comfyanonymous/ComfyUI#installing) if you didn't.
-Run:
+Then run:
 ```sh
 cd ComfyUI/custom_nodes
 git clone https://github.com/Fannovel16/comfy_controlnet_preprocessors
 cd comfy_controlnet_preprocessors
 ```
+Next, run install.py.
 For directly-cloned ComfyUI repo:
 ```
 python install.py
