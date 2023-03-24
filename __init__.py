@@ -21,7 +21,7 @@ def common_annotator_call(annotator_callback, tensor_image, *args):
     out_list = []
     out_info_list = []
     for tensor_image in tensor_image_list:
-        call_result = annotator_callback(resize_image(tensor_image), *args)
+        call_result = annotator_callback(resize_image(HWC3(tensor_image)), *args)
         H, W, C = tensor_image.shape
         if type(annotator_callback) is openpose.OpenposeDetector:
             out_list.append(cv2.resize(HWC3(call_result[0]), (W, H), interpolation=cv2.INTER_AREA))
