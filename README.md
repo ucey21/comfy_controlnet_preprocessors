@@ -24,8 +24,8 @@ cd ComfyUI/custom_nodes
 git clone https://github.com/Fannovel16/comfy_controlnet_preprocessors
 cd comfy_controlnet_preprocessors
 ```
-Next, run install.py. It will download only minimal models by default. <br>
-Add `--download-full-ckpts` to download all models or `--no-download-ckpts` to not download any model. <br>
+Next, run install.py. It will download all models by default. <br>
+Add `--no-download-ckpts` to not download any model. <br>
 When a preprocessor node runs, if it can't find the models it need, that models will be downloaded automatically. 
 For directly-cloned ComfyUI repo:
 ```
