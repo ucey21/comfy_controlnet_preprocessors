@@ -9,7 +9,7 @@ def img_np_to_tensor(img_np):
 def img_tensor_to_np(img_tensor):
     img_tensor = img_tensor.clone()
     img_tensor = img_tensor * 255.0
-    return img_tensor.movedim(-1,1).numpy().astype(np.uint8)
+    return img_tensor.squeeze(0).numpy().astype(np.uint8)
     #Thanks ChatGPT
 
 def common_annotator_call(annotator_callback, tensor_image, *args):
