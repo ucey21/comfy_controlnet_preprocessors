@@ -2,9 +2,16 @@ import os
 from time import sleep
 from importlib.util import spec_from_file_location, module_from_spec
 import sys
+import argparse
 
 module_name = "comfy_controlnet_preprocessors"
 EXT_PATH = os.path.dirname(os.path.realpath(__file__))
+
+parser = argparse.ArgumentParser()
+parser.add_argument('--no_download_ckpts', action="store_true", help="Don't download any model")
+
+args = parser.parse_args()
+
 def add_global_shortcut_module():
     #Naming things is hard
     module_spec = spec_from_file_location(module_name, os.path.join(EXT_PATH, "__init__.py"))
@@ -19,15 +26,18 @@ def download_models():
     mlsd.MLSDdetector()
     openpose.OpenposeDetector()
     uniformer.UniformerDetector()
+    leres.download_model_if_not_existed()
+    pidinet.download_if_not_existed()
 
 print("Installing requirements...")
 sleep(2)
 os.system(f'{sys.executable} -m pip install -r {EXT_PATH}/requirements.txt --extra-index-url https://download.pytorch.org/whl/cu117 --no-warn-script-location')
 
-add_global_shortcut_module()
-from comfy_controlnet_preprocessors import canny, hed, midas, mlsd, openpose, uniformer
+if args.no_download_ckpts: exit()
 
+add_global_shortcut_module()
+from comfy_controlnet_preprocessors import canny, hed, midas, mlsd, openpose, uniformer, leres, pidinet
 print("Download models...")
 sleep(2)
-download_models()
+download_models(args.download_full_ckpts)
 print("Done!")

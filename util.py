@@ -6,6 +6,7 @@ import requests
 from torch.hub import download_url_to_file, get_dir
 from tqdm import tqdm
 from urllib.parse import urlparse
+import torch
 
 
 annotator_ckpts_path = os.path.join(os.path.dirname(__file__), "ckpts")
@@ -152,3 +153,8 @@ def load_file_from_url(url, model_dir=None, progress=True, file_name=None):
         print(f'Downloading: "{url}" to {cached_file}\n')
         download_url_to_file(url, cached_file, hash_prefix=None, progress=progress)
     return cached_file
+
+
+def load_state_dict(modelpath):
+    wrapper = torch.load(modelpath)
+    return wrapper["state_dict"] if "state_dict" in wrapper else wrapper

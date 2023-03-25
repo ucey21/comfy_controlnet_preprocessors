@@ -10,3 +10,5 @@ svglib
 reportlab
 addict
 yapf
+mediapipe
+dlib

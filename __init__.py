@@ -1,4 +1,4 @@
-from . import canny, hed, midas, mlsd, openpose, uniformer 
+from . import canny, hed, midas, mlsd, openpose, uniformer, leres, mediapipe, color, binary, pidinet
 from .util import HWC3, resize_image
 import torch
 import numpy as np
@@ -36,7 +36,7 @@ class CannyEdgePreprocesor:
     RETURN_TYPES = ("IMAGE",)
     FUNCTION = "detect_edge"
 
-    CATEGORY = "preprocessors"
+    CATEGORY = "preprocessors/edge_line"
 
     def detect_edge(self, image, low_threshold, high_threshold, l2gradient):
         #Ref: https://github.com/lllyasviel/ControlNet/blob/main/gradio_canny2image.py
@@ -50,7 +50,7 @@ class HEDPreprocesor:
     RETURN_TYPES = ("IMAGE",)
     FUNCTION = "detect_boundary"
 
-    CATEGORY = "preprocessors"
+    CATEGORY = "preprocessors/edge_line"
 
     def detect_boundary(self, image):
         #Ref: https://github.com/lllyasviel/ControlNet/blob/main/gradio_hed2image.py
@@ -64,7 +64,7 @@ class ScribblePreprocessor:
     RETURN_TYPES = ("IMAGE",)
     FUNCTION = "transform_scribble"
 
-    CATEGORY = "preprocessors"
+    CATEGORY = "preprocessors/edge_line"
 
     def transform_scribble(self, image):
         #Ref: https://github.com/lllyasviel/ControlNet/blob/main/gradio_scribble2image.py
@@ -80,7 +80,7 @@ class FakeScribblePreprocessor:
     RETURN_TYPES = ("IMAGE",)
     FUNCTION = "transform_scribble"
 
-    CATEGORY = "preprocessors"
+    CATEGORY = "preprocessors/edge_line"
 
     def transform_scribble(self, image):
         #Ref: https://github.com/lllyasviel/ControlNet/blob/main/gradio_fake_scribble2image.py
@@ -95,13 +95,13 @@ class MIDASDepthMapPreprocessor:
     @classmethod
     def INPUT_TYPES(s):
         return {"required": { "image": ("IMAGE", ) ,
-                              "a": ("FLOAT", {"default": np.pi * 2.0, "min": 0.0, "max": np.pi * 5.0, "step": 0.1}),
-                              "bg_threshold": ("FLOAT", {"default": 0.1, "min": 0, "max": 1, "step": 0.1})
+                              "a": ("FLOAT", {"default": np.pi * 2.0, "min": 0.0, "max": np.pi * 5.0, "step": 0.05}),
+                              "bg_threshold": ("FLOAT", {"default": 0.05, "min": 0, "max": 1, "step": 0.05})
                               }}
     RETURN_TYPES = ("IMAGE",)
     FUNCTION = "estimate_depth"
 
-    CATEGORY = "preprocessors"
+    CATEGORY = "preprocessors/normal_depth_map"
 
     def estimate_depth(self, image, a, bg_threshold):
         #Ref: https://github.com/lllyasviel/ControlNet/blob/main/gradio_depth2image.py
@@ -112,31 +112,48 @@ class MIDASNormalMapPreprocessor:
     @classmethod
     def INPUT_TYPES(s):
         return {"required": { "image": ("IMAGE", ) ,
-                              "a": ("FLOAT", {"default": np.pi * 2.0, "min": 0.0, "max": np.pi * 5.0, "step": 0.1}),
-                              "bg_threshold": ("FLOAT", {"default": 0.1, "min": 0, "max": 1, "step": 0.1})
+                              "a": ("FLOAT", {"default": np.pi * 2.0, "min": 0.0, "max": np.pi * 5.0, "step": 0.05}),
+                              "bg_threshold": ("FLOAT", {"default": 0.05, "min": 0, "max": 1, "step": 0.05})
                               }}
     RETURN_TYPES = ("IMAGE",)
     FUNCTION = "estimate_normal"
 
-    CATEGORY = "preprocessors"
+    CATEGORY = "preprocessors/normal_depth_map"
 
     def estimate_normal(self, image, a, bg_threshold):
         #Ref: https://github.com/lllyasviel/ControlNet/blob/main/gradio_depth2image.py
         depth_map_np, normal_map_np = common_annotator_call(midas.MidasDetector(), image, a, bg_threshold)
         return (img_np_to_tensor(normal_map_np),)
 
+class LERESDepthMapPreprocessor:
+    @classmethod
+    def INPUT_TYPES(s):
+        return {"required": { "image": ("IMAGE", ) ,
+                              "rm_nearest": ("FLOAT", {"default": 0.0, "min": 0.0, "max": 1, "step": 0.05}),
+                              "rm_background": ("FLOAT", {"default": 0.0, "min": 0, "max": 1, "step": 0.05})
+                              }}
+    RETURN_TYPES = ("IMAGE",)
+    FUNCTION = "estimate_depth"
+
+    CATEGORY = "preprocessors/normal_depth_map"
+
+    def estimate_depth(self, image, rm_nearest, rm_background):
+        #Ref: https://github.com/Mikubill/sd-webui-controlnet/blob/main/scripts/processor.py#L105
+        depth_map_np = common_annotator_call(leres.apply_leres, image, rm_nearest, rm_background)
+        return (img_np_to_tensor(depth_map_np),)
+
 class MLSDPreprocessor:
     @classmethod
     def INPUT_TYPES(s):
         return {"required": { "image": ("IMAGE",) ,
                               #Idk what should be the max value here since idk much about ML
-                              "score_threshold": ("FLOAT", {"default": np.pi * 2.0, "min": 0.0, "max": np.pi * 2.0, "step": 0.1}), 
-                              "dist_threshold": ("FLOAT", {"default": 0.1, "min": 0, "max": 1, "step": 0.1})
+                              "score_threshold": ("FLOAT", {"default": np.pi * 2.0, "min": 0.0, "max": np.pi * 2.0, "step": 0.05}), 
+                              "dist_threshold": ("FLOAT", {"default": 0.05, "min": 0, "max": 1, "step": 0.05})
                               }}
     RETURN_TYPES = ("IMAGE",)
     FUNCTION = "detect_edge"
 
-    CATEGORY = "preprocessors"
+    CATEGORY = "preprocessors/edge_line"
 
     def detect_edge(self, image, score_threshold, dist_threshold):
         #Ref: https://github.com/lllyasviel/ControlNet/blob/main/gradio_hough2image.py
@@ -147,12 +164,12 @@ class OpenposePreprocessor:
     @classmethod
     def INPUT_TYPES(s):
         return {"required": { "image": ("IMAGE", ),
-                              "detect_hand": (["disable", "enable"],)
+                              "detect_hand": (["disable", "enable"], {"default": "disable"})
                               }}
     RETURN_TYPES = ("IMAGE",)
     FUNCTION = "estimate_pose"
 
-    CATEGORY = "preprocessors"
+    CATEGORY = "preprocessors/pose"
 
     def estimate_pose(self, image, detect_hand):
         #Ref: https://github.com/lllyasviel/ControlNet/blob/main/gradio_pose2image.py
@@ -167,11 +184,67 @@ class UniformerPreprocessor:
     RETURN_TYPES = ("IMAGE",)
     FUNCTION = "semantic_segmentate"
 
-    CATEGORY = "preprocessors"
+    CATEGORY = "preprocessors/semseg"
 
     def semantic_segmentate(self, image):
         #Ref: https://github.com/lllyasviel/ControlNet/blob/main/gradio_seg2image.py
         np_detected_map = common_annotator_call(uniformer.UniformerDetector(), image)
+        return (img_np_to_tensor(np_detected_map),)
+
+class MediaPipePreprocessor:
+    @classmethod
+    def INPUT_TYPES(s):
+        return {"required": { "image": ("IMAGE", ),
+                              "detect_pose": (["enable", "disable"], {"default": "enable"}),
+                              "detect_hands": (["enable", "disable"], {"default": "enable"})
+                            }}
+    RETURN_TYPES = ("IMAGE",)
+    FUNCTION = "estimate"
+
+    CATEGORY = "preprocessors/pose"
+
+    def estimate(self, image, detect_pose, detect_hands):
+        #Ref: https://github.com/lllyasviel/ControlNet/blob/main/gradio_pose2image.py
+        np_detected_map = common_annotator_call(mediapipe.apply_mediapipe, image, detect_pose == "enable", detect_hands == "enable")
+        return (img_np_to_tensor(np_detected_map),)
+
+class BinaryPreprocessor:
+    @classmethod
+    def INPUT_TYPES(s):
+        return {"required": { "image": ("IMAGE",), "threshold": ("INT", {"mix": 0, "max": 255, "step": 1, "default": 0}) }}
+    RETURN_TYPES = ("IMAGE",)
+    FUNCTION = "transform_binary"
+
+    CATEGORY = "preprocessors/edge_line"
+
+    def transform_binary(self, image, threshold):
+        np_detected_map = common_annotator_call(binary.apply_binary, image, threshold)
+        return (img_np_to_tensor(np_detected_map),)
+
+class ColorPreprocessor:
+    @classmethod
+    def INPUT_TYPES(s):
+        return {"required": { "image": ("IMAGE",) }}
+    RETURN_TYPES = ("IMAGE",)
+    FUNCTION = "get_processed_pallete"
+
+    CATEGORY = "preprocessors/color_style"
+
+    def get_processed_pallete(self, image):
+        np_detected_map = common_annotator_call(color.apply_color, image)
+        return (img_np_to_tensor(np_detected_map),)
+
+class PIDINETPreprocessor:
+    @classmethod
+    def INPUT_TYPES(s):
+        return {"required": { "image": ("IMAGE",) }}
+    RETURN_TYPES = ("IMAGE",)
+    FUNCTION = "detect_edge"
+
+    CATEGORY = "preprocessors/edge_line"
+
+    def detect_edge(self, image):
+        np_detected_map = common_annotator_call(pidinet.apply_pidinet, image)
         return (img_np_to_tensor(np_detected_map),)
 
 NODE_CLASS_MAPPINGS = {
@@ -183,6 +256,11 @@ NODE_CLASS_MAPPINGS = {
     "OpenposePreprocessor": OpenposePreprocessor,
     "MiDaS-DepthMapPreprocessor": MIDASDepthMapPreprocessor,
     "MiDaS-NormalMapPreprocessor": MIDASNormalMapPreprocessor,
-    "SemSegPreprocessor": UniformerPreprocessor
+    "LeReS-DepthMapPreprocessor": LERESDepthMapPreprocessor,
+    "SemSegPreprocessor": UniformerPreprocessor,
+    "MediaPipePreprocessor": MediaPipePreprocessor,
+    "BinaryPreprocessor": BinaryPreprocessor,
+    "ColorPreprocessor": ColorPreprocessor,
+    "PiDiNetPreprocessor": PIDINETPreprocessor
 }
 
