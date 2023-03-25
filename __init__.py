@@ -1,4 +1,4 @@
-from . import canny, hed, midas, mlsd, openpose, uniformer, leres, mediapipe, color, binary, pidinet
+from . import canny, hed, midas, mlsd, openpose, uniformer, leres, mp, color, binary, pidinet
 from .util import HWC3, resize_image
 import torch
 import numpy as np
@@ -205,7 +205,7 @@ class MediaPipePreprocessor:
 
     def estimate(self, image, detect_pose, detect_hands):
         #Ref: https://github.com/lllyasviel/ControlNet/blob/main/gradio_pose2image.py
-        np_detected_map = common_annotator_call(mediapipe.apply_mediapipe, image, detect_pose == "enable", detect_hands == "enable")
+        np_detected_map = common_annotator_call(mp.apply_mediapipe, image, detect_pose == "enable", detect_hands == "enable")
         return (img_np_to_tensor(np_detected_map),)
 
 class BinaryPreprocessor:
