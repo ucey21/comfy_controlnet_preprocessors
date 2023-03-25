@@ -39,5 +39,5 @@ add_global_shortcut_module()
 from comfy_controlnet_preprocessors import canny, hed, midas, mlsd, openpose, uniformer, leres, pidinet
 print("Download models...")
 sleep(2)
-download_models(args.download_full_ckpts)
+download_models()
 print("Done!")
