@@ -4,6 +4,7 @@ import numpy as np
 from einops import rearrange
 from .model import pidinet
 from comfy_controlnet_preprocessors.util import annotator_ckpts_path, load_state_dict, load_file_from_url
+import model_management
 
 netNetwork = None
 remote_model_path = "https://huggingface.co/TencentARC/T2I-Adapter/resolve/main/third-party-models/table5_pidinet.pth"
@@ -22,12 +23,12 @@ def apply_pidinet(input_image):
         ckp = load_state_dict(download_if_not_existed())
         netNetwork.load_state_dict({k.replace('module.',''):v for k, v in ckp.items()})
         
-    netNetwork = netNetwork.cuda() #TODO: Support non-cuda platform
+    netNetwork = netNetwork.to(model_management.get_torch_device())
     netNetwork.eval()
     assert input_image.ndim == 3
     input_image = input_image[:, :, ::-1].copy()
     with torch.no_grad():
-        image_pidi = torch.from_numpy(input_image).float().cuda()
+        image_pidi = torch.from_numpy(input_image).float().to(model_management.get_torch_device())
         image_pidi = image_pidi / 255.0
         image_pidi = rearrange(image_pidi, 'h w c -> 1 c h w')
         edge = netNetwork(image_pidi)[-1]

@@ -43,7 +43,7 @@ def download_model_if_not_existed():
         os.rename(os.path.join(base_model_path, 'download'), model_path)
     return model_path
 
-def apply_leres(input_image, thr_a, thr_b):
+def apply_leres(input_image, thr_a, thr_b, device):
     global model, pix2pixmodel
     #boost = shared.opts.data.get("control_net_monocular_depth_optim", False)
     boost = False #Too lazy to implement this to ComfyUI
@@ -54,7 +54,7 @@ def apply_leres(input_image, thr_a, thr_b):
         else:
             checkpoint = torch.load(model_path, map_location=torch.device('cpu'))
 
-        model = RelDepthModel(backbone='resnext101').cuda() #Cuda plz
+        model = RelDepthModel(backbone='resnext101').to(device)
         model.load_state_dict(strip_prefix_if_present(checkpoint['depth_model'], "module."), strict=True)
         del checkpoint
 

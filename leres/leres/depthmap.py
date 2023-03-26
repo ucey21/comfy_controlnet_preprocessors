@@ -13,6 +13,7 @@ import torch, gc
 import cv2
 import numpy as np
 import skimage.measure
+import model_management
 
 whole_size_threshold = 1600  # R_max from the paper
 pix2pixsize = 1024
@@ -42,7 +43,7 @@ def estimateleres(img, model, w, h):
     
     # compute
     with torch.no_grad():
-        img_torch = img_torch.cuda()
+        img_torch = img_torch.to(model_management.get_torch_device())
         prediction = model.depth_model(img_torch)
 
     prediction = prediction.squeeze().cpu().numpy()

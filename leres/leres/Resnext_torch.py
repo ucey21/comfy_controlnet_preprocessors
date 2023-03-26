@@ -9,6 +9,8 @@ except ImportError:
 
 __all__ = ['resnext101_32x8d']
 
+import model_management
+
 
 model_urls = {
     'resnext50_32x4d': 'https://download.pytorch.org/models/resnext50_32x4d-7cdf4587.pth',
@@ -239,9 +241,9 @@ def resnext101_32x8d(pretrained=True, **kwargs):
 
 if __name__ == '__main__':
     import torch
-    model = resnext101_32x8d(True).cuda()
+    model = resnext101_32x8d(True).to(model_management.get_torch_device())
 
-    rgb = torch.rand((2, 3, 256, 256)).cuda()
+    rgb = torch.rand((2, 3, 256, 256)).to(model_management.get_torch_device())
     out = model(rgb)
     print(len(out))
 

@@ -62,7 +62,7 @@ All preprocessor nodes take an image, usually came from LoadImage node and outpu
 
 ## Limits
 * There may be bugs since I don't have time ~~(lazy)~~ to test
-* You must have CUDA device because I just put `.cuda()` everywhere.
+* ~~You must have CUDA device because I just put `.cuda()` everywhere.~~ It is fixed
 
 ## Citation
 ### Original ControlNet repo
