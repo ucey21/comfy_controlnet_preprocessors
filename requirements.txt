@@ -11,4 +11,3 @@ reportlab
 addict
 yapf
 mediapipe
-dlib
