@@ -17,6 +17,7 @@ from .leres.net_tools import strip_prefix_if_present
 from comfy_controlnet_preprocessors.util import annotator_ckpts_path
 base_model_path = annotator_ckpts_path
 old_modeldir = os.path.dirname(os.path.realpath(__file__))
+import model_management
 
 remote_model_path_leres = "https://cloudstor.aarnet.edu.au/plus/s/lTIJF4vrvHCAI31/download"
 remote_model_path_pix2pix = "https://sfu.ca/~yagiz/CVPR21/latest_net_G.pth"
@@ -43,18 +44,14 @@ def download_model_if_not_existed():
         os.rename(os.path.join(base_model_path, 'download'), model_path)
     return model_path
 
-def apply_leres(input_image, thr_a, thr_b, device):
+def apply_leres(input_image, thr_a, thr_b):
     global model, pix2pixmodel
     #boost = shared.opts.data.get("control_net_monocular_depth_optim", False)
     boost = False #Too lazy to implement this to ComfyUI
     if model is None:
         model_path = download_model_if_not_existed()
-        if torch.cuda.is_available():
-            checkpoint = torch.load(model_path, map_location=torch.device('cuda'))
-        else:
-            checkpoint = torch.load(model_path, map_location=torch.device('cpu'))
-
-        model = RelDepthModel(backbone='resnext101').to(device)
+        checkpoint = torch.load(model_path, map_location=model_management.get_torch_device())
+        model = RelDepthModel(backbone='resnext101').to(model_management.get_torch_device())
         model.load_state_dict(strip_prefix_if_present(checkpoint['depth_model'], "module."), strict=True)
         del checkpoint
 
