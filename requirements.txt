@@ -10,3 +10,4 @@ svglib
 reportlab
 addict
 yapf
+mediapipe
