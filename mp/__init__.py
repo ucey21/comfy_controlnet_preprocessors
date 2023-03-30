@@ -85,7 +85,7 @@ def apply_mediapipe(input_image, detect_pose = True, detect_hands = True):
             min_detection_confidence=0.5)
 
     if detect_pose:
-        resultsPose = pose.process(annotated_image)
+        resultsPose = pose.process(input_image)
         if resultsPose.pose_landmarks:
             mp_drawing.draw_landmarks(
                 annotated_image,
@@ -94,7 +94,7 @@ def apply_mediapipe(input_image, detect_pose = True, detect_hands = True):
                 landmark_drawing_spec=None,
                 connection_drawing_spec=connection_annotations)
     if detect_hands:
-        resultsHands = hands.process(annotated_image)
+        resultsHands = hands.process(input_image)
         if resultsHands.multi_hand_landmarks:
             for hand_landmarks in resultsHands.multi_hand_landmarks:
                 mp_drawing.draw_landmarks(
