@@ -10,4 +10,4 @@ svglib
 reportlab
 addict
 yapf
-mediapipe
+mediapipe==0.9.1.0

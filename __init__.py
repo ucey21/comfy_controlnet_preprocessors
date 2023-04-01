@@ -1,4 +1,4 @@
-from . import canny, hed, midas, mlsd, openpose, uniformer, leres, mp, color, binary, pidinet
+from . import canny, hed, midas, mlsd, openpose, uniformer, leres, mp_pose_hand, color, binary, pidinet, mp_face_mesh
 from .util import HWC3, resize_image
 import torch
 import numpy as np
@@ -39,7 +39,7 @@ def common_annotator_call(annotator_callback, tensor_image, *args):
         return out_list
 
 
-class CannyEdgePreprocesor:
+class Canny_Edge_Preprocesor:
     @classmethod
     def INPUT_TYPES(s):
         return {"required": { "image": ("IMAGE", ) ,
@@ -57,7 +57,7 @@ class CannyEdgePreprocesor:
         np_detected_map = common_annotator_call(canny.CannyDetector(), image, low_threshold, high_threshold, l2gradient == "enable")
         return (img_np_to_tensor(np_detected_map),)
 
-class HEDPreprocesor:
+class HED_Preprocesor:
     @classmethod
     def INPUT_TYPES(s):
         return {"required": { "image": ("IMAGE",) }}
@@ -71,7 +71,7 @@ class HEDPreprocesor:
         np_detected_map = common_annotator_call(hed.HEDdetector(), image)
         return (img_np_to_tensor(np_detected_map),)
 
-class ScribblePreprocessor:
+class Scribble_Preprocessor:
     @classmethod
     def INPUT_TYPES(s):
         return {"required": { "image": ("IMAGE",) }}
@@ -90,7 +90,7 @@ class ScribblePreprocessor:
             out_list.append(np_detected_map)
         return (img_np_to_tensor(out_list),)
 
-class FakeScribblePreprocessor:
+class Fake_Scribble_Preprocessor:
     @classmethod
     def INPUT_TYPES(s):
         return {"required": { "image": ("IMAGE",) }}
@@ -111,7 +111,7 @@ class FakeScribblePreprocessor:
             out_list.append(np_detected_map)
         return (img_np_to_tensor(out_list),)
 
-class MIDASDepthMapPreprocessor:
+class MIDAS_Depth_Map_Preprocessor:
     @classmethod
     def INPUT_TYPES(s):
         return {"required": { "image": ("IMAGE", ) ,
@@ -128,7 +128,7 @@ class MIDASDepthMapPreprocessor:
         depth_map_np, normal_map_np = common_annotator_call(midas.MidasDetector(), image, a, bg_threshold)
         return (img_np_to_tensor(depth_map_np),)
 
-class MIDASNormalMapPreprocessor:
+class MIDAS_Normal_Map_Preprocessor:
     @classmethod
     def INPUT_TYPES(s):
         return {"required": { "image": ("IMAGE", ) ,
@@ -145,7 +145,7 @@ class MIDASNormalMapPreprocessor:
         depth_map_np, normal_map_np = common_annotator_call(midas.MidasDetector(), image, a, bg_threshold)
         return (img_np_to_tensor(normal_map_np),)
 
-class LERESDepthMapPreprocessor:
+class LERES_Depth_Map_Preprocessor:
     @classmethod
     def INPUT_TYPES(s):
         return {"required": { "image": ("IMAGE", ) ,
@@ -162,7 +162,7 @@ class LERESDepthMapPreprocessor:
         depth_map_np = common_annotator_call(leres.apply_leres, image, rm_nearest, rm_background)
         return (img_np_to_tensor(depth_map_np),)
 
-class MLSDPreprocessor:
+class MLSD_Preprocessor:
     @classmethod
     def INPUT_TYPES(s):
         return {"required": { "image": ("IMAGE",) ,
@@ -180,7 +180,7 @@ class MLSDPreprocessor:
         np_detected_map = common_annotator_call(mlsd.MLSDdetector(), image, score_threshold, dist_threshold)
         return (img_np_to_tensor(np_detected_map),)
 
-class OpenposePreprocessor:
+class OpenPose_Preprocessor:
     @classmethod
     def INPUT_TYPES(s):
         return {"required": { "image": ("IMAGE", ),
@@ -196,7 +196,7 @@ class OpenposePreprocessor:
         np_detected_map, pose_info = common_annotator_call(openpose.OpenposeDetector(), image, detect_hand == "enable")
         return (img_np_to_tensor(np_detected_map),)
 
-class UniformerPreprocessor:
+class Uniformer_Preprocessor:
     @classmethod
     def INPUT_TYPES(s):
         return {"required": { "image": ("IMAGE", )
@@ -211,7 +211,7 @@ class UniformerPreprocessor:
         np_detected_map = common_annotator_call(uniformer.UniformerDetector(), image)
         return (img_np_to_tensor(np_detected_map),)
 
-class MediaPipePreprocessor:
+class Media_Pipe_Hand_Pose_Preprocessor:
     @classmethod
     def INPUT_TYPES(s):
         return {"required": { "image": ("IMAGE", ),
@@ -219,16 +219,32 @@ class MediaPipePreprocessor:
                               "detect_hands": (["enable", "disable"], {"default": "enable"})
                             }}
     RETURN_TYPES = ("IMAGE",)
-    FUNCTION = "estimate"
+    FUNCTION = "detect"
 
     CATEGORY = "preprocessors/pose"
 
-    def estimate(self, image, detect_pose, detect_hands):
+    def detect(self, image, detect_pose, detect_hands):
         #Ref: https://github.com/lllyasviel/ControlNet/blob/main/gradio_pose2image.py
-        np_detected_map = common_annotator_call(mp.apply_mediapipe, image, detect_pose == "enable", detect_hands == "enable")
+        np_detected_map = common_annotator_call(mp_pose_hand.apply_mediapipe, image, detect_pose == "enable", detect_hands == "enable")
         return (img_np_to_tensor(np_detected_map),)
 
-class BinaryPreprocessor:
+class Media_Pipe_Face_Mesh_Preprocessor:
+    @classmethod
+    def INPUT_TYPES(s):
+        return {"required": { "image": ("IMAGE", ),
+                              "max_faces": ("INT", {"default": 10, "min": 1, "max": 50, "step": 1}), #Which image has more than 50 detectable faces?
+                              "min_confidence": ("INT", {"default": 0.5, "min": 0.0, "max": 1, "step": 0.1})
+                            }}
+    RETURN_TYPES = ("IMAGE",)
+    FUNCTION = "detect"
+
+    CATEGORY = "preprocessors/face_mesh"
+
+    def detect(self, image, max_faces, min_confidence):
+        np_detected_map = common_annotator_call(mp_face_mesh.generate_annotation, image, max_faces, min_confidence)
+        return (img_np_to_tensor(np_detected_map),)
+
+class Binary_Preprocessor:
     @classmethod
     def INPUT_TYPES(s):
         return {"required": { "image": ("IMAGE",), "threshold": ("INT", {"mix": 0, "max": 255, "step": 1, "default": 0}) }}
@@ -241,7 +257,7 @@ class BinaryPreprocessor:
         np_detected_map = common_annotator_call(binary.apply_binary, image, threshold)
         return (img_np_to_tensor(np_detected_map),)
 
-class ColorPreprocessor:
+class Color_Preprocessor:
     @classmethod
     def INPUT_TYPES(s):
         return {"required": { "image": ("IMAGE",) }}
@@ -254,7 +270,7 @@ class ColorPreprocessor:
         np_detected_map = common_annotator_call(color.apply_color, image)
         return (img_np_to_tensor(np_detected_map),)
 
-class PIDINETPreprocessor:
+class PIDINET_Preprocessor:
     @classmethod
     def INPUT_TYPES(s):
         return {"required": { "image": ("IMAGE",) }}
@@ -268,19 +284,19 @@ class PIDINETPreprocessor:
         return (img_np_to_tensor(np_detected_map),)
 
 NODE_CLASS_MAPPINGS = {
-    "CannyEdgePreprocesor": CannyEdgePreprocesor,
-    "M-LSDPreprocessor": MLSDPreprocessor,
-    "HEDPreprocesor": HEDPreprocesor,
-    "ScribblePreprocessor": ScribblePreprocessor,
-    "FakeScribblePreprocessor": FakeScribblePreprocessor,
-    "OpenposePreprocessor": OpenposePreprocessor,
-    "MiDaS-DepthMapPreprocessor": MIDASDepthMapPreprocessor,
-    "MiDaS-NormalMapPreprocessor": MIDASNormalMapPreprocessor,
-    "LeReS-DepthMapPreprocessor": LERESDepthMapPreprocessor,
-    "SemSegPreprocessor": UniformerPreprocessor,
-    "MediaPipePreprocessor": MediaPipePreprocessor,
-    "BinaryPreprocessor": BinaryPreprocessor,
-    "ColorPreprocessor": ColorPreprocessor,
-    "PiDiNetPreprocessor": PIDINETPreprocessor
+    "CannyEdgePreprocesor": Canny_Edge_Preprocesor,
+    "M-LSDPreprocessor": MLSD_Preprocessor,
+    "HEDPreprocesor": HED_Preprocesor,
+    "ScribblePreprocessor": Scribble_Preprocessor,
+    "FakeScribblePreprocessor": Fake_Scribble_Preprocessor,
+    "OpenposePreprocessor": OpenPose_Preprocessor,
+    "MiDaS-DepthMapPreprocessor": MIDAS_Depth_Map_Preprocessor,
+    "MiDaS-NormalMapPreprocessor": MIDAS_Normal_Map_Preprocessor,
+    "LeReS-DepthMapPreprocessor": LERES_Depth_Map_Preprocessor,
+    "SemSegPreprocessor": Uniformer_Preprocessor,
+    "MediaPipe-HandPosePreprocessor": Media_Pipe_Hand_Pose_Preprocessor,
+    "MediaPipe-FaceMeshPreprocessor": Media_Pipe_Face_Mesh_Preprocessor,
+    "BinaryPreprocessor": Binary_Preprocessor,
+    "ColorPreprocessor": Color_Preprocessor,
+    "PiDiNetPreprocessor": PIDINET_Preprocessor
 }
-
