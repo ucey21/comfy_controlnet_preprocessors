@@ -37,8 +37,7 @@ python install.py
 ```
 For ComfyUI portable standalone build:
 ```
-#You may need to replace "..\..\..\python_embeded\python.exe" depends your python_embeded location
-..\..\..\python_embeded\python.exe install.py
+/path/to/ComfyUI/python_embeded/python.exe install.py
 ```
 
 ## Usage
