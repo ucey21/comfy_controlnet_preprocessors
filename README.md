@@ -3,9 +3,13 @@ Moved from https://github.com/comfyanonymous/ComfyUI/pull/13 <br>
 Original repo: https://github.com/lllyasviel/ControlNet <br>
 List of my comfyUI node repos: https://github.com/Fannovel16/FN16-ComfyUI-nodes <br>
 
-## Change log (starts from 2023-04-01):
+## Change log:
+### 2023-04-01
 * Rename MediaPipePreprocessor to MediaPipe-PoseHandPreprocessor to avoid confusion
 * Add MediaPipe-FaceMeshPreprocessor for [ControlNet Face Model](https://www.reddit.com/r/StableDiffusion/comments/1281iva/new_controlnet_face_model/)
+### 2023-04-02
+* Fixed https://github.com/Fannovel16/comfy_controlnet_preprocessors/issues/20
+* Fixed typo at ##Nodes
 
 ## Model Dependencies 
 The total disk's free space needed if all models are downloaded is ~1.58 GB. <br>
@@ -59,10 +63,10 @@ All preprocessor nodes take an image, usually came from LoadImage node and outpu
 | MiDaS-NormalMapPreprocessor | normal_map                                            | control_normal                            | preprocessors/normal_depth_map   |
 | LeReS-DepthMapPreprocessor  | depth_leres                                           | control_depth <br> t2iadapter_depth       | preprocessors/normal_depth_map   |
 | OpenposePreprocessor        | openpose (or openpose_hand if detect_hand is enabled) | control_openpose <br> t2iadapter_openpose | preprocessors/pose               |
-|MediaPipe-PoseHandPreprocessor| https://natakaro.gumroad.com/l/oprmi                  | https://civitai.com/models/16409         | preprocessors/pose               |
+|MediaPipe-PoseHandPreprocessor| https://natakaro.gumroad.com/l/oprmi                 | https://civitai.com/models/16409         | preprocessors/pose                |
 | ColorPreprocessor           | color                                                 | t2iadapter_color                          | preprocessors/color_style        |
 | SemSegPreprocessor          | segmentation                                          | control_seg <br> t2iadapter_seg           | preprocessors/semseg             |
-|MediaPipe-HandMeshPreprocessor| mediapipe_face                                       | controlnet_sd21_laion_face_v2             | preprocessors/face_mesh          |
+|MediaPipe-FaceMeshPreprocessor| mediapipe_face                                       | controlnet_sd21_laion_face_v2             | preprocessors/face_mesh          |
 
 ## Limits
 * There may be bugs since I don't have time ~~(lazy)~~ to test
