@@ -39,7 +39,7 @@ def common_annotator_call(annotator_callback, tensor_image, *args):
         return out_list
 
 
-class Canny_Edge_Preprocesor:
+class Canny_Edge_Preprocessor:
     @classmethod
     def INPUT_TYPES(s):
         return {"required": { "image": ("IMAGE", ) ,
@@ -57,7 +57,7 @@ class Canny_Edge_Preprocesor:
         np_detected_map = common_annotator_call(canny.CannyDetector(), image, low_threshold, high_threshold, l2gradient == "enable")
         return (img_np_to_tensor(np_detected_map),)
 
-class HED_Preprocesor:
+class HED_Preprocessor:
     @classmethod
     def INPUT_TYPES(s):
         return {"required": { "image": ("IMAGE",) }}
@@ -284,9 +284,9 @@ class PIDINET_Preprocessor:
         return (img_np_to_tensor(np_detected_map),)
 
 NODE_CLASS_MAPPINGS = {
-    "CannyEdgePreprocesor": Canny_Edge_Preprocesor,
+    "CannyEdgePreprocessor": Canny_Edge_Preprocessor,
     "M-LSDPreprocessor": MLSD_Preprocessor,
-    "HEDPreprocesor": HED_Preprocesor,
+    "HEDPreprocessor": HED_Preprocessor,
     "ScribblePreprocessor": Scribble_Preprocessor,
     "FakeScribblePreprocessor": Fake_Scribble_Preprocessor,
     "OpenposePreprocessor": OpenPose_Preprocessor,
