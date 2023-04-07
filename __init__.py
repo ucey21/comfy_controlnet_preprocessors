@@ -233,7 +233,7 @@ class Media_Pipe_Face_Mesh_Preprocessor:
     def INPUT_TYPES(s):
         return {"required": { "image": ("IMAGE", ),
                               "max_faces": ("INT", {"default": 10, "min": 1, "max": 50, "step": 1}), #Which image has more than 50 detectable faces?
-                              "min_confidence": ("INT", {"default": 0.5, "min": 0.0, "max": 1, "step": 0.1})
+                              "min_confidence": ("FLOAT", {"default": 0.5, "min": 0.0, "max": 1, "step": 0.1})
                             }}
     RETURN_TYPES = ("IMAGE",)
     FUNCTION = "detect"
@@ -247,7 +247,7 @@ class Media_Pipe_Face_Mesh_Preprocessor:
 class Binary_Preprocessor:
     @classmethod
     def INPUT_TYPES(s):
-        return {"required": { "image": ("IMAGE",), "threshold": ("INT", {"mix": 0, "max": 255, "step": 1, "default": 0}) }}
+        return {"required": { "image": ("IMAGE",), "threshold": ("INT", {"min": 0, "max": 255, "step": 1, "default": 0}) }}
     RETURN_TYPES = ("IMAGE",)
     FUNCTION = "transform_binary"
 
