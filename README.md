@@ -10,39 +10,8 @@ List of my comfyUI node repos: https://github.com/Fannovel16/FN16-ComfyUI-nodes 
 ### 2023-04-02
 * Fixed https://github.com/Fannovel16/comfy_controlnet_preprocessors/issues/20
 * Fixed typo at ##Nodes
-
-## Model Dependencies 
-The total disk's free space needed if all models are downloaded is ~1.58 GB. <br>
-All models will be downloaded to `comfy_controlnet_preprocessors/ckpts`
-* network-bsds500.pth (hed): 56.1 MB
-* res101.pth (leres): 506 MB
-* dpt_hybrid-midas-501f0c75.pt (midas): 470 MB
-* mlsd_large_512_fp32.pth (mlsd): 6 MB
-* body_pose_model.pth (openpose): 200 MB
-* hand_pose_model.pth (openpose): 141 MB
-* upernet_global_small.pth (uniformer aka SemSeg): 197 MB
-* table5_pidinet.pth (pidinet): 2.87 MB
-
-
-## Install
-Firstly, [install comfyui's dependencies](https://github.com/comfyanonymous/ComfyUI#installing) if you didn't.
-Then run:
-```sh
-cd ComfyUI/custom_nodes
-git clone https://github.com/Fannovel16/comfy_controlnet_preprocessors
-cd comfy_controlnet_preprocessors
-```
-Next, run install.py. It will download all models by default. <br>
-Add `--no_download_ckpts` to not download any model. <br>
-When a preprocessor node runs, if it can't find the models it need, that models will be downloaded automatically. 
-For directly-cloned ComfyUI repo:
-```
-python install.py
-```
-For ComfyUI portable standalone build:
-```
-/path/to/ComfyUI/python_embeded/python.exe install.py
-```
+### 2023-04-10
+* Fixed https://github.com/Fannovel16/comfy_controlnet_preprocessors/issues/18, https://github.com/Fannovel16/comfy_controlnet_preprocessors/issues/25: https://github.com/Fannovel16/comfy_controlnet_preprocessors/commit/b8a108a0f8ae37b9302b32d7c236cfa3dde97920, https://github.com/Fannovel16/comfy_controlnet_preprocessors/commit/01fbab5cdfc7b013256d4aec4e5ad77edb80a039
 
 ## Usage
 All preprocessor nodes take an image, usually came from LoadImage node and output a map image (aka hint image):
@@ -67,6 +36,37 @@ All preprocessor nodes take an image, usually came from LoadImage node and outpu
 | ColorPreprocessor           | color                                                 | t2iadapter_color                          | preprocessors/color_style        |
 | SemSegPreprocessor          | segmentation                                          | control_seg <br> t2iadapter_seg           | preprocessors/semseg             |
 |MediaPipe-FaceMeshPreprocessor| mediapipe_face                                       | controlnet_sd21_laion_face_v2             | preprocessors/face_mesh          |
+
+## Install
+Firstly, [install comfyui's dependencies](https://github.com/comfyanonymous/ComfyUI#installing) if you didn't.
+Then run:
+```sh
+cd ComfyUI/custom_nodes
+git clone https://github.com/Fannovel16/comfy_controlnet_preprocessors
+cd comfy_controlnet_preprocessors
+```
+Next, run install.py. It will download all models by default. <br>
+Add `--no_download_ckpts` to not download any model. <br>
+When a preprocessor node runs, if it can't find the models it need, that models will be downloaded automatically. 
+For directly-cloned ComfyUI repo:
+```
+python install.py
+```
+For ComfyUI portable standalone build:
+```
+/path/to/ComfyUI/python_embeded/python.exe install.py
+```
+## Model Dependencies 
+The total disk's free space needed if all models are downloaded is ~1.58 GB. <br>
+All models will be downloaded to `comfy_controlnet_preprocessors/ckpts`
+* network-bsds500.pth (hed): 56.1 MB
+* res101.pth (leres): 506 MB
+* dpt_hybrid-midas-501f0c75.pt (midas): 470 MB
+* mlsd_large_512_fp32.pth (mlsd): 6 MB
+* body_pose_model.pth (openpose): 200 MB
+* hand_pose_model.pth (openpose): 141 MB
+* upernet_global_small.pth (uniformer aka SemSeg): 197 MB
+* table5_pidinet.pth (pidinet): 2.87 MB
 
 ## Limits
 * There may be bugs since I don't have time ~~(lazy)~~ to test
