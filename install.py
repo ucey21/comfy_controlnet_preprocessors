@@ -40,8 +40,8 @@ proc.wait()
 
 if args.no_download_ckpts: exit()
 
-add_global_shortcut_module("model_management", os.path.join(EXT_PATH, "../../comfy/model_management.py"))
 add_global_shortcut_module("cli_args", os.path.join(EXT_PATH, "../../comfy/cli_args.py"))
+add_global_shortcut_module("model_management", os.path.join(EXT_PATH, "../../comfy/model_management.py"))
 add_global_shortcut_module(this_module_name, os.path.join(EXT_PATH, "__init__.py"))
 from comfy_controlnet_preprocessors import canny, hed, midas, mlsd, openpose, uniformer, leres, pidinet
 print("Download models...")
