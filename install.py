@@ -3,6 +3,7 @@ from time import sleep
 from importlib.util import spec_from_file_location, module_from_spec
 import sys
 import argparse
+import subprocess
 
 this_module_name = "comfy_controlnet_preprocessors"
 EXT_PATH = os.path.dirname(os.path.realpath(__file__))
@@ -29,13 +30,18 @@ def download_models():
     leres.download_model_if_not_existed()
     pidinet.download_if_not_existed()
 
+command = [sys.executable, '-m','pip', 'install', '-r', f'{EXT_PATH}/requirements.txt', '--extra-index-url', 'https://download.pytorch.org/whl/cu117', '--no-warn-script-location']
 print("Installing requirements...")
 sleep(2)
-os.system(f'pip install -r "{EXT_PATH}/requirements.txt" --extra-index-url https://download.pytorch.org/whl/cu117 --no-warn-script-location')
+proc = subprocess.Popen(command, stdout=subprocess.PIPE, bufsize=1, universal_newlines=True)
+for line in iter(proc.stdout.readline, ''):
+    print(line, end='')
+proc.wait()
 
 if args.no_download_ckpts: exit()
 
 add_global_shortcut_module("model_management", os.path.join(EXT_PATH, "../../comfy/model_management.py"))
+add_global_shortcut_module("cli_args", os.path.join(EXT_PATH, "../../comfy/cli_args.py"))
 add_global_shortcut_module(this_module_name, os.path.join(EXT_PATH, "__init__.py"))
 from comfy_controlnet_preprocessors import canny, hed, midas, mlsd, openpose, uniformer, leres, pidinet
 print("Download models...")
