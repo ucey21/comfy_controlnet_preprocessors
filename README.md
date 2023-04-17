@@ -1,4 +1,5 @@
 # ControlNet Preprocessors for [ComfyUI](https://github.com/comfyanonymous/ComfyUI)
+###NOTE: IF YOU USE COMFYUI STANDALONE BUILD, YOU HAVE TO USE PYTHON FROM THAT ONE (`python_embeded`) TO EXECUTE `install.py`, NOT PYTHON FROM THE SYSTEM. CHECK INSTALL SECTION FOR MORE DETAILS. 
 Moved from https://github.com/comfyanonymous/ComfyUI/pull/13 <br>
 Original repo: https://github.com/lllyasviel/ControlNet <br>
 List of my comfyUI node repos: https://github.com/Fannovel16/FN16-ComfyUI-nodes <br>
