@@ -1,5 +1,5 @@
 # ControlNet Preprocessors for [ComfyUI](https://github.com/comfyanonymous/ComfyUI)
-### NOTE: IF YOU USE COMFYUI STANDALONE BUILD, YOU HAVE TO USE PYTHON FROM THAT ONE (`python_embeded`) TO EXECUTE `install.py`, NOT PYTHON FROM THE SYSTEM. CHECK INSTALL SECTION FOR MORE DETAILS. 
+### NOTE: IF YOU USE COMFYUI STANDALONE BUILD, YOU HAVE TO USE LOCAL PYTHON FROM THAT ONE (`python_embeded`) TO EXECUTE `install.py`, NOT PYTHON FROM THE SYSTEM. CHECK INSTALL SECTION FOR MORE DETAILS. 
 Moved from https://github.com/comfyanonymous/ComfyUI/pull/13 <br>
 Original repo: https://github.com/lllyasviel/ControlNet <br>
 List of my comfyUI node repos: https://github.com/Fannovel16/FN16-ComfyUI-nodes <br>
@@ -47,9 +47,8 @@ git clone https://github.com/Fannovel16/comfy_controlnet_preprocessors
 cd comfy_controlnet_preprocessors
 ```
 Next, run install.py. It will download all models by default. <br>
-Add `--no_download_ckpts` to not download any model. <br>
-When a preprocessor node runs, if it can't find the models it need, that models will be downloaded automatically. 
-For directly-cloned ComfyUI repo:
+Note that you have to check if ComfyUI you are using is portable standalone build or not. If you use the wrong command, requirements won't be installed in the right place. 
+For directly-cloned ComfyUI repo, run:
 ```
 python install.py
 ```
@@ -57,6 +56,8 @@ For ComfyUI portable standalone build:
 ```
 /path/to/ComfyUI/python_embeded/python.exe install.py
 ```
+Add `--no_download_ckpts` to not download any model. <br>
+When a preprocessor node runs, if it can't find the models it need, that models will be downloaded automatically.
 ## Model Dependencies 
 The total disk's free space needed if all models are downloaded is ~1.58 GB. <br>
 All models will be downloaded to `comfy_controlnet_preprocessors/ckpts`
