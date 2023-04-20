@@ -36,7 +36,7 @@ TL;DR: You should only use these preprocessor nodes when using ControlNet 1.1:
 * LeReS-DepthMapPreprocessor
 * BAE-NormalMapPreprocessor (MiDaS-NormalMapPreprocessor doesn't work well with control_v11p_sd15_normalbae as this model made specifically for BAE's normal map)
 * Openpose-v11-Preprocessor (Comming Soon)
-* SemSeg-v11-Preprocessor (Comming Soon)
+* SemSeg-Preprocessor
 * Zoe-DepthMapPreprocessor
 
 ### TODO: Refactor this section
