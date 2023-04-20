@@ -9,7 +9,7 @@ from comfy_controlnet_preprocessors.util import annotator_ckpts_path
 import model_management
 
 
-checkpoint_file = "https://huggingface.co/lllyasviel/Annotators/resolve/main/main/upernet_global_small.pth"
+checkpoint_file = "https://huggingface.co/lllyasviel/Annotators/resolve/main/upernet_global_small.pth"
 #Change to a new URL but the file is still the same
 
 
