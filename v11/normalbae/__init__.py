@@ -12,6 +12,7 @@ from .utils import utils
 from comfy_controlnet_preprocessors.util import annotator_ckpts_path
 import torchvision.transforms as transforms
 import model_management
+from comfy_controlnet_preprocessors.util import load_file_from_url
 
 
 class NormalBaeDetector:
@@ -19,7 +20,6 @@ class NormalBaeDetector:
         remote_model_path = "https://huggingface.co/lllyasviel/Annotators/resolve/main/scannet.pt"
         modelpath = os.path.join(annotator_ckpts_path, "scannet.pt")
         if not os.path.exists(modelpath):
-            from basicsr.utils.download_util import load_file_from_url
             load_file_from_url(remote_model_path, model_dir=annotator_ckpts_path)
         args = types.SimpleNamespace()
         args.mode = 'client'

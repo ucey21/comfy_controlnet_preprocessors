@@ -9,15 +9,13 @@ import torch
 from einops import rearrange
 from .zoedepth.models.zoedepth.zoedepth_v1 import ZoeDepth
 from .zoedepth.utils.config import get_config
-from comfy_controlnet_preprocessors.util import annotator_ckpts_path
-
+from comfy_controlnet_preprocessors.util import annotator_ckpts_path, load_file_from_url
 
 class ZoeDetector:
     def __init__(self):
         remote_model_path = "https://huggingface.co/lllyasviel/Annotators/resolve/main/ZoeD_M12_N.pt"
         modelpath = os.path.join(annotator_ckpts_path, "ZoeD_M12_N.pt")
         if not os.path.exists(modelpath):
-            from basicsr.utils.download_util import load_file_from_url
             load_file_from_url(remote_model_path, model_dir=annotator_ckpts_path)
         conf = get_config("zoedepth", "infer")
         model = ZoeDepth.build_from_config(conf)
