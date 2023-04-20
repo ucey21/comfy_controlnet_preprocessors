@@ -27,8 +27,8 @@ All preprocessor nodes take an image, usually came from LoadImage node and outpu
 TL;DR: You should only use these preprocessor nodes when using ControlNet 1.1:
 * CannyEdgePreprocessor
 * M-LSDPreprocessor
-* HED-v11-Preprocessor
-* PiDiNet-v11-Preprocessor
+* HED-v11-Preprocessor (Use HEDPreprocesor if you use ControlNet v1)
+* PiDiNet-v11-Preprocessor (Use PiDiNetPreprocesor if you use ControlNet v1)
 * ScribblePreprocessor
 * FakeScribblePreprocessor
 * BinaryPreprocessor
