@@ -9,8 +9,8 @@ from .hand import Hand
 from comfy_controlnet_preprocessors.util import annotator_ckpts_path
 
 
-body_model_path = "https://huggingface.co/lllyasviel/Annotators/resolve/body_pose_model.pth"
-hand_model_path = "https://huggingface.co/lllyasviel/Annotators/resolve/hand_pose_model.pth"
+body_model_path = "https://huggingface.co/lllyasviel/Annotators/resolve/main/body_pose_model.pth"
+hand_model_path = "https://huggingface.co/lllyasviel/Annotators/resolve/main/hand_pose_model.pth"
 #Change to a new URL but the file is still the same
 
 class OpenposeDetector:

@@ -20,7 +20,7 @@ ISL_PATHS = {
     "midas_v21_small": "",
 }
 
-remote_model_path = "https://huggingface.co/lllyasviel/Annotators/resolve/dpt_hybrid-midas-501f0c75.pt"
+remote_model_path = "https://huggingface.co/lllyasviel/Annotators/resolve/main/dpt_hybrid-midas-501f0c75.pt"
 #Change to a new URL but the file is still the same
 
 def disabled_train(self, mode=True):

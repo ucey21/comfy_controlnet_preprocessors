@@ -24,10 +24,29 @@ All preprocessor nodes take an image, usually came from LoadImage node and outpu
 * The hint image is a black canvas with a/some subject(s) like Openpose stickman(s), depth map, etc
 
 ## Nodes
+TL;DR: You should only use these preprocessor nodes when using ControlNet 1.1:
+* CannyEdgePreprocessor
+* M-LSDPreprocessor
+* HED-v11-Preprocessor
+* PiDiNet-v11-Preprocessor
+* ScribblePreprocessor
+* FakeScribblePreprocessor
+* BinaryPreprocessor
+* MiDaS-DepthMapPreprocessor
+* LeReS-DepthMapPreprocessor
+* BAE-NormalMapPreprocessor (MiDaS-NormalMapPreprocessor doesn't work well with control_v11p_sd15_normalbae as this model made specifically for BAE's normal map)
+* Openpose-v11-Preprocessor (Comming Soon)
+* SemSeg-v11-Preprocessor (Comming Soon)
+* Zoe-DepthMapPreprocessor
+
+### TODO: Refactor this section
+### preprocessors/edge_line
 | Preprocessor Node           | sd-webui-controlnet/other                             | Use with ControlNet/T2I-Adapter           | Category                         |
 |-----------------------------|-------------------------------------------------------|-------------------------------------------|----------------------------------|
-| CannyEdgePreprocessor       | canny                                                 | control_canny <br> t2iadapter_canny       | preprocessors/edge_line          |
-| M-LSDPreprocessor           | mlsd                                                  | control_mlsd                              | preprocessors/edge_line          |
+| CannyEdgePreprocessor       | canny                                                 | control_canny/control_v11p_sd15_canny <br> t2iadapter_canny | preprocessors/edge_line |
+| M-LSDPreprocessor           | mlsd                                                  | control_mlsd/control_v11p_sd21_canny      | preprocessors/edge_line          |
+
+### Full
 | HEDPreprocessor             | hed                                                   | control_hed                               | preprocessors/edge_line          |
 | PiDiNetPreprocessor         | pidinet                                               | t2iadapter_sketch <br> control_scribble   | preprocessors/edge_line          |
 | ScribblePreprocessor        | scribble                                              | control_scribble                          | preprocessors/edge_line          |

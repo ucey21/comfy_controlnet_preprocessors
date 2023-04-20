@@ -12,7 +12,7 @@ from comfy_controlnet_preprocessors.util import annotator_ckpts_path
 import model_management
 
 
-remote_model_path = "https://huggingface.co/lllyasviel/Annotators/resolve/mlsd_large_512_fp32.pth"
+remote_model_path = "https://huggingface.co/lllyasviel/Annotators/resolve/main/mlsd_large_512_fp32.pth"
 #Change to a new URL but the file is still the same
 
 class MLSDdetector:
