@@ -16,6 +16,7 @@ List of my comfyUI node repos: https://github.com/Fannovel16/FN16-ComfyUI-nodes 
 ### 2023-04-20
 * Add HED-v11-Preprocessor, PiDiNet-v11-Preprocessor, Zoe-DepthMapPreprocessor and BAE-NormalMapPreprocessor
 * If you installed this repo, please run `install.py` after `git pull` if you want to download all files for new preprocessors for offline run
+* Remove the needs of BasicSR (https://github.com/Fannovel16/comfy_controlnet_preprocessors/commit/6b073101f75d6ab1e53c231dab8118990fec96ed) since ComfyUI's custom Python build can't install it.
 
 ## Usage
 All preprocessor nodes take an image, usually came from LoadImage node and output a map image (aka hint image):
