@@ -49,6 +49,8 @@ TODO: Refactor this section and update
 | M-LSDPreprocessor           | mlsd                                                  | control_mlsd/control_v11p_sd21_canny      | preprocessors/edge_line          |
 
 ### Full
+| Preprocessor Node           | sd-webui-controlnet/other                             | Use with ControlNet/T2I-Adapter           | Category                         |
+|-----------------------------|-------------------------------------------------------|-------------------------------------------|----------------------------------|
 | HEDPreprocessor             | hed                                                   | control_hed                               | preprocessors/edge_line          |
 | PiDiNetPreprocessor         | pidinet                                               | t2iadapter_sketch <br> control_scribble   | preprocessors/edge_line          |
 | ScribblePreprocessor        | scribble                                              | control_scribble                          | preprocessors/edge_line          |
