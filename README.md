@@ -38,6 +38,7 @@ TL;DR: You should only use these preprocessor nodes when using ControlNet 1.1:
 * Openpose-v11-Preprocessor (Comming Soon)
 * SemSeg-Preprocessor
 * Zoe-DepthMapPreprocessor
+A simple rule to remember is that you should use one with "v11" in name instead of ones not having it if it exists
 
 ### TODO: Refactor this section
 ### preprocessors/edge_line
