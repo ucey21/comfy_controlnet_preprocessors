@@ -39,7 +39,7 @@ TL;DR: You should only use these preprocessor nodes when using ControlNet 1.1:
 * SemSeg-Preprocessor
 * Zoe-DepthMapPreprocessor
 A simple rule to remember is that you should use preprocess with "v11" in name instead of one not having it if it exists. <br>
-You shouldn't use v11 preprocessors with ControlNet v1.
+You shouldn't use v11-only preprocessors with ControlNet v1.
 
 ### TODO: Refactor this section and update
 ### preprocessors/edge_line
