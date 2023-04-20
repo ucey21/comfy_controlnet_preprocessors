@@ -25,10 +25,14 @@ def download_models():
     hed.HEDdetector()
     midas.MidasDetector()
     mlsd.MLSDdetector()
-    openpose.OpenposeDetector()
+    openpose_v1.OpenposeDetector()
     uniformer.UniformerDetector()
     leres.download_model_if_not_existed()
-    pidinet.download_if_not_existed()
+    pidinet_v1.download_if_not_existed()
+    zoe.ZoeDetector()
+    normalbae.NormalBaeDetector()
+    hed_v11.ControlNetHED_Apache2()
+    pidinet_v11.PidiNetDetector()
 
 command = [sys.executable, '-m','pip', 'install', '-r', f'{EXT_PATH}/requirements.txt', '--extra-index-url', 'https://download.pytorch.org/whl/cu117', '--no-warn-script-location']
 print("Installing requirements...")
@@ -43,7 +47,8 @@ if args.no_download_ckpts: exit()
 add_global_shortcut_module("cli_args", os.path.join(EXT_PATH, "../../comfy/cli_args.py"))
 add_global_shortcut_module("model_management", os.path.join(EXT_PATH, "../../comfy/model_management.py"))
 add_global_shortcut_module(this_module_name, os.path.join(EXT_PATH, "__init__.py"))
-from comfy_controlnet_preprocessors import canny, hed, midas, mlsd, openpose, uniformer, leres, pidinet
+from comfy_controlnet_preprocessors.v1 import canny, hed, midas, mlsd, openpose_v1, uniformer, leres, pidinet_v1
+from comfy_controlnet_preprocessors.v11 import zoe, normalbae, hed_v11, pidinet_v11
 print("Download models...")
 sleep(2)
 download_models()

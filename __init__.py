@@ -1,4 +1,6 @@
-from . import canny, hed, midas, mlsd, openpose, uniformer, leres, mp_pose_hand, color, binary, pidinet, mp_face_mesh
+from .v1 import canny, hed, midas, mlsd, openpose_v1, uniformer, leres, pidinet_v1
+from .v11 import tile, zoe, normalbae, hed_v11, pidinet_v11
+from . import mp_face_mesh, mp_pose_hand, color, binary
 from .util import HWC3, resize_image
 import torch
 import numpy as np
@@ -23,7 +25,7 @@ def common_annotator_call(annotator_callback, tensor_image, *args):
     for tensor_image in tensor_image_list:
         call_result = annotator_callback(resize_image(HWC3(tensor_image)), *args)
         H, W, C = tensor_image.shape
-        if type(annotator_callback) is openpose.OpenposeDetector:
+        if type(annotator_callback) is openpose_v1.OpenposeDetector:
             out_list.append(cv2.resize(HWC3(call_result[0]), (W, H), interpolation=cv2.INTER_AREA))
             out_info_list.append(call_result[1])
         elif type(annotator_callback) is midas.MidasDetector:
@@ -31,7 +33,7 @@ def common_annotator_call(annotator_callback, tensor_image, *args):
             out_info_list.append(cv2.resize(HWC3(call_result[1]), (W, H), interpolation=cv2.INTER_AREA))
         else:
             out_list.append(cv2.resize(HWC3(call_result), (W, H), interpolation=cv2.INTER_AREA))
-    if type(annotator_callback) is openpose.OpenposeDetector:
+    if type(annotator_callback) is openpose_v1.OpenposeDetector:
         return (out_list, out_info_list)
     elif type(annotator_callback) is midas.MidasDetector:
         return (out_list, out_info_list)
@@ -193,7 +195,7 @@ class OpenPose_Preprocessor:
 
     def estimate_pose(self, image, detect_hand):
         #Ref: https://github.com/lllyasviel/ControlNet/blob/main/gradio_pose2image.py
-        np_detected_map, pose_info = common_annotator_call(openpose.OpenposeDetector(), image, detect_hand == "enable")
+        np_detected_map, pose_info = common_annotator_call(openpose_v1.OpenposeDetector(), image, detect_hand == "enable")
         return (img_np_to_tensor(np_detected_map),)
 
 class Uniformer_Preprocessor:
@@ -280,13 +282,85 @@ class PIDINET_Preprocessor:
     CATEGORY = "preprocessors/edge_line"
 
     def detect_edge(self, image):
-        np_detected_map = common_annotator_call(pidinet.apply_pidinet, image)
+        np_detected_map = common_annotator_call(pidinet_v1.apply_pidinet, image)
+        return (img_np_to_tensor(np_detected_map),)
+
+class Tile_Preprocessor:
+    @classmethod
+    def INPUT_TYPES(s):
+        return {"required": { "image": ("IMAGE",), "pyrUp_iters": ("INT", {"default": 3, "min": 1, "max": 10, "step": 1}) }}
+    RETURN_TYPES = ("IMAGE",)
+    FUNCTION = "preprocess"
+
+    CATEGORY = "preprocessors/tile"
+
+    def preprocess(self, image, pyrUp_iters):
+        np_detected_map = common_annotator_call(tile.preprocess, image, pyrUp_iters)
+        return (img_np_to_tensor(np_detected_map),)
+
+class Zoe_Depth_Map_Preprocessor:
+    @classmethod
+    def INPUT_TYPES(s):
+        return {"required": { "image": ("IMAGE", )
+                              }}
+    RETURN_TYPES = ("IMAGE",)
+    FUNCTION = "estimate_depth"
+
+    CATEGORY = "preprocessors/normal_depth_map"
+
+    def estimate_depth(self, image):
+        #Ref: https://github.com/lllyasviel/ControlNet-v1-1-nightly/blob/main/gradio_depth.py
+        np_detected_map = common_annotator_call(zoe.ZoeDetector(), image)
+        return (img_np_to_tensor(np_detected_map),)
+
+class BAE_Normal_Map_Preprocessor:
+    @classmethod
+    def INPUT_TYPES(s):
+        return {"required": { "image": ("IMAGE", )
+                              }}
+    RETURN_TYPES = ("IMAGE",)
+    FUNCTION = "estimate_normal"
+
+    CATEGORY = "preprocessors/normal_depth_map"
+
+    def estimate_normal(self, image):
+        #Ref: https://github.com/lllyasviel/ControlNet-v1-1-nightly/blob/main/gradio_normalbae.py
+        np_detected_map = common_annotator_call(normalbae.NormalBaeDetector(), image)
+        return (img_np_to_tensor(np_detected_map),)
+
+class HED_v11_Preprocessor:
+    @classmethod
+    def INPUT_TYPES(s):
+        return {"required": { "image": ("IMAGE",), "safe": (["enable", "disable"], {"default": "enable"}) }}
+    RETURN_TYPES = ("IMAGE",)
+    FUNCTION = "detect_boundary"
+
+    CATEGORY = "preprocessors/edge_line"
+
+    def detect_boundary(self, image, safe):
+        #Ref: https://github.com/lllyasviel/ControlNet-v1-1-nightly/blob/main/gradio_softedge.py
+        np_detected_map = common_annotator_call(hed_v11.HEDdetector(), image, safe == "enable")
+        return (img_np_to_tensor(np_detected_map),)
+
+class PIDINET_v11_Preprocessor:
+    @classmethod
+    def INPUT_TYPES(s):
+        return {"required": { "image": ("IMAGE",), "safe": (["enable", "disable"], {"default": "enable"}) }}
+    RETURN_TYPES = ("IMAGE",)
+    FUNCTION = "detect_boundary"
+
+    CATEGORY = "preprocessors/edge_line"
+
+    def detect_boundary(self, image, safe):
+        #Ref: https://github.com/lllyasviel/ControlNet-v1-1-nightly/blob/main/gradio_softedge.py
+        np_detected_map = common_annotator_call(pidinet_v11.PidiNetDetector(), image, safe == "enable")
         return (img_np_to_tensor(np_detected_map),)
 
 NODE_CLASS_MAPPINGS = {
     "CannyEdgePreprocessor": Canny_Edge_Preprocessor,
     "M-LSDPreprocessor": MLSD_Preprocessor,
     "HEDPreprocessor": HED_Preprocessor,
+    "HED-v11-Preprocessor": HED_v11_Preprocessor,
     "ScribblePreprocessor": Scribble_Preprocessor,
     "FakeScribblePreprocessor": Fake_Scribble_Preprocessor,
     "OpenposePreprocessor": OpenPose_Preprocessor,
@@ -298,5 +372,8 @@ NODE_CLASS_MAPPINGS = {
     "MediaPipe-FaceMeshPreprocessor": Media_Pipe_Face_Mesh_Preprocessor,
     "BinaryPreprocessor": Binary_Preprocessor,
     "ColorPreprocessor": Color_Preprocessor,
-    "PiDiNetPreprocessor": PIDINET_Preprocessor
+    "PiDiNetPreprocessor": PIDINET_Preprocessor,
+    "PiDiNet-v11-Preprocessor": PIDINET_v11_Preprocessor,
+    "Zoe-DepthMapPreprocessor": Zoe_Depth_Map_Preprocessor,
+    "BAE-NormalMapPreprocessor": BAE_Normal_Map_Preprocessor,
 }

@@ -13,6 +13,8 @@ List of my comfyUI node repos: https://github.com/Fannovel16/FN16-ComfyUI-nodes 
 * Fixed typo at ##Nodes
 ### 2023-04-10
 * Fixed https://github.com/Fannovel16/comfy_controlnet_preprocessors/issues/18, https://github.com/Fannovel16/comfy_controlnet_preprocessors/issues/25: https://github.com/Fannovel16/comfy_controlnet_preprocessors/commit/b8a108a0f8ae37b9302b32d7c236cfa3dde97920, https://github.com/Fannovel16/comfy_controlnet_preprocessors/commit/01fbab5cdfc7b013256d4aec4e5ad77edb80a039
+### 2023-04-20
+* Add HED-v11-Preprocessor, PiDiNet-v11-Preprocessor, Zoe-DepthMapPreprocessor and BAE-NormalMapPreprocessor
 
 ## Usage
 All preprocessor nodes take an image, usually came from LoadImage node and output a map image (aka hint image):
@@ -65,10 +67,13 @@ All models will be downloaded to `comfy_controlnet_preprocessors/ckpts`
 * res101.pth (leres): 506 MB
 * dpt_hybrid-midas-501f0c75.pt (midas): 470 MB
 * mlsd_large_512_fp32.pth (mlsd): 6 MB
-* body_pose_model.pth (openpose): 200 MB
-* hand_pose_model.pth (openpose): 141 MB
+* body_pose_model.pth (for both openpose v1 and v1.1): 200 MB
+* hand_pose_model.pth (for both openpose v1 and v1.1): 141 MB
+* facenet.pth (openpose v1.1): 154 MB
 * upernet_global_small.pth (uniformer aka SemSeg): 197 MB
-* table5_pidinet.pth (pidinet): 2.87 MB
+* table5_pidinet.pth (for both PiDiNet v1 and v1.1): 2.87 MB
+* ControlNetHED.pth (New HED 1.1): 29.4 MB
+* scannet.pt (NormalBAE): 291 MB
 
 ## Limits
 * There may be bugs since I don't have time ~~(lazy)~~ to test
