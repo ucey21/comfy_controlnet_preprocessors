@@ -1,71 +1,116 @@
 # ControlNet Preprocessors for [ComfyUI](https://github.com/comfyanonymous/ComfyUI)
-### NOTE: IF YOU USE COMFYUI STANDALONE BUILD, YOU HAVE TO USE LOCAL PYTHON FROM THAT ONE (`python_embeded`) TO EXECUTE `install.py`, NOT PYTHON FROM THE SYSTEM. CHECK INSTALL SECTION FOR MORE DETAILS. 
 Moved from https://github.com/comfyanonymous/ComfyUI/pull/13 <br>
 Original repo: https://github.com/lllyasviel/ControlNet <br>
-List of my comfyUI node repos: https://github.com/Fannovel16/FN16-ComfyUI-nodes <br>
+List of my comfyUI node repos: https://github.com/Fannovel16/FN16-ComfyUI-nodes
+### UPDATED ONE-CLICK DEPENDENCIES INSTALLATION METHOD. CHECK OUT THE INSTALL SECTION
 
 ## Change log:
 ### 2023-04-01
-* Rename MediaPipePreprocessor to MediaPipe-PoseHandPreprocessor to avoid confusion
-* Add MediaPipe-FaceMeshPreprocessor for [ControlNet Face Model](https://www.reddit.com/r/StableDiffusion/comments/1281iva/new_controlnet_face_model/)
+* Renamed MediaPipePreprocessor to MediaPipe-PoseHandPreprocessor to avoid confusion
+* Added MediaPipe-FaceMeshPreprocessor for [ControlNet Face Model](https://www.reddit.com/r/StableDiffusion/comments/1281iva/new_controlnet_face_model/)
 ### 2023-04-02
 * Fixed https://github.com/Fannovel16/comfy_controlnet_preprocessors/issues/20
 * Fixed typo at ##Nodes
 ### 2023-04-10
 * Fixed https://github.com/Fannovel16/comfy_controlnet_preprocessors/issues/18, https://github.com/Fannovel16/comfy_controlnet_preprocessors/issues/25: https://github.com/Fannovel16/comfy_controlnet_preprocessors/commit/b8a108a0f8ae37b9302b32d7c236cfa3dde97920, https://github.com/Fannovel16/comfy_controlnet_preprocessors/commit/01fbab5cdfc7b013256d4aec4e5ad77edb80a039
 ### 2023-04-20
-* Add HED-v11-Preprocessor, PiDiNet-v11-Preprocessor, Zoe-DepthMapPreprocessor and BAE-NormalMapPreprocessor
+* Added HED-v11-Preprocessor, PiDiNet-v11-Preprocessor, Zoe-DepthMapPreprocessor and BAE-NormalMapPreprocessor
 * If you installed this repo, please run `install.py` after `git pull` if you want to download all files for new preprocessors for offline run
-* Remove the needs of BasicSR (https://github.com/Fannovel16/comfy_controlnet_preprocessors/commit/6b073101f75d6ab1e53c231dab8118990fec96ed) since ComfyUI's custom Python build can't install it.
+* Removed the needs of BasicSR (https://github.com/Fannovel16/comfy_controlnet_preprocessors/commit/6b073101f75d6ab1e53c231dab8118990fec96ed) since ComfyUI's custom Python build can't install it.
+### 2023-04-22
+* Merged HED-v11-Preprocessor, PiDiNet-v11-Preprocessor into HEDPreprocessor and PiDiNetPreprocessor. They now use v1.1 version by default. Set `version` to `v1` to get old results
+* Added `safe` options to these two.
+* Editing Nodes section
+* Updated single-click dependecies installation method. Check out the install section.
+* Added Openpose preprocessor v1.1, TilePreprocessor
 
 ## Usage
 All preprocessor nodes take an image, usually came from LoadImage node and output a map image (aka hint image):
 * The input image can have any kind of resolution, not need to be multiple of 64. They will be resized to fit the nearest multiple-of-64 resolution behind the scene.
 * The hint image is a black canvas with a/some subject(s) like Openpose stickman(s), depth map, etc
 
+If a preprocessor node doesn't have `version` option, it is unchanged in ControlNet 1.1.
+
+It is recommended to use version `v1.1` of preprocessors if they have `version` option since results from v1.1 preprocessors are better than v1 one and compatibile with both ControlNet 1 and ControlNet 1.1.
+
+If you want to reproduce results from old workflows, set `version` to `v1` if it exists.
+
 ## Nodes
-TL;DR: You should only use these preprocessor nodes when using ControlNet 1.1:
-* CannyEdgePreprocessor
-* M-LSDPreprocessor
-* HED-v11-Preprocessor (Use HEDPreprocesor if you use ControlNet v1)
-* PiDiNet-v11-Preprocessor (Use PiDiNetPreprocesor if you use ControlNet v1)
-* ScribblePreprocessor
-* FakeScribblePreprocessor
-* BinaryPreprocessor
-* MiDaS-DepthMapPreprocessor
-* LeReS-DepthMapPreprocessor
-* BAE-NormalMapPreprocessor (MiDaS-NormalMapPreprocessor doesn't work well with control_v11p_sd15_normalbae as this model made specifically for BAE's normal map)
-* Openpose-v11-Preprocessor (Comming Soon)
-* SemSeg-Preprocessor
-* Zoe-DepthMapPreprocessor
+### Canny Edge
+| Preprocessor Node           | sd-webui-controlnet/other | Use with ControlNet/T2I-Adapter           | Category                         |
+|-----------------------------|-------------------------------------------------------|-------------------------------------------|----------------------------------|
+| CannyEdgePreprocessor       | canny                     | control_v11p_sd15_canny <br> control_canny <br> t2iadapter_canny | preprocessors/edge_line |
 
-A simple rule to remember is that you should use preprocess with "v11" in name instead of one not having it if it exists. <br>
+| Source | Input | Output |
+|:-------------------------:|:-------------------------:|:-------------------------:|
+|<img width="256" alt="" src="https://github.com/Mikubill/sd-webui-controlnet/blob/main/samples/mahiro_input.png?raw=true">  |  <img width="256" alt="" src="https://github.com/Mikubill/sd-webui-controlnet/blob/main/samples/mahiro_canny.png?raw=true"> | <img width="256" alt="" src="https://github.com/Mikubill/sd-webui-controlnet/blob/main/samples/mahiro-out.png?raw=true"> |
 
-You shouldn't use v11-only preprocessors with ControlNet v1.
-
-TODO: Refactor this section and update
-### preprocessors/edge_line
+### M-LSD
 | Preprocessor Node           | sd-webui-controlnet/other                             | Use with ControlNet/T2I-Adapter           | Category                         |
 |-----------------------------|-------------------------------------------------------|-------------------------------------------|----------------------------------|
-| CannyEdgePreprocessor       | canny                                                 | control_canny/control_v11p_sd15_canny <br> t2iadapter_canny | preprocessors/edge_line |
-| M-LSDPreprocessor           | mlsd                                                  | control_mlsd/control_v11p_sd21_canny      | preprocessors/edge_line          |
+| M-LSDPreprocessor           | mlsd                                                  | control_v11p_sd15_mlsd <br> control_mlsd  | preprocessors/edge_line          |
 
-### Full
+Example images: WIP
+
+### Scribble and Fake Scribble
 | Preprocessor Node           | sd-webui-controlnet/other                             | Use with ControlNet/T2I-Adapter           | Category                         |
 |-----------------------------|-------------------------------------------------------|-------------------------------------------|----------------------------------|
-| HEDPreprocessor             | hed                                                   | control_hed                               | preprocessors/edge_line          |
-| PiDiNetPreprocessor         | pidinet                                               | t2iadapter_sketch <br> control_scribble   | preprocessors/edge_line          |
-| ScribblePreprocessor        | scribble                                              | control_scribble                          | preprocessors/edge_line          |
-| FakeScribblePreprocessor    | fake_scribble                                         | control_scribble                          | preprocessors/edge_line          |
-| BinaryPreprocessor          | binary                                                | control_scribble                          | preprocessors/edge_line          |
-| MiDaS-DepthMapPreprocessor  | (normal) depth                                        | control_depth <br> t2iadapter_depth       | preprocessors/normal_depth_map   |
+| ScribblePreprocessor        | scribble                                              |control_v11p_sd15_scribble <br> control_scribble| preprocessors/edge_line          |
+| FakeScribblePreprocessor    | fake_scribble                                         |control_v11p_sd15_scribble <br> control_scribble| preprocessors/edge_line          |
+
+Example images: WIP
+
+### Soft Edge (HED and PiDiNet)
+| Preprocessor Node           | sd-webui-controlnet/other                             | Use with ControlNet/T2I-Adapter           | Category                         |
+|-----------------------------|-------------------------------------------------------|-------------------------------------------|----------------------------------|
+| HEDPreprocessor             | hed                                                   | control_v11p_sd15_softedge <br> control_hed | preprocessors/edge_line          |
+| PiDiNetPreprocessor         | pidinet                                               | control_v11p_sd15_softedge <br> control_scribble <br> t2iadapter_sketch | preprocessors/edge_line          |
+
+#### HED
+* v1 uses Saining Xie's official implementation which uses GPL. v1.1 uses lllyasviel's own implementation which doesn't contain GPL contamination.
+* v1.1 generates smoother edges and is more suitable for ControlNet as well as other image-to-image translations.
+* You can only use `safe` option if the version is `v1.1`, otherwise, it is ignored.
+
+| Source | Input | Output |
+|:-------------------------:|:-------------------------:|:-------------------------:|
+|<img width="256" alt="" src="https://github.com/Mikubill/sd-webui-controlnet/blob/main/samples/evt_source.jpg?raw=true">  |  <img width="256" alt="" src="https://github.com/Mikubill/sd-webui-controlnet/blob/main/samples/evt_hed.png?raw=true"> | <img width="256" alt="" src="https://github.com/Mikubill/sd-webui-controlnet/blob/main/samples/evt_gen.png?raw=true"> |
+
+#### PiDiNet (WIP)
+
+### Depth Map
+| Preprocessor Node           | sd-webui-controlnet/other                             | Use with ControlNet/T2I-Adapter           | Category                         |
+|-----------------------------|-------------------------------------------------------|-------------------------------------------|----------------------------------|
+| MiDaS-DepthMapPreprocessor  | (normal) depth                                        | control_v11f1p_sd15_depth <br> control_depth <br> t2iadapter_depth       | preprocessors/normal_depth_map   |
+| LeReS-DepthMapPreprocessor  | depth_leres                                           | control_v11f1p_sd15_depth <br> control_depth <br> t2iadapter_depth       | preprocessors/normal_depth_map   |
+| Zoe-DepthMapPreprocessor    | depth_zoe                                             | control_v11f1p_sd15_depth <br> control_depth <br> t2iadapter_depth       | preprocessors/normal_depth_map   |
+
+### Openpose
+| Preprocessor Node           | sd-webui-controlnet/other                             | Use with ControlNet/T2I-Adapter           | Category                         |
+|-----------------------------|-------------------------------------------------------|-------------------------------------------|----------------------------------|
+| OpenposePreprocessor        | openpose if only detect_body is enabled <br> openpose_hand if both detect_body and detect_hand are enabled <br> openpose_faceonly if only detect_face is enabled <br> openpose_full if all detect_hand, detect_body and detect_face are enabled | control_v11p_sd15_openpose <br> control_openpose <br> t2iadapter_openpose | preprocessors/pose |
+
+### Normal Map
+| Preprocessor Node           | sd-webui-controlnet/other                             | Use with ControlNet/T2I-Adapter           | Category                         |
+|-----------------------------|-------------------------------------------------------|-------------------------------------------|----------------------------------|
 | MiDaS-NormalMapPreprocessor | normal_map                                            | control_normal                            | preprocessors/normal_depth_map   |
-| LeReS-DepthMapPreprocessor  | depth_leres                                           | control_depth <br> t2iadapter_depth       | preprocessors/normal_depth_map   |
-| OpenposePreprocessor        | openpose (or openpose_hand if detect_hand is enabled) | control_openpose <br> t2iadapter_openpose | preprocessors/pose               |
-|MediaPipe-PoseHandPreprocessor| https://natakaro.gumroad.com/l/oprmi                 | https://civitai.com/models/16409         | preprocessors/pose                |
+| BAE-NormalMapPreprocessor   | normal_map                                            | control_v11p_sd15_normalbae               | preprocessors/normal_depth_map   |
+
+* You should use BAE's normal map instead of MiDaS's one because it gives way better results.
+
+### Tile
+| Preprocessor Node           | sd-webui-controlnet/other | Use with ControlNet/T2I-Adapter           | Category                         |
+|-----------------------------|-------------------------------------------------------|-------------------------------------------|----------------------------------|
+| TilePreprocessor            |                           | control_v11u_sd15_tile                    | preprocessors/tile   |
+
+### Others
+| Preprocessor Node           | sd-webui-controlnet/other                             | Use with ControlNet/T2I-Adapter           | Category                         |
+|-----------------------------|-------------------------------------------------------|-------------------------------------------|----------------------------------|
+| BinaryPreprocessor          | binary                                                | control_scribble                          | preprocessors/edge_line          |
+|MediaPipe-PoseHandPreprocessor| https://natakaro.gumroad.com/l/oprmi                 | https://civitai.com/models/16409          | preprocessors/pose                |
 | ColorPreprocessor           | color                                                 | t2iadapter_color                          | preprocessors/color_style        |
 | SemSegPreprocessor          | segmentation                                          | control_seg <br> t2iadapter_seg           | preprocessors/semseg             |
 |MediaPipe-FaceMeshPreprocessor| mediapipe_face                                       | controlnet_sd21_laion_face_v2             | preprocessors/face_mesh          |
+
 
 ## Install
 Firstly, [install comfyui's dependencies](https://github.com/comfyanonymous/ComfyUI#installing) if you didn't.
@@ -75,6 +120,15 @@ cd ComfyUI/custom_nodes
 git clone https://github.com/Fannovel16/comfy_controlnet_preprocessors
 cd comfy_controlnet_preprocessors
 ```
+Add `--no_download_ckpts` to the command in below methods if you don't want to download any model. <br>
+When a preprocessor node runs, if it can't find the models it need, that models will be downloaded automatically.
+### New dependencies installation method
+Open the terminal then run
+```
+install
+```
+It will automatically find out what Python's build should be used and use it to run install.py
+### Old one
 Next, run install.py. It will download all models by default. <br>
 Note that you have to check if ComfyUI you are using is portable standalone build or not. If you use the wrong command, requirements won't be installed in the right place. 
 For directly-cloned ComfyUI repo, run:
@@ -85,8 +139,7 @@ For ComfyUI portable standalone build:
 ```
 /path/to/ComfyUI/python_embeded/python.exe install.py
 ```
-Add `--no_download_ckpts` to not download any model. <br>
-When a preprocessor node runs, if it can't find the models it need, that models will be downloaded automatically.
+
 ## Model Dependencies 
 The total disk's free space needed if all models are downloaded is ~1.58 GB. <br>
 All models will be downloaded to `comfy_controlnet_preprocessors/ckpts`

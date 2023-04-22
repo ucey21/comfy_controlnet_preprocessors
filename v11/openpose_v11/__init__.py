@@ -13,7 +13,7 @@ from . import util
 from .body import Body
 from .hand import Hand
 from .face import Face
-from comfy_controlnet_preprocessors import annotator_ckpts_path
+from comfy_controlnet_preprocessors.util import annotator_ckpts_path
 from comfy_controlnet_preprocessors.util import load_file_from_url
 
 
@@ -61,14 +61,14 @@ class OpenposeDetector:
         self.hand_estimation = Hand(hand_modelpath)
         self.face_estimation = Face(face_modelpath)
 
-    def __call__(self, oriImg, hand_and_face=False, return_is_index=False):
+    def __call__(self, oriImg, hand=True, body=True, face=True, return_is_index=False):
         oriImg = oriImg[:, :, ::-1].copy()
         H, W, C = oriImg.shape
         with torch.no_grad():
             candidate, subset = self.body_estimation(oriImg)
             hands = []
             faces = []
-            if hand_and_face:
+            if hand:
                 # Hand
                 hands_list = util.handDetect(candidate, subset, oriImg)
                 for x, y, w, is_left in hands_list:
@@ -77,6 +77,7 @@ class OpenposeDetector:
                         peaks[:, 0] = np.where(peaks[:, 0] < 1e-6, -1, peaks[:, 0] + x) / float(W)
                         peaks[:, 1] = np.where(peaks[:, 1] < 1e-6, -1, peaks[:, 1] + y) / float(H)
                         hands.append(peaks.tolist())
+            if face:
                 # Face
                 faces_list = util.faceDetect(candidate, subset, oriImg)
                 for x, y, w in faces_list:
@@ -95,4 +96,4 @@ class OpenposeDetector:
             if return_is_index:
                 return pose
             else:
-                return draw_pose(pose, H, W)
+                return draw_pose(pose, H, W, draw_hand=hand, draw_body=body, draw_face=face)

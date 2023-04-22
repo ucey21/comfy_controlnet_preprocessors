@@ -26,12 +26,13 @@ class OpenposeDetector:
         self.body_estimation = Body(body_modelpath)
         self.hand_estimation = Hand(hand_modelpath)
 
-    def __call__(self, oriImg, hand=False):
+    def __call__(self, oriImg, hand=False, body=True):
         oriImg = oriImg[:, :, ::-1].copy()
         with torch.no_grad():
             candidate, subset = self.body_estimation(oriImg)
             canvas = np.zeros_like(oriImg)
-            canvas = util.draw_bodypose(canvas, candidate, subset)
+            if body:
+                canvas = util.draw_bodypose(canvas, candidate, subset)
             if hand:
                 hands_list = util.handDetect(candidate, subset, oriImg)
                 all_hand_peaks = []

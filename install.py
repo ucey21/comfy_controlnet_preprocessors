@@ -22,7 +22,7 @@ def add_global_shortcut_module(module_name, module_path):
 
 def download_models():
     canny.CannyDetector()
-    hed.HEDdetector()
+    hed_v1.HEDdetector()
     midas.MidasDetector()
     mlsd.MLSDdetector()
     openpose_v1.OpenposeDetector()
@@ -47,7 +47,7 @@ if args.no_download_ckpts: exit()
 add_global_shortcut_module("cli_args", os.path.join(EXT_PATH, "../../comfy/cli_args.py"))
 add_global_shortcut_module("model_management", os.path.join(EXT_PATH, "../../comfy/model_management.py"))
 add_global_shortcut_module(this_module_name, os.path.join(EXT_PATH, "__init__.py"))
-from comfy_controlnet_preprocessors.v1 import canny, hed, midas, mlsd, openpose_v1, uniformer, leres, pidinet_v1
+from comfy_controlnet_preprocessors.v1 import canny, hed_v1, midas, mlsd, openpose_v1, uniformer, leres, pidinet_v1
 from comfy_controlnet_preprocessors.v11 import zoe, normalbae, hed_v11, pidinet_v11
 print("Download models...")
 sleep(2)
