@@ -87,7 +87,7 @@ Example images: WIP
 ### Openpose
 | Preprocessor Node           | sd-webui-controlnet/other                             | Use with ControlNet/T2I-Adapter           | Category                         |
 |-----------------------------|-------------------------------------------------------|-------------------------------------------|----------------------------------|
-| OpenposePreprocessor        | openpose if only detect_body is enabled <br> openpose_hand if both detect_body and detect_hand are enabled <br> openpose_faceonly if only detect_face is enabled <br> openpose_full if all detect_hand, detect_body and detect_face are enabled | control_v11p_sd15_openpose <br> control_openpose <br> t2iadapter_openpose | preprocessors/pose |
+| OpenposePreprocessor        | openpose (detect_body) <br> openpose_hand (detect_body + detect_hand) <br> openpose_faceonly (detect_face) <br> openpose_full (detect_hand + detect_body + detect_face) | control_v11p_sd15_openpose <br> control_openpose <br> t2iadapter_openpose | preprocessors/pose |
 
 ### Normal Map
 | Preprocessor Node           | sd-webui-controlnet/other                             | Use with ControlNet/T2I-Adapter           | Category                         |
