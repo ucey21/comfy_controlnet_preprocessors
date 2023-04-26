@@ -12,10 +12,10 @@ import numpy as np
 import os
 import pickle
 from collections import OrderedDict
-import pycocotools.mask as mask_util
+import comfy_controlnet_preprocessors.v11.oneformer.pycocotools.mask as mask_util
 import torch
-from pycocotools.coco import COCO
-from pycocotools.cocoeval import COCOeval
+from comfy_controlnet_preprocessors.v11.oneformer.pycocotools.coco import COCO
+from comfy_controlnet_preprocessors.v11.oneformer.pycocotools.cocoeval import COCOeval
 from tabulate import tabulate
 
 import comfy_controlnet_preprocessors.v11.oneformer.detectron2.utils.comm as comm

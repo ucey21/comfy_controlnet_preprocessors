@@ -8,7 +8,7 @@ typical object detection data pipeline.
 import logging
 import numpy as np
 from typing import List, Union
-import pycocotools.mask as mask_util
+import comfy_controlnet_preprocessors.v11.oneformer.pycocotools.mask as mask_util
 import torch
 from PIL import Image
 

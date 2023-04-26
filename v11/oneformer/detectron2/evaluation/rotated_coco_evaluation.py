@@ -4,7 +4,7 @@ import json
 import numpy as np
 import os
 import torch
-from pycocotools.cocoeval import COCOeval, maskUtils
+from comfy_controlnet_preprocessors.v11.oneformer.pycocotools.cocoeval import COCOeval, maskUtils
 
 from comfy_controlnet_preprocessors.v11.oneformer.detectron2.structures import BoxMode, RotatedBoxes, pairwise_iou_rotated
 from comfy_controlnet_preprocessors.v11.oneformer.detectron2.utils.file_io import PathManager

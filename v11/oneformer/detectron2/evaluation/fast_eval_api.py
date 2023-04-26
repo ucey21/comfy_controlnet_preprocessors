@@ -3,7 +3,7 @@ import copy
 import logging
 import numpy as np
 import time
-from pycocotools.cocoeval import COCOeval
+from comfy_controlnet_preprocessors.v11.oneformer.pycocotools.cocoeval import COCOeval
 
 from comfy_controlnet_preprocessors.v11.oneformer.detectron2 import _C
 

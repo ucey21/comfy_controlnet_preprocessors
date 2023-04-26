@@ -13,10 +13,10 @@ import numpy as np
 import os
 import pickle
 from collections import OrderedDict
-import pycocotools.mask as mask_util
+import comfy_controlnet_preprocessors.v11.oneformer.pycocotools.mask as mask_util
 import torch
-from pycocotools.coco import COCO
-from pycocotools.cocoeval import COCOeval
+from comfy_controlnet_preprocessors.v11.oneformer.pycocotools.coco import COCO
+from comfy_controlnet_preprocessors.v11.oneformer.pycocotools.cocoeval import COCOeval
 from tabulate import tabulate
 
 import comfy_controlnet_preprocessors.v11.oneformer.detectron2.utils.comm as comm
@@ -423,7 +423,7 @@ def instances_to_coco_json(instances, img_id):
             # "counts" is an array encoded by mask_util as a byte-stream. Python3's
             # json writer which always produces strings cannot serialize a bytestream
             # unless you decode it. Thankfully, utf-8 works out (which is also what
-            # the pycocotools/_mask.pyx does).
+            # the comfy_controlnet_preprocessors.v11.oneformer.pycocotools/_mask.pyx does).
             rle["counts"] = rle["counts"].decode("utf-8")
 
     has_keypoints = instances.has("pred_keypoints")
@@ -610,7 +610,7 @@ def _evaluate_predictions_on_coco(
     if iou_type == "keypoints":
         # Use the COCO default keypoint OKS sigmas unless overrides are specified
         if kpt_oks_sigmas:
-            assert hasattr(coco_eval.params, "kpt_oks_sigmas"), "pycocotools is too old!"
+            assert hasattr(coco_eval.params, "kpt_oks_sigmas"), "comfy_controlnet_preprocessors.v11.oneformer.pycocotools is too old!"
             coco_eval.params.kpt_oks_sigmas = np.array(kpt_oks_sigmas)
         # COCOAPI requires every detection and every gt to have keypoints, so
         # we just take the first entry from both

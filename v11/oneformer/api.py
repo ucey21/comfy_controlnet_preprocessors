@@ -26,10 +26,6 @@ def make_detectron2_model(config_path, ckpt_path):
     add_oneformer_config(cfg)
     add_dinat_config(cfg)
     cfg.merge_from_file(config_path)
-    if torch.cuda.is_available():
-        cfg.MODEL.DEVICE = 'cuda'
-    else:
-        cfg.MODEL.DEVICE = 'cpu'
     cfg.MODEL.WEIGHTS = ckpt_path
     cfg.freeze()
     metadata = MetadataCatalog.get(cfg.DATASETS.TEST_PANOPTIC[0] if len(cfg.DATASETS.TEST_PANOPTIC) else "__unused")

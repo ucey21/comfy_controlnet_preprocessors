@@ -6,7 +6,7 @@ import multiprocessing as mp
 import numpy as np
 import os
 from itertools import chain
-import pycocotools.mask as mask_util
+import comfy_controlnet_preprocessors.v11.oneformer.pycocotools.mask as mask_util
 from PIL import Image
 
 from comfy_controlnet_preprocessors.v11.oneformer.detectron2.structures import BoxMode
