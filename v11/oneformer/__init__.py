@@ -1,11 +1,11 @@
 import os
 from modules import devices
-from annotator.annotator_path import models_path
+from comfy_controlnet_preprocessors.util import annotator_ckpts_path
 from .api import make_detectron2_model, semantic_run
 
 
 class OneformerDetector:
-    model_dir = os.path.join(models_path, "oneformer")
+    model_dir = os.path.join(annotator_ckpts_path, "oneformer")
     configs = {
         "coco": {
             "name": "150_16_swin_l_oneformer_coco_100ep.pth",
