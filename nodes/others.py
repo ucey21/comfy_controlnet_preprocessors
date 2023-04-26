@@ -1,23 +1,6 @@
 from .util import common_annotator_call, img_np_to_tensor
-from ..v1 import uniformer
 from ..v11 import tile
 from .. import mp_face_mesh, color
-
-
-class Uniformer_Preprocessor:
-    @classmethod
-    def INPUT_TYPES(s):
-        return {"required": { "image": ("IMAGE", )
-                              }}
-    RETURN_TYPES = ("IMAGE",)
-    FUNCTION = "semantic_segmentate"
-
-    CATEGORY = "preprocessors/semseg"
-
-    def semantic_segmentate(self, image):
-        #Ref: https://github.com/lllyasviel/ControlNet/blob/main/gradio_seg2image.py
-        np_detected_map = common_annotator_call(uniformer.UniformerDetector(), image)
-        return (img_np_to_tensor(np_detected_map),)
 
 class Media_Pipe_Face_Mesh_Preprocessor:
     @classmethod
@@ -66,7 +49,6 @@ class Tile_Preprocessor:
         return (img_np_to_tensor(np_detected_map),)
 
 NODE_CLASS_MAPPINGS = {
-    "SemSegPreprocessor": Uniformer_Preprocessor,
     "MediaPipe-FaceMeshPreprocessor": Media_Pipe_Face_Mesh_Preprocessor,
     "ColorPreprocessor": Color_Preprocessor
 }

@@ -1,6 +1,6 @@
 from .util import common_annotator_call, img_np_to_tensor, img_tensor_to_np
 from ..v1 import canny, hed_v1, mlsd
-from ..v11 import hed_v11, pidinet_v11
+from ..v11 import hed_v11, pidinet_v11, lineart, lineart_anime
 from .. import binary
 import numpy as np
 import cv2
@@ -126,7 +126,35 @@ class PIDINET_Preprocessor:
         #The only diff between PiDiNet v1.1 and v1 is safe mode 
         return (img_np_to_tensor(np_detected_map),)
 
+class LineArt_Preprocessor:
+    @classmethod
+    def INPUT_TYPES(s):
+        return {"required": { "image": ("IMAGE",), "coarse": (["disable", "enable"], {"default": "disable"}) }}
+    RETURN_TYPES = ("IMAGE",)
+    FUNCTION = "transform_lineart"
 
+    CATEGORY = "preprocessors/edge_line"
+
+    def transform_lineart(self, image, coarse):
+        np_detected_map = common_annotator_call(lineart.LineartDetector(), image, coarse == "enable")
+        reversed_np_detected_map = map(lambda np_img: 255 - np_img, np_detected_map)
+        #https://github.com/lllyasviel/ControlNet-v1-1-nightly/blob/main/gradio_lineart.py#L48
+        return (img_np_to_tensor(reversed_np_detected_map),)
+
+class AnimeLineArt_Preprocessor:
+    @classmethod
+    def INPUT_TYPES(s):
+        return {"required": { "image": ("IMAGE",) }}
+    RETURN_TYPES = ("IMAGE",)
+    FUNCTION = "transform_lineart"
+
+    CATEGORY = "preprocessors/edge_line"
+
+    def transform_lineart(self, image):
+        np_detected_map = common_annotator_call(lineart_anime.LineartAnimeDetector(), image)
+        reversed_np_detected_map = map(lambda np_img: 255 - np_img, np_detected_map)
+        #https://github.com/lllyasviel/ControlNet-v1-1-nightly/blob/main/gradio_lineart_anime.py#L54
+        return (img_np_to_tensor(reversed_np_detected_map),)
 
 NODE_CLASS_MAPPINGS = {
     "CannyEdgePreprocessor": Canny_Edge_Preprocessor,
@@ -135,5 +163,7 @@ NODE_CLASS_MAPPINGS = {
     "ScribblePreprocessor": Scribble_Preprocessor,
     "FakeScribblePreprocessor": Fake_Scribble_Preprocessor,
     "BinaryPreprocessor": Binary_Preprocessor,
-    "PiDiNetPreprocessor": PIDINET_Preprocessor
+    "PiDiNetPreprocessor": PIDINET_Preprocessor,
+    "LineArtPreprocessor": LineArt_Preprocessor,
+    "AnimeLineArtPreprocessor": AnimeLineArt_Preprocessor
 }

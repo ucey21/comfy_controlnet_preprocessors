@@ -23,6 +23,8 @@ List of my comfyUI node repos: https://github.com/Fannovel16/FN16-ComfyUI-nodes
 * Editing Nodes section
 * Updated single-click dependecies installation method. Check out the install section.
 * Added Openpose preprocessor v1.1, TilePreprocessor
+### 2023-04-23
+* Added UniFormer-SemSegPreprocessor (alias of SemSegPreprocessor), OneFormer-COCO-SemSegPreprocessor, OneFormer-ADE20K-SemSegPreprocessor, LineArtPreprocessor, AnimeLineArtPreprocessor
 
 ## Usage
 All preprocessor nodes take an image, usually came from LoadImage node and output a map image (aka hint image):
@@ -44,6 +46,12 @@ If you want to reproduce results from old workflows, set `version` to `v1` if it
 | Source | Input | Output |
 |:-------------------------:|:-------------------------:|:-------------------------:|
 |<img width="256" alt="" src="https://github.com/Mikubill/sd-webui-controlnet/blob/main/samples/mahiro_input.png?raw=true">  |  <img width="256" alt="" src="https://github.com/Mikubill/sd-webui-controlnet/blob/main/samples/mahiro_canny.png?raw=true"> | <img width="256" alt="" src="https://github.com/Mikubill/sd-webui-controlnet/blob/main/samples/mahiro-out.png?raw=true"> |
+
+### Normal, Coarse and Anime Line Art
+| Preprocessor Node           | sd-webui-controlnet/other                             | Use with ControlNet/T2I-Adapter           | Category                         |
+|-----------------------------|-------------------------------------------------------|-------------------------------------------|----------------------------------|
+| LineArtPreprocessor         | lineart (or `lineart_coarse` if `coarse` is enabled)  | control_v11p_sd15_lineart                 | preprocessors/edge_line          |
+| AnimeLineArtPreprocessor    | lineart_anime                                         | control_v11p_sd15s2_lineart_anime         | preprocessors/edge_line          |
 
 ### M-LSD
 | Preprocessor Node           | sd-webui-controlnet/other                             | Use with ControlNet/T2I-Adapter           | Category                         |
@@ -102,13 +110,21 @@ Example images: WIP
 |-----------------------------|-------------------------------------------------------|-------------------------------------------|----------------------------------|
 | TilePreprocessor            |                           | control_v11u_sd15_tile                    | preprocessors/tile   |
 
+### Semantic Segmantation
+| Preprocessor Node           | sd-webui-controlnet/other                             | Use with ControlNet/T2I-Adapter           | Category                         |
+|-----------------------------|-------------------------------------------------------|-------------------------------------------|----------------------------------|
+| UniFormer-SemSegPreprocessor / SemSegPreprocessor | segmentation <br> Seg_UFADE20K  | control_v11p_sd15_seg <br> control_seg <br> t2iadapter_seg           | preprocessors/semseg          |
+| OneFormer-COCO-SemSegPreprocessor | oneformer_coco                                  | control_v11p_sd15_seg                    | preprocessors/semseg   |
+| OneFormer-ADE20K-SemSegPreprocessor | oneformer_ade20k                              | control_v11p_sd15_seg                    | preprocessors/semseg   |
+
+* UniFormer-SemSegPreprocessor is a new alias for SemSegPreprocessor. Any new workflow should use it instead of SemSegPreprocessor to avoid confusion. It is kept for backward compatibility.
+
 ### Others
 | Preprocessor Node           | sd-webui-controlnet/other                             | Use with ControlNet/T2I-Adapter           | Category                         |
 |-----------------------------|-------------------------------------------------------|-------------------------------------------|----------------------------------|
 | BinaryPreprocessor          | binary                                                | control_scribble                          | preprocessors/edge_line          |
-|MediaPipe-PoseHandPreprocessor| https://natakaro.gumroad.com/l/oprmi                 | https://civitai.com/models/16409          | preprocessors/pose                |
+|MediaPipe-PoseHandPreprocessor| https://natakaro.gumroad.com/l/oprmi                 | https://civitai.com/models/16409          | preprocessors/pose               |
 | ColorPreprocessor           | color                                                 | t2iadapter_color                          | preprocessors/color_style        |
-| SemSegPreprocessor          | segmentation                                          | control_seg <br> t2iadapter_seg           | preprocessors/semseg             |
 |MediaPipe-FaceMeshPreprocessor| mediapipe_face                                       | controlnet_sd21_laion_face_v2             | preprocessors/face_mesh          |
 
 
