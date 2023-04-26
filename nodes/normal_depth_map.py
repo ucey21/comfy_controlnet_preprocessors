@@ -85,7 +85,6 @@ class BAE_Normal_Map_Preprocessor:
         np_detected_map = common_annotator_call(normalbae.NormalBaeDetector(), image)
         return (img_np_to_tensor(np_detected_map),)
 
-
 NODE_CLASS_MAPPINGS = {
     "MiDaS-DepthMapPreprocessor": MIDAS_Depth_Map_Preprocessor,
     "MiDaS-NormalMapPreprocessor": MIDAS_Normal_Map_Preprocessor,

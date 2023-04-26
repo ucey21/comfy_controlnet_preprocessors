@@ -26,7 +26,10 @@ class OneFormer_COCO_SemSegPreprocessor:
     CATEGORY = "preprocessors/semseg"
 
     def semantic_segmentate(self, image):
-        np_detected_map = common_annotator_call(oneformer.OneformerCOCODetector(), image)
+        np_detected_map = common_annotator_call(oneformer.OneformerDetector({
+            "name": "150_16_swin_l_oneformer_coco_100ep.pth",
+            "config": 'configs/coco/oneformer_swin_large_IN21k_384_bs16_100ep.yaml'
+        }), image)
         return (img_np_to_tensor(np_detected_map),)
 
 class OneFormer_ADE20K_SemSegPreprocessor:
@@ -39,7 +42,10 @@ class OneFormer_ADE20K_SemSegPreprocessor:
     CATEGORY = "preprocessors/semseg"
 
     def semantic_segmentate(self, image):
-        np_detected_map = common_annotator_call(oneformer.OneformerADE20kDetector(), image)
+        np_detected_map = common_annotator_call(oneformer.OneformerDetector({
+            "name": "250_16_swin_l_oneformer_ade20k_160k.pth",
+            "config": 'configs/ade20k/oneformer_swin_large_IN21k_384_bs16_160k.yaml'
+        }), image)
         return (img_np_to_tensor(np_detected_map),)
 
 NODE_CLASS_MAPPINGS = {
