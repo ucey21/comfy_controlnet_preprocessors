@@ -179,5 +179,6 @@ NODE_CLASS_MAPPINGS = {
     "BinaryPreprocessor": Binary_Preprocessor,
     "PiDiNetPreprocessor": PIDINET_Preprocessor,
     "LineArtPreprocessor": LineArt_Preprocessor,
-    "AnimeLineArtPreprocessor": AnimeLineArt_Preprocessor
+    "AnimeLineArtPreprocessor": AnimeLineArt_Preprocessor,
+    "MangaLineArtPreprocessor": MangaLineArt_Preprocessor
 }
