@@ -1,7 +1,7 @@
 from .util import common_annotator_call, img_np_to_tensor, img_tensor_to_np
 from ..v1 import canny, hed_v1, mlsd
 from ..v11 import hed_v11, pidinet_v11, lineart, lineart_anime
-from .. import binary
+from .. import binary, manga_line_extraction
 import numpy as np
 import cv2
 
@@ -156,6 +156,20 @@ class AnimeLineArt_Preprocessor:
         #https://github.com/lllyasviel/ControlNet-v1-1-nightly/blob/main/gradio_lineart_anime.py#L54
         return (img_np_to_tensor(reversed_np_detected_map),)
 
+class MangaLineArt_Preprocessor:
+    @classmethod
+    def INPUT_TYPES(s):
+        return {"required": { "image": ("IMAGE",) }}
+    RETURN_TYPES = ("IMAGE",)
+    FUNCTION = "transform_lineart"
+
+    CATEGORY = "preprocessors/edge_line"
+
+    def transform_lineart(self, image):
+        np_detected_map = common_annotator_call(manga_line_extraction.MangaLineExtractor(), image)
+        reversed_np_detected_map = map(lambda np_img: 255 - np_img, np_detected_map)
+        #Based on AnimeLineArt_Preprocessor
+        return (img_np_to_tensor(reversed_np_detected_map),)
 NODE_CLASS_MAPPINGS = {
     "CannyEdgePreprocessor": Canny_Edge_Preprocessor,
     "M-LSDPreprocessor": MLSD_Preprocessor,

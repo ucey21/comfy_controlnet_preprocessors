@@ -36,7 +36,8 @@ class MangaLineExtractor:
 
             line = self.model(image_feed)
             line = line.cpu().numpy()
-            
+            line[line > 255] = 255
+            line[line < 0] = 0
 
             line = cv2.resize(line, (W, H), interpolation=cv2.INTER_CUBIC)
             return line
