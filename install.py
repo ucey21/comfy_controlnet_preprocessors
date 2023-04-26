@@ -33,7 +33,11 @@ def download_models():
     hed_v11.ControlNetHED_Apache2()
     pidinet_v11.PidiNetDetector()
 
-command = [sys.executable, '-s', '-m','pip', 'install', '-r' , f'{EXT_PATH}/requirements.txt', '--extra-index-url', 'https://download.pytorch.org/whl/cu117', '--no-warn-script-location']
+command = [
+    sys.executable, '-s' if "python_embeded" in sys.executable else '', 
+    '-m','pip', 'install', '-r' , f'{EXT_PATH}/requirements.txt', 
+    '--extra-index-url', 'https://download.pytorch.org/whl/cu117', '--no-warn-script-location'
+]
 print("Installing requirements...")
 sleep(2)
 proc = subprocess.Popen(command, stdout=subprocess.PIPE, bufsize=1, universal_newlines=True)
