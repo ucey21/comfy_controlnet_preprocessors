@@ -35,7 +35,7 @@ class MangaLineExtractor:
             image_feed = rearrange(image_feed, 'h w -> 1 1 h w')
 
             line = self.model(image_feed)
-            line = line.cpu().numpy()
+            line = line.cpu().numpy()[0,0,:,:]
             line[line > 255] = 255
             line[line < 0] = 0
 
