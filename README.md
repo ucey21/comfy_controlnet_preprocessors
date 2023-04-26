@@ -28,6 +28,7 @@ List of my comfyUI node repos: https://github.com/Fannovel16/FN16-ComfyUI-nodes
 * Fixed https://github.com/Fannovel16/comfy_controlnet_preprocessors/issues/37 and https://github.com/Fannovel16/comfy_controlnet_preprocessors/issues/36
 * Fixed typos at install.py
 * Fixed issues from OneFormer
+* Added Manga2Anime-LineArtPreprocessor
 
 ## Usage
 All preprocessor nodes take an image, usually came from LoadImage node and output a map image (aka hint image):
@@ -55,6 +56,7 @@ If you want to reproduce results from old workflows, set `version` to `v1` if it
 |-----------------------------|-------------------------------------------------------|-------------------------------------------|----------------------------------|
 | LineArtPreprocessor         | lineart (or `lineart_coarse` if `coarse` is enabled)  | control_v11p_sd15_lineart                 | preprocessors/edge_line          |
 | AnimeLineArtPreprocessor    | lineart_anime                                         | control_v11p_sd15s2_lineart_anime         | preprocessors/edge_line          |
+|Manga2AnimeLineArtPreprocessor| lineart_anime                                         | control_v11p_sd15s2_lineart_anime         | preprocessors/edge_line          |
 
 ### M-LSD
 | Preprocessor Node           | sd-webui-controlnet/other                             | Use with ControlNet/T2I-Adapter           | Category                         |

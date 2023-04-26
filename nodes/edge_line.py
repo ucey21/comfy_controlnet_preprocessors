@@ -156,7 +156,7 @@ class AnimeLineArt_Preprocessor:
         #https://github.com/lllyasviel/ControlNet-v1-1-nightly/blob/main/gradio_lineart_anime.py#L54
         return (img_np_to_tensor(reversed_np_detected_map),)
 
-class MangaLineArt_Preprocessor:
+class Manga2Anime_LineArt_Preprocessor:
     @classmethod
     def INPUT_TYPES(s):
         return {"required": { "image": ("IMAGE",) }}
@@ -180,5 +180,5 @@ NODE_CLASS_MAPPINGS = {
     "PiDiNetPreprocessor": PIDINET_Preprocessor,
     "LineArtPreprocessor": LineArt_Preprocessor,
     "AnimeLineArtPreprocessor": AnimeLineArt_Preprocessor,
-    "MangaLineArtPreprocessor": MangaLineArt_Preprocessor
+    "Manga2Anime-LineArtPreprocessor": Manga2Anime_LineArt_Preprocessor
 }
