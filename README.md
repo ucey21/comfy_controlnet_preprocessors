@@ -23,8 +23,10 @@ List of my comfyUI node repos: https://github.com/Fannovel16/FN16-ComfyUI-nodes
 * Editing Nodes section
 * Updated single-click dependecies installation method. Check out the install section.
 * Added Openpose preprocessor v1.1, TilePreprocessor
-### 2023-04-23
+### 2023-04-26
 * Added UniFormer-SemSegPreprocessor (alias of SemSegPreprocessor), OneFormer-COCO-SemSegPreprocessor, OneFormer-ADE20K-SemSegPreprocessor, LineArtPreprocessor, AnimeLineArtPreprocessor
+* Fixed https://github.com/Fannovel16/comfy_controlnet_preprocessors/issues/37 and https://github.com/Fannovel16/comfy_controlnet_preprocessors/issues/36
+
 
 ## Usage
 All preprocessor nodes take an image, usually came from LoadImage node and output a map image (aka hint image):
