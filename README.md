@@ -56,7 +56,7 @@ If you want to reproduce results from old workflows, set `version` to `v1` if it
 |-----------------------------|-------------------------------------------------------|-------------------------------------------|----------------------------------|
 | LineArtPreprocessor         | lineart (or `lineart_coarse` if `coarse` is enabled)  | control_v11p_sd15_lineart                 | preprocessors/edge_line          |
 | AnimeLineArtPreprocessor    | lineart_anime                                         | control_v11p_sd15s2_lineart_anime         | preprocessors/edge_line          |
-|Manga2AnimeLineArtPreprocessor| lineart_anime                                         | control_v11p_sd15s2_lineart_anime         | preprocessors/edge_line          |
+|Manga2Anime-LineArtPreprocessor| lineart_anime                                         | control_v11p_sd15s2_lineart_anime         | preprocessors/edge_line          |
 
 ### M-LSD
 | Preprocessor Node           | sd-webui-controlnet/other                             | Use with ControlNet/T2I-Adapter           | Category                         |
