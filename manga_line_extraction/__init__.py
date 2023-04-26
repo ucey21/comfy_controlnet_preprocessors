@@ -1,7 +1,7 @@
 # MangaLineExtraction_PyTorch
 # https://github.com/ljsabc/MangaLineExtraction_PyTorch
 
-#NOTE: This preprocessor is designed to work with lineart_anime ControlNet
+#NOTE: This preprocessor is designed to work with lineart_anime ControlNet so the result will be white lines on black canvas
 
 import torch
 import numpy as np

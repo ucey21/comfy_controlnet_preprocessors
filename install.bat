@@ -1,6 +1,6 @@
 @echo off
 CALL :NORMALIZEPATH "..\..\..\python_embeded\python.exe"
-if exist "..\..\python_embeded\python.exe" (
+if exist "..\..\..\python_embeded\python.exe" (
     echo Custom Python build of ComfyUI standalone executable detected:
     echo "%RETVAL%"
     echo --------------------------------------------------

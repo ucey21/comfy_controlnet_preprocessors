@@ -13,4 +13,3 @@ yapf
 mediapipe==0.9.1.0
 fvcore
 omegaconf
-pycocotools
