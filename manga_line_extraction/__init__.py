@@ -39,5 +39,6 @@ class MangaLineExtractor:
             line[line > 255] = 255
             line[line < 0] = 0
 
+            line = line.astype(np.uint8)
             line = cv2.resize(line, (W, H), interpolation=cv2.INTER_CUBIC)
             return line
