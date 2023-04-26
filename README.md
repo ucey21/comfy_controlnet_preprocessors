@@ -77,6 +77,7 @@ Example images: WIP
 | PiDiNetPreprocessor         | pidinet                                               | control_v11p_sd15_softedge <br> control_scribble <br> t2iadapter_sketch | preprocessors/edge_line          |
 
 #### HED
+* THE NEW SOFTEDGE HED IS CALLED HED 1.1 IN THIS REPO. IT IS ENABLED BY DEFAULT AS value `v1.1` in the version field
 * v1 uses Saining Xie's official implementation which uses GPL. v1.1 uses lllyasviel's own implementation which doesn't contain GPL contamination.
 * v1.1 generates smoother edges and is more suitable for ControlNet as well as other image-to-image translations.
 * You can only use `safe` option if the version is `v1.1`, otherwise, it is ignored.
