@@ -1,6 +1,6 @@
 import os
-from modules import devices
 from comfy_controlnet_preprocessors.util import annotator_ckpts_path
+import model_management
 from .api import make_detectron2_model, semantic_run
 
 
@@ -21,7 +21,7 @@ class OneformerDetector:
         self.model = None
         self.metadata = None
         self.config = config
-        self.device = devices.get_device_for("controlnet")
+        self.device = model_management.get_torch_device()
 
     def load_model(self):
         remote_model_path = "https://huggingface.co/lllyasviel/Annotators/resolve/main/" + self.config["name"]
