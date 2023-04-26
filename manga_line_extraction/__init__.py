@@ -29,14 +29,14 @@ class MangaLineExtractor:
         Hn = 256 * int(np.ceil(float(H) / 256.0))
         Wn = 256 * int(np.ceil(float(W) / 256.0))
         img = cv2.resize(input_image, (Wn, Hn), interpolation=cv2.INTER_CUBIC)
+        img = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
         with torch.no_grad():
             image_feed = torch.from_numpy(img).float().to(model_management.get_torch_device())
-            image_feed = image_feed / 127.5 - 1.0
-            image_feed = rearrange(image_feed, 'h w c -> 1 c h w')
+            image_feed = rearrange(image_feed, 'h w -> 1 1 h w')
 
-            line = self.model(image_feed)[0, 0] * 127.5 + 127.5
+            line = self.model(image_feed)
             line = line.cpu().numpy()
+            
 
             line = cv2.resize(line, (W, H), interpolation=cv2.INTER_CUBIC)
-            line = line.clip(0, 255).astype(np.uint8)
             return line

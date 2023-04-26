@@ -4,10 +4,10 @@ import contextlib
 from unittest import mock
 import torch
 
-from annotator.oneformer.detectron2.modeling import poolers
-from annotator.oneformer.detectron2.modeling.proposal_generator import rpn
-from annotator.oneformer.detectron2.modeling.roi_heads import keypoint_head, mask_head
-from annotator.oneformer.detectron2.modeling.roi_heads.fast_rcnn import FastRCNNOutputLayers
+from comfy_controlnet_preprocessors.v11.oneformer.detectron2.modeling import poolers
+from comfy_controlnet_preprocessors.v11.oneformer.detectron2.modeling.proposal_generator import rpn
+from comfy_controlnet_preprocessors.v11.oneformer.detectron2.modeling.roi_heads import keypoint_head, mask_head
+from comfy_controlnet_preprocessors.v11.oneformer.detectron2.modeling.roi_heads.fast_rcnn import FastRCNNOutputLayers
 
 from .c10 import (
     Caffe2Compatible,

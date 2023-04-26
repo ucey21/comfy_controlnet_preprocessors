@@ -3,8 +3,8 @@ import numpy as np
 from typing import List
 import pycocotools.mask as mask_util
 
-from annotator.oneformer.detectron2.structures import Instances
-from annotator.oneformer.detectron2.utils.visualizer import (
+from comfy_controlnet_preprocessors.v11.oneformer.detectron2.structures import Instances
+from comfy_controlnet_preprocessors.v11.oneformer.detectron2.utils.visualizer import (
     ColorMode,
     Visualizer,
     _create_text_labels,

@@ -12,8 +12,8 @@ from fvcore.common.param_scheduler import (
     StepWithFixedGammaParamScheduler,
 )
 
-from annotator.oneformer.detectron2.config import CfgNode
-from annotator.oneformer.detectron2.utils.env import TORCH_VERSION
+from comfy_controlnet_preprocessors.v11.oneformer.detectron2.config import CfgNode
+from comfy_controlnet_preprocessors.v11.oneformer.detectron2.utils.env import TORCH_VERSION
 
 from .lr_scheduler import LRMultiplier, LRScheduler, WarmupParamScheduler
 

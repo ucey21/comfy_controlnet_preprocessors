@@ -10,9 +10,9 @@ from collections import OrderedDict, defaultdict
 from functools import lru_cache
 import torch
 
-from annotator.oneformer.detectron2.data import MetadataCatalog
-from annotator.oneformer.detectron2.utils import comm
-from annotator.oneformer.detectron2.utils.file_io import PathManager
+from comfy_controlnet_preprocessors.v11.oneformer.detectron2.data import MetadataCatalog
+from comfy_controlnet_preprocessors.v11.oneformer.detectron2.utils import comm
+from comfy_controlnet_preprocessors.v11.oneformer.detectron2.utils.file_io import PathManager
 
 from .evaluator import DatasetEvaluator
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # Copyright 2004-present Facebook. All Rights Reserved.
-from annotator.oneformer.detectron2.config import configurable
-from annotator.oneformer.detectron2.utils.registry import Registry
+from comfy_controlnet_preprocessors.v11.oneformer.detectron2.config import configurable
+from comfy_controlnet_preprocessors.v11.oneformer.detectron2.utils.registry import Registry
 
 from ..config.config import CfgNode as CfgNode_
 from ..structures import Instances

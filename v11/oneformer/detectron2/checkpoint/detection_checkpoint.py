@@ -7,8 +7,8 @@ import torch
 from fvcore.common.checkpoint import Checkpointer
 from torch.nn.parallel import DistributedDataParallel
 
-import annotator.oneformer.detectron2.utils.comm as comm
-from annotator.oneformer.detectron2.utils.file_io import PathManager
+import comfy_controlnet_preprocessors.v11.oneformer.detectron2.utils.comm as comm
+from comfy_controlnet_preprocessors.v11.oneformer.detectron2.utils.file_io import PathManager
 
 from .c2_model_loading import align_and_update_state_dicts
 

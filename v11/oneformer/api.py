@@ -3,19 +3,19 @@ os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
 
 import torch
 
-from annotator.oneformer.detectron2.config import get_cfg
-from annotator.oneformer.detectron2.projects.deeplab import add_deeplab_config
-from annotator.oneformer.detectron2.data import MetadataCatalog
+from comfy_controlnet_preprocessors.v11.oneformer.detectron2.config import get_cfg
+from comfy_controlnet_preprocessors.v11.oneformer.detectron2.projects.deeplab import add_deeplab_config
+from comfy_controlnet_preprocessors.v11.oneformer.detectron2.data import MetadataCatalog
 
-from annotator.oneformer.oneformer import (
+from comfy_controlnet_preprocessors.v11.oneformer.oneformer import (
     add_oneformer_config,
     add_common_config,
     add_swin_config,
     add_dinat_config,
 )
 
-from annotator.oneformer.oneformer.demo.defaults import DefaultPredictor
-from annotator.oneformer.oneformer.demo.visualizer import Visualizer, ColorMode
+from comfy_controlnet_preprocessors.v11.oneformer.oneformer.demo.defaults import DefaultPredictor
+from comfy_controlnet_preprocessors.v11.oneformer.oneformer.demo.visualizer import Visualizer, ColorMode
 
 
 def make_detectron2_model(config_path, ckpt_path):

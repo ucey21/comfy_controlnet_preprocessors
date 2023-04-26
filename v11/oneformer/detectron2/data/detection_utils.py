@@ -12,7 +12,7 @@ import pycocotools.mask as mask_util
 import torch
 from PIL import Image
 
-from annotator.oneformer.detectron2.structures import (
+from comfy_controlnet_preprocessors.v11.oneformer.detectron2.structures import (
     BitMasks,
     Boxes,
     BoxMode,
@@ -22,7 +22,7 @@ from annotator.oneformer.detectron2.structures import (
     RotatedBoxes,
     polygons_to_bitmask,
 )
-from annotator.oneformer.detectron2.utils.file_io import PathManager
+from comfy_controlnet_preprocessors.v11.oneformer.detectron2.utils.file_io import PathManager
 
 from . import transforms as T
 from .catalog import MetadataCatalog

@@ -9,11 +9,11 @@ import numpy as np
 from typing import List, Optional, Union
 import torch
 
-from annotator.oneformer.detectron2.config import configurable
+from comfy_controlnet_preprocessors.v11.oneformer.detectron2.config import configurable
 
-from annotator.oneformer.detectron2.data import detection_utils as utils
-from annotator.oneformer.detectron2.data import transforms as T
-from annotator.oneformer.oneformer.data.tokenizer import SimpleTokenizer, Tokenize
+from comfy_controlnet_preprocessors.v11.oneformer.detectron2.data import detection_utils as utils
+from comfy_controlnet_preprocessors.v11.oneformer.detectron2.data import transforms as T
+from comfy_controlnet_preprocessors.v11.oneformer.oneformer.data.tokenizer import SimpleTokenizer, Tokenize
 
 __all__ = ["DatasetMapper"]
 

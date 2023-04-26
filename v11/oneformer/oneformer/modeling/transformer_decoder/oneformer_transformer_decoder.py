@@ -10,13 +10,13 @@ import torch
 from torch import nn, Tensor
 from torch.nn import functional as F
 
-from annotator.oneformer.detectron2.config import configurable
-from annotator.oneformer.detectron2.layers import Conv2d
+from comfy_controlnet_preprocessors.v11.oneformer.detectron2.config import configurable
+from comfy_controlnet_preprocessors.v11.oneformer.detectron2.layers import Conv2d
 
 from .position_encoding import PositionEmbeddingSine
 from .transformer import Transformer
 
-from annotator.oneformer.detectron2.utils.registry import Registry
+from comfy_controlnet_preprocessors.v11.oneformer.detectron2.utils.registry import Registry
 
 
 TRANSFORMER_DECODER_REGISTRY = Registry("TRANSFORMER_MODULE")

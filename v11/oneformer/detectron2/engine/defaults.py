@@ -21,28 +21,28 @@ from fvcore.nn.precise_bn import get_bn_modules
 from omegaconf import OmegaConf
 from torch.nn.parallel import DistributedDataParallel
 
-import annotator.oneformer.detectron2.data.transforms as T
-from annotator.oneformer.detectron2.checkpoint import DetectionCheckpointer
-from annotator.oneformer.detectron2.config import CfgNode, LazyConfig
-from annotator.oneformer.detectron2.data import (
+import comfy_controlnet_preprocessors.v11.oneformer.detectron2.data.transforms as T
+from comfy_controlnet_preprocessors.v11.oneformer.detectron2.checkpoint import DetectionCheckpointer
+from comfy_controlnet_preprocessors.v11.oneformer.detectron2.config import CfgNode, LazyConfig
+from comfy_controlnet_preprocessors.v11.oneformer.detectron2.data import (
     MetadataCatalog,
     build_detection_test_loader,
     build_detection_train_loader,
 )
-from annotator.oneformer.detectron2.evaluation import (
+from comfy_controlnet_preprocessors.v11.oneformer.detectron2.evaluation import (
     DatasetEvaluator,
     inference_on_dataset,
     print_csv_format,
     verify_results,
 )
-from annotator.oneformer.detectron2.modeling import build_model
-from annotator.oneformer.detectron2.solver import build_lr_scheduler, build_optimizer
-from annotator.oneformer.detectron2.utils import comm
-from annotator.oneformer.detectron2.utils.collect_env import collect_env_info
-from annotator.oneformer.detectron2.utils.env import seed_all_rng
-from annotator.oneformer.detectron2.utils.events import CommonMetricPrinter, JSONWriter, TensorboardXWriter
-from annotator.oneformer.detectron2.utils.file_io import PathManager
-from annotator.oneformer.detectron2.utils.logger import setup_logger
+from comfy_controlnet_preprocessors.v11.oneformer.detectron2.modeling import build_model
+from comfy_controlnet_preprocessors.v11.oneformer.detectron2.solver import build_lr_scheduler, build_optimizer
+from comfy_controlnet_preprocessors.v11.oneformer.detectron2.utils import comm
+from comfy_controlnet_preprocessors.v11.oneformer.detectron2.utils.collect_env import collect_env_info
+from comfy_controlnet_preprocessors.v11.oneformer.detectron2.utils.env import seed_all_rng
+from comfy_controlnet_preprocessors.v11.oneformer.detectron2.utils.events import CommonMetricPrinter, JSONWriter, TensorboardXWriter
+from comfy_controlnet_preprocessors.v11.oneformer.detectron2.utils.file_io import PathManager
+from comfy_controlnet_preprocessors.v11.oneformer.detectron2.utils.logger import setup_logger
 
 from . import hooks
 from .train_loop import AMPTrainer, SimpleTrainer, TrainerBase

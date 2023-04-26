@@ -12,13 +12,13 @@ from packaging import version
 from torch._C import ListType
 from torch.onnx import register_custom_op_symbolic
 
-from annotator.oneformer.detectron2 import model_zoo
-from annotator.oneformer.detectron2.config import CfgNode, LazyConfig, instantiate
-from annotator.oneformer.detectron2.data import DatasetCatalog
-from annotator.oneformer.detectron2.data.detection_utils import read_image
-from annotator.oneformer.detectron2.modeling import build_model
-from annotator.oneformer.detectron2.structures import Boxes, Instances, ROIMasks
-from annotator.oneformer.detectron2.utils.file_io import PathManager
+from comfy_controlnet_preprocessors.v11.oneformer.detectron2 import model_zoo
+from comfy_controlnet_preprocessors.v11.oneformer.detectron2.config import CfgNode, LazyConfig, instantiate
+from comfy_controlnet_preprocessors.v11.oneformer.detectron2.data import DatasetCatalog
+from comfy_controlnet_preprocessors.v11.oneformer.detectron2.data.detection_utils import read_image
+from comfy_controlnet_preprocessors.v11.oneformer.detectron2.modeling import build_model
+from comfy_controlnet_preprocessors.v11.oneformer.detectron2.structures import Boxes, Instances, ROIMasks
+from comfy_controlnet_preprocessors.v11.oneformer.detectron2.utils.file_io import PathManager
 
 
 """

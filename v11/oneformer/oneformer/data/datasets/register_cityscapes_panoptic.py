@@ -7,9 +7,9 @@ import json
 import logging
 import os
 
-from annotator.oneformer.detectron2.data import DatasetCatalog, MetadataCatalog
-from annotator.oneformer.detectron2.data.datasets.builtin_meta import CITYSCAPES_CATEGORIES
-from annotator.oneformer.detectron2.utils.file_io import PathManager
+from comfy_controlnet_preprocessors.v11.oneformer.detectron2.data import DatasetCatalog, MetadataCatalog
+from comfy_controlnet_preprocessors.v11.oneformer.detectron2.data.datasets.builtin_meta import CITYSCAPES_CATEGORIES
+from comfy_controlnet_preprocessors.v11.oneformer.detectron2.utils.file_io import PathManager
 
 """
 This file contains functions to register the Cityscapes panoptic dataset to the DatasetCatalog.

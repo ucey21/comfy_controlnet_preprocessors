@@ -10,7 +10,7 @@ from typing import Optional
 import torch
 from fvcore.common.history_buffer import HistoryBuffer
 
-from annotator.oneformer.detectron2.utils.file_io import PathManager
+from comfy_controlnet_preprocessors.v11.oneformer.detectron2.utils.file_io import PathManager
 
 __all__ = [
     "get_event_storage",

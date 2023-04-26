@@ -18,15 +18,15 @@ from pycocotools.coco import COCO
 from pycocotools.cocoeval import COCOeval
 from tabulate import tabulate
 
-import annotator.oneformer.detectron2.utils.comm as comm
-from annotator.oneformer.detectron2.config import CfgNode
-from annotator.oneformer.detectron2.data import MetadataCatalog
-from annotator.oneformer.detectron2.data.datasets.coco import convert_to_coco_json
-from annotator.oneformer.detectron2.evaluation.coco_evaluation import COCOEvaluator, _evaluate_predictions_on_coco
-from annotator.oneformer.detectron2.evaluation.fast_eval_api import COCOeval_opt
-from annotator.oneformer.detectron2.structures import Boxes, BoxMode, pairwise_iou
-from annotator.oneformer.detectron2.utils.file_io import PathManager
-from annotator.oneformer.detectron2.utils.logger import create_small_table
+import comfy_controlnet_preprocessors.v11.oneformer.detectron2.utils.comm as comm
+from comfy_controlnet_preprocessors.v11.oneformer.detectron2.config import CfgNode
+from comfy_controlnet_preprocessors.v11.oneformer.detectron2.data import MetadataCatalog
+from comfy_controlnet_preprocessors.v11.oneformer.detectron2.data.datasets.coco import convert_to_coco_json
+from comfy_controlnet_preprocessors.v11.oneformer.detectron2.evaluation.coco_evaluation import COCOEvaluator, _evaluate_predictions_on_coco
+from comfy_controlnet_preprocessors.v11.oneformer.detectron2.evaluation.fast_eval_api import COCOeval_opt
+from comfy_controlnet_preprocessors.v11.oneformer.detectron2.structures import Boxes, BoxMode, pairwise_iou
+from comfy_controlnet_preprocessors.v11.oneformer.detectron2.utils.file_io import PathManager
+from comfy_controlnet_preprocessors.v11.oneformer.detectron2.utils.logger import create_small_table
 
 
 # modified from COCOEvaluator for instance segmetnat

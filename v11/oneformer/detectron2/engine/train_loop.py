@@ -9,9 +9,9 @@ from typing import List, Mapping, Optional
 import torch
 from torch.nn.parallel import DataParallel, DistributedDataParallel
 
-import annotator.oneformer.detectron2.utils.comm as comm
-from annotator.oneformer.detectron2.utils.events import EventStorage, get_event_storage
-from annotator.oneformer.detectron2.utils.logger import _log_api_usage
+import comfy_controlnet_preprocessors.v11.oneformer.detectron2.utils.comm as comm
+from comfy_controlnet_preprocessors.v11.oneformer.detectron2.utils.events import EventStorage, get_event_storage
+from comfy_controlnet_preprocessors.v11.oneformer.detectron2.utils.logger import _log_api_usage
 
 __all__ = ["HookBase", "TrainerBase", "SimpleTrainer", "AMPTrainer"]
 

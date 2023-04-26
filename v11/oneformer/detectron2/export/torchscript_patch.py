@@ -10,9 +10,9 @@ import torch
 from torch import nn
 
 # need some explicit imports due to https://github.com/pytorch/pytorch/issues/38964
-import annotator.oneformer.detectron2  # noqa F401
-from annotator.oneformer.detectron2.structures import Boxes, Instances
-from annotator.oneformer.detectron2.utils.env import _import_file
+import comfy_controlnet_preprocessors.v11.oneformer.detectron2  # noqa F401
+from comfy_controlnet_preprocessors.v11.oneformer.detectron2.structures import Boxes, Instances
+from comfy_controlnet_preprocessors.v11.oneformer.detectron2.utils.env import _import_file
 
 _counter = 0
 
@@ -296,8 +296,8 @@ from torch import Tensor
 import typing
 from typing import *
 
-import annotator.oneformer.detectron2
-from annotator.oneformer.detectron2.structures import Boxes, Instances
+import comfy_controlnet_preprocessors.v11.oneformer.detectron2
+from comfy_controlnet_preprocessors.v11.oneformer.detectron2.structures import Boxes, Instances
 
 """
 
@@ -347,7 +347,7 @@ def patch_nonscriptable_classes():
     # __prepare_scriptable__ can also be added to models for easier maintenance.
     # But it complicates the clean model code.
 
-    from annotator.oneformer.detectron2.modeling.backbone import ResNet, FPN
+    from comfy_controlnet_preprocessors.v11.oneformer.detectron2.modeling.backbone import ResNet, FPN
 
     # Due to https://github.com/pytorch/pytorch/issues/36061,
     # we change backbone to use ModuleList for scripting.
@@ -375,7 +375,7 @@ def patch_nonscriptable_classes():
 
     # Annotate some attributes to be constants for the purpose of scripting,
     # even though they are not constants in eager mode.
-    from annotator.oneformer.detectron2.modeling.roi_heads import StandardROIHeads
+    from comfy_controlnet_preprocessors.v11.oneformer.detectron2.modeling.roi_heads import StandardROIHeads
 
     if hasattr(StandardROIHeads, "__annotations__"):
         # copy first to avoid editing annotations of base class

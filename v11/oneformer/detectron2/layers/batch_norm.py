@@ -5,7 +5,7 @@ from fvcore.nn.distributed import differentiable_all_reduce
 from torch import nn
 from torch.nn import functional as F
 
-from annotator.oneformer.detectron2.utils import comm, env
+from comfy_controlnet_preprocessors.v11.oneformer.detectron2.utils import comm, env
 
 from .wrappers import BatchNorm2d
 

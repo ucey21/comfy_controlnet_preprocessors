@@ -11,7 +11,7 @@ import torch
 import torch.utils.data as data
 from torch.utils.data.sampler import Sampler
 
-from annotator.oneformer.detectron2.utils.serialize import PicklableWrapper
+from comfy_controlnet_preprocessors.v11.oneformer.detectron2.utils.serialize import PicklableWrapper
 
 __all__ = ["MapDataset", "DatasetFromList", "AspectRatioGroupedDataset", "ToIterableDataset"]
 

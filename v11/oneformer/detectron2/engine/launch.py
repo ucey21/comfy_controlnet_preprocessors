@@ -5,7 +5,7 @@ import torch
 import torch.distributed as dist
 import torch.multiprocessing as mp
 
-from annotator.oneformer.detectron2.utils import comm
+from comfy_controlnet_preprocessors.v11.oneformer.detectron2.utils import comm
 
 __all__ = ["DEFAULT_TIMEOUT", "launch"]
 

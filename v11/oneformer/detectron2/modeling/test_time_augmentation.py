@@ -9,15 +9,15 @@ from fvcore.transforms import HFlipTransform, NoOpTransform
 from torch import nn
 from torch.nn.parallel import DistributedDataParallel
 
-from annotator.oneformer.detectron2.config import configurable
-from annotator.oneformer.detectron2.data.detection_utils import read_image
-from annotator.oneformer.detectron2.data.transforms import (
+from comfy_controlnet_preprocessors.v11.oneformer.detectron2.config import configurable
+from comfy_controlnet_preprocessors.v11.oneformer.detectron2.data.detection_utils import read_image
+from comfy_controlnet_preprocessors.v11.oneformer.detectron2.data.transforms import (
     RandomFlip,
     ResizeShortestEdge,
     ResizeTransform,
     apply_augmentations,
 )
-from annotator.oneformer.detectron2.structures import Boxes, Instances
+from comfy_controlnet_preprocessors.v11.oneformer.detectron2.structures import Boxes, Instances
 
 from .meta_arch import GeneralizedRCNN
 from .postprocessing import detector_postprocess

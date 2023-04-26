@@ -5,7 +5,7 @@ import numpy as np
 import time
 from pycocotools.cocoeval import COCOeval
 
-from annotator.oneformer.detectron2 import _C
+from comfy_controlnet_preprocessors.v11.oneformer.detectron2 import _C
 
 logger = logging.getLogger(__name__)
 

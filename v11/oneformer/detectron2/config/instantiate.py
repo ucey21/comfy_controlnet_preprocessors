@@ -5,7 +5,7 @@ import dataclasses
 import logging
 from typing import Any
 
-from annotator.oneformer.detectron2.utils.registry import _convert_target_to_string, locate
+from comfy_controlnet_preprocessors.v11.oneformer.detectron2.utils.registry import _convert_target_to_string, locate
 
 __all__ = ["dump_dataclass", "instantiate"]
 
