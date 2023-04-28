@@ -50,5 +50,6 @@ class Tile_Preprocessor:
 
 NODE_CLASS_MAPPINGS = {
     "MediaPipe-FaceMeshPreprocessor": Media_Pipe_Face_Mesh_Preprocessor,
-    "ColorPreprocessor": Color_Preprocessor
+    "ColorPreprocessor": Color_Preprocessor,
+    "TilePreprocessor": Tile_Preprocessor,
 }
