@@ -33,11 +33,11 @@ def download_models():
     hed_v11.ControlNetHED_Apache2()
     pidinet_v11.PidiNetDetector()
 
-command = [
-    sys.executable, '-s' if "python_embeded" in sys.executable else '', 
-    '-m','pip', 'install', '-r' , f'{EXT_PATH}/requirements.txt', 
-    '--extra-index-url', 'https://download.pytorch.org/whl/cu117', '--no-warn-script-location'
-]
+command = [sys.executable]
+if "python_embeded" in sys.executable:
+    command += '-s'
+command += ['-m','pip', 'install', '-r' , f'{EXT_PATH}/requirements.txt', 
+    '--extra-index-url', 'https://download.pytorch.org/whl/cu117', '--no-warn-script-location']
 print("Installing requirements...")
 sleep(2)
 proc = subprocess.Popen(command, stdout=subprocess.PIPE, bufsize=1, universal_newlines=True)
@@ -46,13 +46,14 @@ for line in iter(proc.stdout.readline, ''):
 proc.wait()
 
 if args.no_download_ckpts: exit()
+print("Download models...")
 
 add_global_shortcut_module("cli_args", os.path.join(EXT_PATH, "../../comfy/cli_args.py"))
 add_global_shortcut_module("model_management", os.path.join(EXT_PATH, "../../comfy/model_management.py"))
 add_global_shortcut_module(this_module_name, os.path.join(EXT_PATH, "__init__.py"))
 from comfy_controlnet_preprocessors.v1 import canny, hed_v1, midas, mlsd, openpose_v1, uniformer, leres
 from comfy_controlnet_preprocessors.v11 import zoe, normalbae, hed_v11, pidinet_v11
-print("Download models...")
+
 sleep(2)
 download_models()
 print("Done!")
