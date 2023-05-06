@@ -29,6 +29,8 @@ List of my comfyUI node repos: https://github.com/Fannovel16/FN16-ComfyUI-nodes
 * Fixed typos at install.py
 * Fixed issues from OneFormer
 * Added Manga2Anime-LineArtPreprocessor
+### 2023-05-06
+* Fixed #34
 
 ## Usage
 All preprocessor nodes take an image, usually came from LoadImage node and output a map image (aka hint image):

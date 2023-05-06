@@ -34,8 +34,7 @@ def download_models():
     pidinet_v11.PidiNetDetector()
 
 command = [sys.executable]
-if "python_embeded" in sys.executable:
-    command += '-s'
+if "python_embeded" in sys.executable: command += ['-s']
 command += ['-m','pip', 'install', '-r' , f'{EXT_PATH}/requirements.txt', 
     '--extra-index-url', 'https://download.pytorch.org/whl/cu117', '--no-warn-script-location']
 print("Installing requirements...")
