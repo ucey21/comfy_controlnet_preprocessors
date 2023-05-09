@@ -7,6 +7,7 @@ import subprocess
 
 this_module_name = "comfy_controlnet_preprocessors"
 EXT_PATH = os.path.dirname(os.path.realpath(__file__))
+sys.path.append(os.path.abspath(os.path.join(EXT_PATH, "../../")))
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--no_download_ckpts', action="store_true", help="Don't download any model")
