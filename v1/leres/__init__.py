@@ -51,8 +51,9 @@ def apply_leres(input_image, thr_a, thr_b):
     if model is None:
         model_path = download_model_if_not_existed()
         checkpoint = torch.load(model_path, map_location='cpu')
-        model = RelDepthModel(backbone='resnext101').to(model_management.get_torch_device())
+        model = RelDepthModel(backbone='resnext101', map_location='cpu')
         model.load_state_dict(strip_prefix_if_present(checkpoint['depth_model'], "module."), strict=True)
+        model.to(model_management.get_torch_device())
         del checkpoint
 
     """ if boost and pix2pixmodel is None:
