@@ -34,6 +34,8 @@ List of my comfyUI node repos: https://github.com/Fannovel16/FN16-ComfyUI-nodes
 ### 2023-05-09
 * Add support for DirectML (replace `map_location=get_torch_device()` with `.to(get_torch_device())`)
 * Merge https://github.com/Fannovel16/comfy_controlnet_preprocessors/pull/45 to fix import errors on Linux
+### 2023-05-10
+* Remove reportlab which is useless and can't be built on Colab
 
 ## Usage
 All preprocessor nodes take an image, usually came from LoadImage node and output a map image (aka hint image):
