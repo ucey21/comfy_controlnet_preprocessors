@@ -6,7 +6,6 @@ scipy
 matplotlib
 scikit-image
 prettytable==3.6.0
-svglib
 addict
 yapf
 mediapipe==0.9.1.0
