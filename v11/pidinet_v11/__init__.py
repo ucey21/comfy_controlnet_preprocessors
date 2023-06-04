@@ -6,7 +6,7 @@ import torch
 import numpy as np
 from einops import rearrange
 from .model import pidinet
-from comfy_controlnet_preprocessors.util import annotator_ckpts_path, safe_step, load_file_from_url
+from custom_nodes.comfy_controlnet_preprocessors.util import annotator_ckpts_path, safe_step, load_file_from_url
 
 
 class PidiNetDetector:

@@ -3,11 +3,11 @@ from typing import Dict, List, Optional, Tuple
 import torch
 from torch import Tensor, nn
 
-from comfy_controlnet_preprocessors.v11.oneformer.detectron2.data.detection_utils import convert_image_to_rgb
-from comfy_controlnet_preprocessors.v11.oneformer.detectron2.layers import move_device_like
-from comfy_controlnet_preprocessors.v11.oneformer.detectron2.modeling import Backbone
-from comfy_controlnet_preprocessors.v11.oneformer.detectron2.structures import Boxes, ImageList, Instances
-from comfy_controlnet_preprocessors.v11.oneformer.detectron2.utils.events import get_event_storage
+from custom_nodes.comfy_controlnet_preprocessors.v11.oneformer.detectron2.data.detection_utils import convert_image_to_rgb
+from custom_nodes.comfy_controlnet_preprocessors.v11.oneformer.detectron2.layers import move_device_like
+from custom_nodes.comfy_controlnet_preprocessors.v11.oneformer.detectron2.modeling import Backbone
+from custom_nodes.comfy_controlnet_preprocessors.v11.oneformer.detectron2.structures import Boxes, ImageList, Instances
+from custom_nodes.comfy_controlnet_preprocessors.v11.oneformer.detectron2.utils.events import get_event_storage
 
 from ..postprocessing import detector_postprocess
 
@@ -268,7 +268,7 @@ class DenseDetector(nn.Module):
             batched_inputs (list): a list that contains input to the model.
             results (List[Instances]): a list of #images elements returned by forward_inference().
         """
-        from comfy_controlnet_preprocessors.v11.oneformer.detectron2.utils.visualizer import Visualizer
+        from custom_nodes.comfy_controlnet_preprocessors.v11.oneformer.detectron2.utils.visualizer import Visualizer
 
         assert len(batched_inputs) == len(
             results

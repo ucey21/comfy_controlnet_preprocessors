@@ -5,9 +5,9 @@ import torch
 from torch import nn
 from torch.nn import functional as F
 
-from comfy_controlnet_preprocessors.v11.oneformer.detectron2.config import configurable
-from comfy_controlnet_preprocessors.v11.oneformer.detectron2.layers import ASPP, Conv2d, DepthwiseSeparableConv2d, ShapeSpec, get_norm
-from comfy_controlnet_preprocessors.v11.oneformer.detectron2.modeling import SEM_SEG_HEADS_REGISTRY
+from custom_nodes.comfy_controlnet_preprocessors.v11.oneformer.detectron2.config import configurable
+from custom_nodes.comfy_controlnet_preprocessors.v11.oneformer.detectron2.layers import ASPP, Conv2d, DepthwiseSeparableConv2d, ShapeSpec, get_norm
+from custom_nodes.comfy_controlnet_preprocessors.v11.oneformer.detectron2.modeling import SEM_SEG_HEADS_REGISTRY
 
 from .loss import DeepLabCE
 

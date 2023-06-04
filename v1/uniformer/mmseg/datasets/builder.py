@@ -4,10 +4,10 @@ import random
 from functools import partial
 
 import numpy as np
-from comfy_controlnet_preprocessors.v1.uniformer.mmcv.parallel import collate
-from comfy_controlnet_preprocessors.v1.uniformer.mmcv.runner import get_dist_info
-from comfy_controlnet_preprocessors.v1.uniformer.mmcv.utils import Registry, build_from_cfg
-from comfy_controlnet_preprocessors.v1.uniformer.mmcv.utils.parrots_wrapper import DataLoader, PoolDataLoader
+from custom_nodes.comfy_controlnet_preprocessors.v1.uniformer.mmcv.parallel import collate
+from custom_nodes.comfy_controlnet_preprocessors.v1.uniformer.mmcv.runner import get_dist_info
+from custom_nodes.comfy_controlnet_preprocessors.v1.uniformer.mmcv.utils import Registry, build_from_cfg
+from custom_nodes.comfy_controlnet_preprocessors.v1.uniformer.mmcv.utils.parrots_wrapper import DataLoader, PoolDataLoader
 from torch.utils.data import DistributedSampler
 
 if platform.system() != 'Windows':

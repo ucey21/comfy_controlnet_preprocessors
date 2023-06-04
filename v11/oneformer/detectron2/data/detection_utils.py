@@ -8,11 +8,11 @@ typical object detection data pipeline.
 import logging
 import numpy as np
 from typing import List, Union
-import comfy_controlnet_preprocessors.v11.oneformer.pycocotools.mask as mask_util
+import custom_nodes.comfy_controlnet_preprocessors.v11.oneformer.pycocotools.mask as mask_util
 import torch
 from PIL import Image
 
-from comfy_controlnet_preprocessors.v11.oneformer.detectron2.structures import (
+from custom_nodes.comfy_controlnet_preprocessors.v11.oneformer.detectron2.structures import (
     BitMasks,
     Boxes,
     BoxMode,
@@ -22,7 +22,7 @@ from comfy_controlnet_preprocessors.v11.oneformer.detectron2.structures import (
     RotatedBoxes,
     polygons_to_bitmask,
 )
-from comfy_controlnet_preprocessors.v11.oneformer.detectron2.utils.file_io import PathManager
+from custom_nodes.comfy_controlnet_preprocessors.v11.oneformer.detectron2.utils.file_io import PathManager
 
 from . import transforms as T
 from .catalog import MetadataCatalog

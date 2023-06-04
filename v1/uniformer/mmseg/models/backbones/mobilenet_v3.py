@@ -1,10 +1,10 @@
 import logging
 
-import comfy_controlnet_preprocessors.v1.uniformer.mmcv as mmcv
+import custom_nodes.comfy_controlnet_preprocessors.v1.uniformer.mmcv as mmcv
 import torch.nn as nn
-from comfy_controlnet_preprocessors.v1.uniformer.mmcv.cnn import ConvModule, constant_init, kaiming_init
-from comfy_controlnet_preprocessors.v1.uniformer.mmcv.cnn.bricks import Conv2dAdaptivePadding
-from comfy_controlnet_preprocessors.v1.uniformer.mmcv.runner import load_checkpoint
+from custom_nodes.comfy_controlnet_preprocessors.v1.uniformer.mmcv.cnn import ConvModule, constant_init, kaiming_init
+from custom_nodes.comfy_controlnet_preprocessors.v1.uniformer.mmcv.cnn.bricks import Conv2dAdaptivePadding
+from custom_nodes.comfy_controlnet_preprocessors.v1.uniformer.mmcv.runner import load_checkpoint
 from torch.nn.modules.batchnorm import _BatchNorm
 
 from ..builder import BACKBONES

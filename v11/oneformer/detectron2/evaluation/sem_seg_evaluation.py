@@ -6,13 +6,13 @@ import numpy as np
 import os
 from collections import OrderedDict
 from typing import Optional, Union
-import comfy_controlnet_preprocessors.v11.oneformer.pycocotools.mask as mask_util
+import custom_nodes.comfy_controlnet_preprocessors.v11.oneformer.pycocotools.mask as mask_util
 import torch
 from PIL import Image
 
-from comfy_controlnet_preprocessors.v11.oneformer.detectron2.data import DatasetCatalog, MetadataCatalog
-from comfy_controlnet_preprocessors.v11.oneformer.detectron2.utils.comm import all_gather, is_main_process, synchronize
-from comfy_controlnet_preprocessors.v11.oneformer.detectron2.utils.file_io import PathManager
+from custom_nodes.comfy_controlnet_preprocessors.v11.oneformer.detectron2.data import DatasetCatalog, MetadataCatalog
+from custom_nodes.comfy_controlnet_preprocessors.v11.oneformer.detectron2.utils.comm import all_gather, is_main_process, synchronize
+from custom_nodes.comfy_controlnet_preprocessors.v11.oneformer.detectron2.utils.file_io import PathManager
 
 from .evaluator import DatasetEvaluator
 

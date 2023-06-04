@@ -9,13 +9,13 @@ import logging
 import numpy as np
 import torch
 
-from comfy_controlnet_preprocessors.v11.oneformer.detectron2.data import MetadataCatalog
-from comfy_controlnet_preprocessors.v11.oneformer.detectron2.config import configurable
-from comfy_controlnet_preprocessors.v11.oneformer.detectron2.data import detection_utils as utils
-from comfy_controlnet_preprocessors.v11.oneformer.detectron2.data import transforms as T
-from comfy_controlnet_preprocessors.v11.oneformer.detectron2.structures import BitMasks, Instances
-from comfy_controlnet_preprocessors.v11.oneformer.oneformer.utils.box_ops import masks_to_boxes
-from comfy_controlnet_preprocessors.v11.oneformer.oneformer.data.tokenizer import SimpleTokenizer, Tokenize
+from custom_nodes.comfy_controlnet_preprocessors.v11.oneformer.detectron2.data import MetadataCatalog
+from custom_nodes.comfy_controlnet_preprocessors.v11.oneformer.detectron2.config import configurable
+from custom_nodes.comfy_controlnet_preprocessors.v11.oneformer.detectron2.data import detection_utils as utils
+from custom_nodes.comfy_controlnet_preprocessors.v11.oneformer.detectron2.data import transforms as T
+from custom_nodes.comfy_controlnet_preprocessors.v11.oneformer.detectron2.structures import BitMasks, Instances
+from custom_nodes.comfy_controlnet_preprocessors.v11.oneformer.oneformer.utils.box_ops import masks_to_boxes
+from custom_nodes.comfy_controlnet_preprocessors.v11.oneformer.oneformer.data.tokenizer import SimpleTokenizer, Tokenize
 
 __all__ = ["COCOUnifiedNewBaselineDatasetMapper"]
 

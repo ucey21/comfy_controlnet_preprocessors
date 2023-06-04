@@ -7,7 +7,7 @@ import cv2
 
 from . import util
 from torch.nn import Conv2d, Module, ReLU, MaxPool2d, init
-import model_management
+import comfy.model_management as model_management
 
 
 class FaceNet(Module):

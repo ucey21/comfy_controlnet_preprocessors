@@ -1,6 +1,6 @@
 # Copyright (c) Facebook, Inc. and its affiliates.
-from comfy_controlnet_preprocessors.v11.oneformer.detectron2.layers import ShapeSpec
-from comfy_controlnet_preprocessors.v11.oneformer.detectron2.utils.registry import Registry
+from custom_nodes.comfy_controlnet_preprocessors.v11.oneformer.detectron2.layers import ShapeSpec
+from custom_nodes.comfy_controlnet_preprocessors.v11.oneformer.detectron2.utils.registry import Registry
 
 from .backbone import Backbone
 

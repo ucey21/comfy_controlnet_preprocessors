@@ -1,6 +1,6 @@
-import comfy_controlnet_preprocessors.v1.uniformer.mmcv as mmcv
+import custom_nodes.comfy_controlnet_preprocessors.v1.uniformer.mmcv as mmcv
 import torch.nn as nn
-from comfy_controlnet_preprocessors.v1.uniformer.mmcv.cnn import ConvModule
+from custom_nodes.comfy_controlnet_preprocessors.v1.uniformer.mmcv.cnn import ConvModule
 
 from .make_divisible import make_divisible
 

@@ -9,7 +9,7 @@ except ImportError:
 
 __all__ = ['resnext101_32x8d']
 
-import model_management
+import comfy.model_management as model_management
 
 
 model_urls = {

@@ -2,7 +2,7 @@
 import torch
 from torch.nn import functional as F
 
-from comfy_controlnet_preprocessors.v11.oneformer.detectron2.structures import Instances, ROIMasks
+from custom_nodes.comfy_controlnet_preprocessors.v11.oneformer.detectron2.structures import Instances, ROIMasks
 
 
 # perhaps should rename to "resize_instance"

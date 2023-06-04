@@ -1,11 +1,11 @@
 import matplotlib.pyplot as plt
-import comfy_controlnet_preprocessors.v1.uniformer.mmcv as mmcv
+import custom_nodes.comfy_controlnet_preprocessors.v1.uniformer.mmcv as mmcv
 import torch
-from comfy_controlnet_preprocessors.v1.uniformer.mmcv.parallel import collate, scatter
-from comfy_controlnet_preprocessors.v1.uniformer.mmcv.runner import load_checkpoint
+from custom_nodes.comfy_controlnet_preprocessors.v1.uniformer.mmcv.parallel import collate, scatter
+from custom_nodes.comfy_controlnet_preprocessors.v1.uniformer.mmcv.runner import load_checkpoint
 
-from comfy_controlnet_preprocessors.v1.uniformer.mmseg.datasets.pipelines import Compose
-from comfy_controlnet_preprocessors.v1.uniformer.mmseg.models import build_segmentor
+from custom_nodes.comfy_controlnet_preprocessors.v1.uniformer.mmseg.datasets.pipelines import Compose
+from custom_nodes.comfy_controlnet_preprocessors.v1.uniformer.mmseg.models import build_segmentor
 
 
 def init_segmentor(config, checkpoint=None, device='cuda:0'):

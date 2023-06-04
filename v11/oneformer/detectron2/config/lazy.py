@@ -15,8 +15,8 @@ from typing import List, Tuple, Union
 import yaml
 from omegaconf import DictConfig, ListConfig, OmegaConf, SCMode
 
-from comfy_controlnet_preprocessors.v11.oneformer.detectron2.utils.file_io import PathManager
-from comfy_controlnet_preprocessors.v11.oneformer.detectron2.utils.registry import _convert_target_to_string
+from custom_nodes.comfy_controlnet_preprocessors.v11.oneformer.detectron2.utils.file_io import PathManager
+from custom_nodes.comfy_controlnet_preprocessors.v11.oneformer.detectron2.utils.registry import _convert_target_to_string
 
 __all__ = ["LazyCall", "LazyConfig"]
 
@@ -31,7 +31,7 @@ class LazyCall:
 
     Examples:
     ::
-        from comfy_controlnet_preprocessors.v11.oneformer.detectron2.config import instantiate, LazyCall
+        from custom_nodes.comfy_controlnet_preprocessors.v11.oneformer.detectron2.config import instantiate, LazyCall
 
         layer_cfg = LazyCall(nn.Conv2d)(in_channels=32, out_channels=32)
         layer_cfg.out_channels = 64   # can edit it afterwards

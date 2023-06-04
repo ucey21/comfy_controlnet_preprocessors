@@ -11,7 +11,7 @@ from skimage.measure import label
 
 from .model import handpose_model
 from . import util
-import model_management
+import comfy.model_management as model_management
 
 class Hand(object):
     def __init__(self, model_path):

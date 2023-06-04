@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 import matplotlib
 import torch
 from skimage.measure import label
-import model_management
+import comfy.model_management as model_management
 
 from .model import handpose_model
 from . import util

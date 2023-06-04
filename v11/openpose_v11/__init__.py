@@ -13,8 +13,8 @@ from . import util
 from .body import Body
 from .hand import Hand
 from .face import Face
-from comfy_controlnet_preprocessors.util import annotator_ckpts_path
-from comfy_controlnet_preprocessors.util import load_file_from_url
+from custom_nodes.comfy_controlnet_preprocessors.util import annotator_ckpts_path
+from custom_nodes.comfy_controlnet_preprocessors.util import load_file_from_url
 
 
 body_model_path = "https://huggingface.co/lllyasviel/Annotators/resolve/main/body_pose_model.pth"

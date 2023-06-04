@@ -1,5 +1,5 @@
 import torch
-from comfy_controlnet_preprocessors.v1.uniformer.mmcv.cnn import NonLocal2d
+from custom_nodes.comfy_controlnet_preprocessors.v1.uniformer.mmcv.cnn import NonLocal2d
 from torch import nn
 
 from ..builder import HEADS

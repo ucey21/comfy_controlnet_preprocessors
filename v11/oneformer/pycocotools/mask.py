@@ -1,6 +1,6 @@
 __author__ = 'tsungyi'
 
-# import comfy_controlnet_preprocessors.v11.oneformer.pycocotools._mask as _mask
+# import custom_nodes.comfy_controlnet_preprocessors.v11.oneformer.pycocotools._mask as _mask
 
 # Interface for manipulating masks stored in RLE format.
 #

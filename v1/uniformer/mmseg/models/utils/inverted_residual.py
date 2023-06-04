@@ -1,4 +1,4 @@
-from comfy_controlnet_preprocessors.v1.uniformer.mmcv.cnn import ConvModule
+from custom_nodes.comfy_controlnet_preprocessors.v1.uniformer.mmcv.cnn import ConvModule
 from torch import nn
 from torch.utils import checkpoint as cp
 

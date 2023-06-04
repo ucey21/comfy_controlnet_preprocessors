@@ -14,7 +14,7 @@ import numpy as np
 import cv2
 import torch
 from  torch.nn import  functional as F
-import model_management
+import comfy.model_management as model_management
 
 
 def deccode_output_score_and_ptss(tpMap, topk_n = 200, ksize = 5):

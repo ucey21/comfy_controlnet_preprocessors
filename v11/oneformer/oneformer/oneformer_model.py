@@ -9,19 +9,19 @@ import torch
 from torch import nn
 from torch.nn import functional as F
 
-from comfy_controlnet_preprocessors.v11.oneformer.detectron2.config import configurable
-from comfy_controlnet_preprocessors.v11.oneformer.detectron2.data import MetadataCatalog
-from comfy_controlnet_preprocessors.v11.oneformer.detectron2.modeling import META_ARCH_REGISTRY, build_backbone, build_sem_seg_head
-from comfy_controlnet_preprocessors.v11.oneformer.detectron2.modeling.backbone import Backbone
-from comfy_controlnet_preprocessors.v11.oneformer.detectron2.modeling.postprocessing import sem_seg_postprocess
-from comfy_controlnet_preprocessors.v11.oneformer.detectron2.structures import Boxes, ImageList, Instances, BitMasks
-from comfy_controlnet_preprocessors.v11.oneformer.detectron2.utils.memory import retry_if_cuda_oom
+from custom_nodes.comfy_controlnet_preprocessors.v11.oneformer.detectron2.config import configurable
+from custom_nodes.comfy_controlnet_preprocessors.v11.oneformer.detectron2.data import MetadataCatalog
+from custom_nodes.comfy_controlnet_preprocessors.v11.oneformer.detectron2.modeling import META_ARCH_REGISTRY, build_backbone, build_sem_seg_head
+from custom_nodes.comfy_controlnet_preprocessors.v11.oneformer.detectron2.modeling.backbone import Backbone
+from custom_nodes.comfy_controlnet_preprocessors.v11.oneformer.detectron2.modeling.postprocessing import sem_seg_postprocess
+from custom_nodes.comfy_controlnet_preprocessors.v11.oneformer.detectron2.structures import Boxes, ImageList, Instances, BitMasks
+from custom_nodes.comfy_controlnet_preprocessors.v11.oneformer.detectron2.utils.memory import retry_if_cuda_oom
 
 from .modeling.matcher import HungarianMatcher
 from einops import rearrange
 from .modeling.transformer_decoder.text_transformer import TextTransformer
 from .modeling.transformer_decoder.oneformer_transformer_decoder import MLP
-from comfy_controlnet_preprocessors.v11.oneformer.oneformer.data.tokenizer import SimpleTokenizer, Tokenize
+from custom_nodes.comfy_controlnet_preprocessors.v11.oneformer.oneformer.data.tokenizer import SimpleTokenizer, Tokenize
 
 @META_ARCH_REGISTRY.register()
 class OneFormer(nn.Module):

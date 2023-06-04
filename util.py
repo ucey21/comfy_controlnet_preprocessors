@@ -8,10 +8,13 @@ from tqdm import tqdm
 from urllib.parse import urlparse
 import torch
 import random
+import yaml
 
+config = yaml.load(open(os.path.join(os.path.dirname(__file__), "config.yaml"), "r"), Loader=yaml.FullLoader)
 
-annotator_ckpts_path = os.path.join(os.path.dirname(__file__), "ckpts")
-
+#annotator_ckpts_path = os.path.join(os.path.dirname(__file__), "ckpts")
+annotator_ckpts_path = config["annotator_ckpts_path"]
+skip_v1 = config["skip_v1"]
 
 def HWC3(x):
     assert x.dtype == np.uint8

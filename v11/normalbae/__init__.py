@@ -9,10 +9,10 @@ import numpy as np
 from einops import rearrange
 from .models.NNET import NNET
 from .utils import utils
-from comfy_controlnet_preprocessors.util import annotator_ckpts_path
+from custom_nodes.comfy_controlnet_preprocessors.util import annotator_ckpts_path
 import torchvision.transforms as transforms
-import model_management
-from comfy_controlnet_preprocessors.util import load_file_from_url
+import comfy.model_management as model_management
+from custom_nodes.comfy_controlnet_preprocessors.util import load_file_from_url
 
 
 class NormalBaeDetector:
