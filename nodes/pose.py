@@ -15,7 +15,7 @@ class OpenPose_Preprocessor:
                               }}
         if not skip_v1:
             ret["required"]["version"] = (["v1.1"], {"default": "v1.1"})
-        return
+        return ret
     RETURN_TYPES = ("IMAGE",)
     FUNCTION = "estimate_pose"
 
