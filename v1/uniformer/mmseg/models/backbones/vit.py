@@ -7,12 +7,12 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 import torch.utils.checkpoint as cp
-from comfy_controlnet_preprocessors.v1.uniformer.mmcv.cnn import (Conv2d, Linear, build_activation_layer, build_norm_layer,
+from custom_nodes.comfy_controlnet_preprocessors.v1.uniformer.mmcv.cnn import (Conv2d, Linear, build_activation_layer, build_norm_layer,
                       constant_init, kaiming_init, normal_init)
-from comfy_controlnet_preprocessors.v1.uniformer.mmcv.runner import _load_checkpoint
-from comfy_controlnet_preprocessors.v1.uniformer.mmcv.utils.parrots_wrapper import _BatchNorm
+from custom_nodes.comfy_controlnet_preprocessors.v1.uniformer.mmcv.runner import _load_checkpoint
+from custom_nodes.comfy_controlnet_preprocessors.v1.uniformer.mmcv.utils.parrots_wrapper import _BatchNorm
 
-from comfy_controlnet_preprocessors.v1.uniformer.mmseg.utils import get_root_logger
+from custom_nodes.comfy_controlnet_preprocessors.v1.uniformer.mmseg.utils import get_root_logger
 from ..builder import BACKBONES
 from ..utils import DropPath, trunc_normal_
 

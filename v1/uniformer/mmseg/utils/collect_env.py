@@ -1,7 +1,7 @@
-from comfy_controlnet_preprocessors.v1.uniformer.mmcv.utils import collect_env as collect_base_env
-from comfy_controlnet_preprocessors.v1.uniformer.mmcv.utils import get_git_hash
+from custom_nodes.comfy_controlnet_preprocessors.v1.uniformer.mmcv.utils import collect_env as collect_base_env
+from custom_nodes.comfy_controlnet_preprocessors.v1.uniformer.mmcv.utils import get_git_hash
 
-import comfy_controlnet_preprocessors.v1.uniformer.mmseg as mmseg
+import custom_nodes.comfy_controlnet_preprocessors.v1.uniformer.mmseg as mmseg
 
 
 def collect_env():

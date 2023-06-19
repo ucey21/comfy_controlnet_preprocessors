@@ -3,7 +3,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-from comfy_controlnet_preprocessors.v1.uniformer.mmcv.cnn import PLUGIN_LAYERS, Scale
+from custom_nodes.comfy_controlnet_preprocessors.v1.uniformer.mmcv.cnn import PLUGIN_LAYERS, Scale
 
 
 def NEG_INF_DIAG(n, device):

@@ -3,12 +3,12 @@ import warnings
 from abc import ABCMeta, abstractmethod
 from collections import OrderedDict
 
-import comfy_controlnet_preprocessors.v1.uniformer.mmcv as mmcv
+import custom_nodes.comfy_controlnet_preprocessors.v1.uniformer.mmcv as mmcv
 import numpy as np
 import torch
 import torch.distributed as dist
 import torch.nn as nn
-from comfy_controlnet_preprocessors.v1.uniformer.mmcv.runner import auto_fp16
+from custom_nodes.comfy_controlnet_preprocessors.v1.uniformer.mmcv.runner import auto_fp16
 
 
 class BaseSegmentor(nn.Module):

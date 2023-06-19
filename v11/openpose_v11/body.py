@@ -10,7 +10,7 @@ from torchvision import transforms
 
 from . import util
 from .model import bodypose_model
-import model_management
+import comfy.model_management as model_management
 
 class Body(object):
     def __init__(self, model_path):

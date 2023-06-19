@@ -13,24 +13,24 @@ import numpy as np
 import os
 import pickle
 from collections import OrderedDict
-import comfy_controlnet_preprocessors.v11.oneformer.pycocotools.mask as mask_util
+import custom_nodes.comfy_controlnet_preprocessors.v11.oneformer.pycocotools.mask as mask_util
 import torch
-from comfy_controlnet_preprocessors.v11.oneformer.pycocotools.coco import COCO
-from comfy_controlnet_preprocessors.v11.oneformer.pycocotools.cocoeval import COCOeval
+from custom_nodes.comfy_controlnet_preprocessors.v11.oneformer.pycocotools.coco import COCO
+from custom_nodes.comfy_controlnet_preprocessors.v11.oneformer.pycocotools.cocoeval import COCOeval
 from tabulate import tabulate
 
-import comfy_controlnet_preprocessors.v11.oneformer.detectron2.utils.comm as comm
-from comfy_controlnet_preprocessors.v11.oneformer.detectron2.config import CfgNode
-from comfy_controlnet_preprocessors.v11.oneformer.detectron2.data import MetadataCatalog
-from comfy_controlnet_preprocessors.v11.oneformer.detectron2.data.datasets.coco import convert_to_coco_json
-from comfy_controlnet_preprocessors.v11.oneformer.detectron2.structures import Boxes, BoxMode, pairwise_iou
-from comfy_controlnet_preprocessors.v11.oneformer.detectron2.utils.file_io import PathManager
-from comfy_controlnet_preprocessors.v11.oneformer.detectron2.utils.logger import create_small_table
+import custom_nodes.comfy_controlnet_preprocessors.v11.oneformer.detectron2.utils.comm as comm
+from custom_nodes.comfy_controlnet_preprocessors.v11.oneformer.detectron2.config import CfgNode
+from custom_nodes.comfy_controlnet_preprocessors.v11.oneformer.detectron2.data import MetadataCatalog
+from custom_nodes.comfy_controlnet_preprocessors.v11.oneformer.detectron2.data.datasets.coco import convert_to_coco_json
+from custom_nodes.comfy_controlnet_preprocessors.v11.oneformer.detectron2.structures import Boxes, BoxMode, pairwise_iou
+from custom_nodes.comfy_controlnet_preprocessors.v11.oneformer.detectron2.utils.file_io import PathManager
+from custom_nodes.comfy_controlnet_preprocessors.v11.oneformer.detectron2.utils.logger import create_small_table
 
 from .evaluator import DatasetEvaluator
 
 try:
-    from comfy_controlnet_preprocessors.v11.oneformer.detectron2.evaluation.fast_eval_api import COCOeval_opt
+    from custom_nodes.comfy_controlnet_preprocessors.v11.oneformer.detectron2.evaluation.fast_eval_api import COCOeval_opt
 except ImportError:
     COCOeval_opt = COCOeval
 

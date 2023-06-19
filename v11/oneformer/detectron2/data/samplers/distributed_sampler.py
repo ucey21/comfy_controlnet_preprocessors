@@ -7,7 +7,7 @@ from typing import Optional
 import torch
 from torch.utils.data.sampler import Sampler
 
-from comfy_controlnet_preprocessors.v11.oneformer.detectron2.utils import comm
+from custom_nodes.comfy_controlnet_preprocessors.v11.oneformer.detectron2.utils import comm
 
 logger = logging.getLogger(__name__)
 

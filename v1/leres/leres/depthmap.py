@@ -13,7 +13,7 @@ import torch, gc
 import cv2
 import numpy as np
 import skimage.measure
-import model_management
+import comfy.model_management as model_management
 
 whole_size_threshold = 1600  # R_max from the paper
 pix2pixsize = 1024

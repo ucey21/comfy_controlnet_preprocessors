@@ -1,6 +1,6 @@
 from ..v1 import openpose_v1, midas 
 import cv2
-from ..util import resize_image, HWC3
+from ..util import resize_image, HWC3, skip_v1
 import torch
 import numpy as np
 

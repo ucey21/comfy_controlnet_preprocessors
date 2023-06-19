@@ -8,12 +8,12 @@ import pickle
 from collections import OrderedDict
 import torch
 
-import comfy_controlnet_preprocessors.v11.oneformer.detectron2.utils.comm as comm
-from comfy_controlnet_preprocessors.v11.oneformer.detectron2.config import CfgNode
-from comfy_controlnet_preprocessors.v11.oneformer.detectron2.data import MetadataCatalog
-from comfy_controlnet_preprocessors.v11.oneformer.detectron2.structures import Boxes, BoxMode, pairwise_iou
-from comfy_controlnet_preprocessors.v11.oneformer.detectron2.utils.file_io import PathManager
-from comfy_controlnet_preprocessors.v11.oneformer.detectron2.utils.logger import create_small_table
+import custom_nodes.comfy_controlnet_preprocessors.v11.oneformer.detectron2.utils.comm as comm
+from custom_nodes.comfy_controlnet_preprocessors.v11.oneformer.detectron2.config import CfgNode
+from custom_nodes.comfy_controlnet_preprocessors.v11.oneformer.detectron2.data import MetadataCatalog
+from custom_nodes.comfy_controlnet_preprocessors.v11.oneformer.detectron2.structures import Boxes, BoxMode, pairwise_iou
+from custom_nodes.comfy_controlnet_preprocessors.v11.oneformer.detectron2.utils.file_io import PathManager
+from custom_nodes.comfy_controlnet_preprocessors.v11.oneformer.detectron2.utils.logger import create_small_table
 
 from .coco_evaluation import instances_to_coco_json
 from .evaluator import DatasetEvaluator

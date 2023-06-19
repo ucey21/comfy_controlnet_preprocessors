@@ -14,7 +14,7 @@ from imutils.video import VideoStream
 from midas.model_loader import default_models, load_model
 
 first_execution = True
-import model_management
+import comfy.model_management as model_management
 def process(device, model, model_type, image, input_size, target_size, optimize, use_camera):
     """
     Run the inference and interpolate.

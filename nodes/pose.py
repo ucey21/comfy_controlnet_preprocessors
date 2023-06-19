@@ -1,17 +1,21 @@
-from .util import common_annotator_call, img_np_to_tensor
-from ..v1 import openpose_v1
+from .util import common_annotator_call, img_np_to_tensor, skip_v1
+if not skip_v1:
+    from ..v1 import openpose_v1
 from ..v11 import openpose_v11
 from .. import mp_pose_hand
 
 class OpenPose_Preprocessor:
     @classmethod
     def INPUT_TYPES(s):
-        return {"required": { "image": ("IMAGE", ),
+        ret = {"required": { "image": ("IMAGE", ),
                               "detect_hand": (["enable", "disable"], {"default": "enable"}),
                               "detect_body": (["enable", "disable"], {"default": "enable"}),
                               "detect_face": (["enable", "disable"], {"default": "enable"}),
                               "version": (["v1", "v1.1"], {"default": "v1.1"})
                               }}
+        if not skip_v1:
+            ret["required"]["version"] = (["v1.1"], {"default": "v1.1"})
+        return ret
     RETURN_TYPES = ("IMAGE",)
     FUNCTION = "estimate_pose"
 

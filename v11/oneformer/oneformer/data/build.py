@@ -2,15 +2,15 @@
 from typing import Any, Callable, Dict, List, Optional, Union
 import torch.utils.data as torchdata
 
-from comfy_controlnet_preprocessors.v11.oneformer.detectron2.config import configurable
+from custom_nodes.comfy_controlnet_preprocessors.v11.oneformer.detectron2.config import configurable
 
 
-from comfy_controlnet_preprocessors.v11.oneformer.detectron2.data.common import DatasetFromList, MapDataset
-from comfy_controlnet_preprocessors.v11.oneformer.detectron2.data.dataset_mapper import DatasetMapper
-from comfy_controlnet_preprocessors.v11.oneformer.detectron2.data.samplers import (
+from custom_nodes.comfy_controlnet_preprocessors.v11.oneformer.detectron2.data.common import DatasetFromList, MapDataset
+from custom_nodes.comfy_controlnet_preprocessors.v11.oneformer.detectron2.data.dataset_mapper import DatasetMapper
+from custom_nodes.comfy_controlnet_preprocessors.v11.oneformer.detectron2.data.samplers import (
     InferenceSampler,
 )
-from comfy_controlnet_preprocessors.v11.oneformer.detectron2.data.build import (
+from custom_nodes.comfy_controlnet_preprocessors.v11.oneformer.detectron2.data.build import (
     get_detection_dataset_dicts,
     trivial_batch_collator
 )

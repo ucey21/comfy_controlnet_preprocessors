@@ -3,12 +3,12 @@ import warnings
 
 import numpy as np
 import torch
-from comfy_controlnet_preprocessors.v1.uniformer.mmcv.parallel import MMDataParallel, MMDistributedDataParallel
-from comfy_controlnet_preprocessors.v1.uniformer.mmcv.runner import build_optimizer, build_runner
+from custom_nodes.comfy_controlnet_preprocessors.v1.uniformer.mmcv.parallel import MMDataParallel, MMDistributedDataParallel
+from custom_nodes.comfy_controlnet_preprocessors.v1.uniformer.mmcv.runner import build_optimizer, build_runner
 
-from comfy_controlnet_preprocessors.v1.uniformer.mmseg.core import DistEvalHook, EvalHook
-from comfy_controlnet_preprocessors.v1.uniformer.mmseg.datasets import build_dataloader, build_dataset
-from comfy_controlnet_preprocessors.v1.uniformer.mmseg.utils import get_root_logger
+from custom_nodes.comfy_controlnet_preprocessors.v1.uniformer.mmseg.core import DistEvalHook, EvalHook
+from custom_nodes.comfy_controlnet_preprocessors.v1.uniformer.mmseg.datasets import build_dataloader, build_dataset
+from custom_nodes.comfy_controlnet_preprocessors.v1.uniformer.mmseg.utils import get_root_logger
 
 
 def set_random_seed(seed, deterministic=False):

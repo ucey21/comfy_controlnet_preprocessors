@@ -4,11 +4,11 @@
 import numpy as np
 from typing import List
 
-from comfy_controlnet_preprocessors.v11.oneformer.detectron2.config import CfgNode as CfgNode_
-from comfy_controlnet_preprocessors.v11.oneformer.detectron2.config import configurable
-from comfy_controlnet_preprocessors.v11.oneformer.detectron2.structures import Instances
-from comfy_controlnet_preprocessors.v11.oneformer.detectron2.structures.boxes import pairwise_iou
-from comfy_controlnet_preprocessors.v11.oneformer.detectron2.tracking.utils import LARGE_COST_VALUE, create_prediction_pairs
+from custom_nodes.comfy_controlnet_preprocessors.v11.oneformer.detectron2.config import CfgNode as CfgNode_
+from custom_nodes.comfy_controlnet_preprocessors.v11.oneformer.detectron2.config import configurable
+from custom_nodes.comfy_controlnet_preprocessors.v11.oneformer.detectron2.structures import Instances
+from custom_nodes.comfy_controlnet_preprocessors.v11.oneformer.detectron2.structures.boxes import pairwise_iou
+from custom_nodes.comfy_controlnet_preprocessors.v11.oneformer.detectron2.tracking.utils import LARGE_COST_VALUE, create_prediction_pairs
 
 from .base_tracker import TRACKER_HEADS_REGISTRY
 from .hungarian_tracker import BaseHungarianTracker

@@ -2,7 +2,7 @@
 from typing import List
 import torch
 
-from comfy_controlnet_preprocessors.v11.oneformer.detectron2.layers import nonzero_tuple
+from custom_nodes.comfy_controlnet_preprocessors.v11.oneformer.detectron2.layers import nonzero_tuple
 
 
 # TODO: the name is too general

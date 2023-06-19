@@ -4,8 +4,8 @@
 import numpy as np
 from typing import List
 
-from comfy_controlnet_preprocessors.v11.oneformer.detectron2.config import CfgNode as CfgNode_
-from comfy_controlnet_preprocessors.v11.oneformer.detectron2.config import configurable
+from custom_nodes.comfy_controlnet_preprocessors.v11.oneformer.detectron2.config import CfgNode as CfgNode_
+from custom_nodes.comfy_controlnet_preprocessors.v11.oneformer.detectron2.config import configurable
 
 from .base_tracker import TRACKER_HEADS_REGISTRY
 from .vanilla_hungarian_bbox_iou_tracker import VanillaHungarianBBoxIOUTracker

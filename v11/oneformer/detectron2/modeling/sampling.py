@@ -1,7 +1,7 @@
 # Copyright (c) Facebook, Inc. and its affiliates.
 import torch
 
-from comfy_controlnet_preprocessors.v11.oneformer.detectron2.layers import nonzero_tuple
+from custom_nodes.comfy_controlnet_preprocessors.v11.oneformer.detectron2.layers import nonzero_tuple
 
 __all__ = ["subsample_labels"]
 

@@ -8,9 +8,9 @@ from collections import deque
 import cv2
 import torch
 
-from comfy_controlnet_preprocessors.v11.oneformer.detectron2.data import MetadataCatalog
+from custom_nodes.comfy_controlnet_preprocessors.v11.oneformer.detectron2.data import MetadataCatalog
 from defaults import DefaultPredictor
-from comfy_controlnet_preprocessors.v11.oneformer.detectron2.utils.video_visualizer import VideoVisualizer
+from custom_nodes.comfy_controlnet_preprocessors.v11.oneformer.detectron2.utils.video_visualizer import VideoVisualizer
 from visualizer import ColorMode, Visualizer
 
 

@@ -2,8 +2,8 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-from comfy_controlnet_preprocessors.v1.uniformer.mmseg.core import add_prefix
-from comfy_controlnet_preprocessors.v1.uniformer.mmseg.ops import resize
+from custom_nodes.comfy_controlnet_preprocessors.v1.uniformer.mmseg.core import add_prefix
+from custom_nodes.comfy_controlnet_preprocessors.v1.uniformer.mmseg.ops import resize
 from .. import builder
 from ..builder import SEGMENTORS
 from .base import BaseSegmentor

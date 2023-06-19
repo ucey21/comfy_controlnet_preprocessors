@@ -4,7 +4,7 @@ import torch
 
 from einops import rearrange
 from .api import MiDaSInference
-import model_management
+import comfy.model_management
 
 
 class MidasDetector:
