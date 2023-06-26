@@ -122,7 +122,7 @@ class LineartAnimeDetector:
             load_file_from_url(remote_model_path, model_dir=annotator_ckpts_path)
         norm_layer = functools.partial(nn.InstanceNorm2d, affine=False, track_running_stats=False)
         net = UnetGenerator(3, 1, 8, 64, norm_layer=norm_layer, use_dropout=False)
-        ckpt = torch.load(modelpath)
+        ckpt = torch.load(modelpath, map_location=model_management.get_torch_device())
         for key in list(ckpt.keys()):
             if 'module.' in key:
                 ckpt[key.replace('module.', '')] = ckpt[key]

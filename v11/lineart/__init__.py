@@ -11,7 +11,6 @@ from einops import rearrange
 from custom_nodes.comfy_controlnet_preprocessors.util import annotator_ckpts_path
 import comfy.model_management as model_management
 
-
 norm_layer = nn.InstanceNorm2d
 
 
@@ -104,7 +103,7 @@ class LineartDetector:
             from custom_nodes.comfy_controlnet_preprocessors.util import load_file_from_url
             load_file_from_url(remote_model_path, model_dir=annotator_ckpts_path)
         model = Generator(3, 1, 3)
-        model.load_state_dict(torch.load(modelpath, map_location=torch.device('cpu')))
+        model.load_state_dict(torch.load(modelpath, map_location=model_management.get_torch_device()))
         model.eval()
         model = model.to(model_management.get_torch_device())
         return model
