@@ -8,6 +8,7 @@ scikit-image
 prettytable==3.6.0
 addict
 yapf
-mediapipe==0.9.1.0
+mediapipe
 fvcore
 omegaconf
+ftfy

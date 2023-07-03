@@ -140,7 +140,6 @@ Example images: WIP
 | ColorPreprocessor           | color                                                 | t2iadapter_color                          | preprocessors/color_style        |
 |MediaPipe-FaceMeshPreprocessor| mediapipe_face                                       | controlnet_sd21_laion_face_v2             | preprocessors/face_mesh          |
 
-
 ## Install
 Firstly, [install comfyui's dependencies](https://github.com/comfyanonymous/ComfyUI#installing) if you didn't.
 Then run:
@@ -153,7 +152,7 @@ Add `--no_download_ckpts` to the command in below methods if you don't want to d
 When a preprocessor node runs, if it can't find the models it need, that models will be downloaded automatically.
 ### New dependencies installation method
 Open the terminal then run
-```
+```sh
 install
 ```
 It will automatically find out what Python's build should be used and use it to run install.py
@@ -167,6 +166,16 @@ python install.py
 For ComfyUI portable standalone build:
 ```
 /path/to/ComfyUI/python_embeded/python.exe install.py
+```
+
+## Apple Silicon
+A few preprocessors utilize operators not implemented for Apple Silicon MPS device, yet.
+For example, `Zoe-DepthMapPreprocessor` depends on `aten::upsample_bicubic2d.out` operator.
+Thus you should enable `$PYTORCH_ENABLE_MPS_FALLBACK`.
+This makes sure unimplemented operators are calculated by the CPU.
+
+```sh 
+PYTORCH_ENABLE_MPS_FALLBACK=1 python /path/to/ComfyUI/main.py
 ```
 
 ## Model Dependencies 

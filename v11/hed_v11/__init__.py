@@ -62,7 +62,7 @@ class HEDdetector:
             from custom_nodes.comfy_controlnet_preprocessors.util import load_file_from_url
             load_file_from_url(remote_model_path, model_dir=annotator_ckpts_path)
         self.netNetwork = ControlNetHED_Apache2().float().to(model_management.get_torch_device()).eval()
-        self.netNetwork.load_state_dict(torch.load(modelpath))
+        self.netNetwork.load_state_dict(torch.load(modelpath, map_location=model_management.get_torch_device()))
 
     def __call__(self, input_image, safe=False):
         assert input_image.ndim == 3

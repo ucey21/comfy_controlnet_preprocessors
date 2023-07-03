@@ -10,6 +10,7 @@ from einops import rearrange
 from .zoedepth.models.zoedepth.zoedepth_v1 import ZoeDepth
 from .zoedepth.utils.config import get_config
 from custom_nodes.comfy_controlnet_preprocessors.util import annotator_ckpts_path, load_file_from_url
+import comfy.model_management
 
 class ZoeDetector:
     def __init__(self):
@@ -19,17 +20,15 @@ class ZoeDetector:
             load_file_from_url(remote_model_path, model_dir=annotator_ckpts_path)
         conf = get_config("zoedepth", "infer")
         model = ZoeDepth.build_from_config(conf)
-        model.load_state_dict(torch.load(modelpath)['model'])
-        model = model.cuda()
-        model.device = 'cuda'
+        model.load_state_dict(torch.load(modelpath, map_location=comfy.model_management.get_torch_device())['model'])
         model.eval()
-        self.model = model
+        self.model = model.to(comfy.model_management.get_torch_device())
 
     def __call__(self, input_image):
         assert input_image.ndim == 3
         image_depth = input_image
         with torch.no_grad():
-            image_depth = torch.from_numpy(image_depth).float().cuda()
+            image_depth = torch.from_numpy(image_depth).float().to(comfy.model_management.get_torch_device())
             image_depth = image_depth / 255.0
             image_depth = rearrange(image_depth, 'h w c -> 1 c h w')
             depth = self.model.infer(image_depth)

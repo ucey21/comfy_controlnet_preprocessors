@@ -8,7 +8,7 @@ from custom_nodes.comfy_controlnet_preprocessors.v1.uniformer.mmseg.datasets.pip
 from custom_nodes.comfy_controlnet_preprocessors.v1.uniformer.mmseg.models import build_segmentor
 
 
-def init_segmentor(config, checkpoint=None, device='cuda:0'):
+def init_segmentor(config, checkpoint=None):
     """Initialize a segmentor from config file.
 
     Args:
@@ -34,7 +34,6 @@ def init_segmentor(config, checkpoint=None, device='cuda:0'):
         model.CLASSES = checkpoint['meta']['CLASSES']
         model.PALETTE = checkpoint['meta']['PALETTE']
     model.cfg = config  # save the config in the model for convenience
-    model.to(device)
     model.eval()
     return model
 
