@@ -6,7 +6,7 @@ if [ -e "../../../python_embeded/python" ]; then
     ../../../python_embeded/python install.py ${1:+"$1"} #One-liner is za bezt
 else
     echo "Custom Python not found. Use system's Python executable instead:"
-    echo "$(which python)"
+    echo "$(which python3)"
     echo --------------------------------------------------
-    python.exe install.py ${1:+"$1"}
+    python3 install.py ${1:+"$1"}
 fi
