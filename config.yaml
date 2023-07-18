@@ -1,3 +1,0 @@
-# where are the ckpts stored?
-skip_v1: True
-annotator_ckpts_path: "./ckpts"
