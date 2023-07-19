@@ -10,11 +10,19 @@ import torch
 import random
 import yaml
 
-config = yaml.load(open(os.path.join(os.path.dirname(__file__), "config.yaml"), "r"), Loader=yaml.FullLoader)
 
-#annotator_ckpts_path = os.path.join(os.path.dirname(__file__), "ckpts")
-annotator_ckpts_path = config["annotator_ckpts_path"]
-skip_v1 = config["skip_v1"]
+config_path = os.path.join(os.path.dirname(__file__), "config.yaml")
+
+if os.path.exists(config_path):
+    config = yaml.load(open(config_path, "r"), Loader=yaml.FullLoader)
+
+    #annotator_ckpts_path = os.path.join(os.path.dirname(__file__), "ckpts")
+    annotator_ckpts_path = config["annotator_ckpts_path"]
+    skip_v1 = config["skip_v1"]
+else:
+    annotator_ckpts_path = "./ckpts"
+    skip_v1 = True
+
 
 def HWC3(x):
     assert x.dtype == np.uint8
