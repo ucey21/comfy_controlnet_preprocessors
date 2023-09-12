@@ -1,3 +1,3 @@
 # where are the ckpts stored?
-skip_v1: True
+skip_v1: False
 annotator_ckpts_path: "./ckpts"
